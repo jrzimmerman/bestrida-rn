@@ -1,4 +1,4 @@
-import * as constants from '../constants/users'
+import * as constants from '../constants/user'
 
 const initialState = {
   '_id': 2711071,
@@ -77,7 +77,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case constants.USERS:
+    case constants.USER:
       return state
     default:
       return state

@@ -3,20 +3,30 @@ import {
   Image,
   Text,
   TouchableHighlight,
+  StatusBar,
   StyleSheet
 } from 'react-native'
 
 const background = require('../images/LoginBackground.png')
 const loginButton = require('../images/LogInWithStrava@2x.png')
 
-const Login = () => (
+const Login = (props) => (
   <Image style={styles.backgroundImage} source={background}>
+    <StatusBar
+      barStyle="default"
+    />
     <Text style={styles.text}>Welcome to Bestrida</Text>
-    <TouchableHighlight>
+    <TouchableHighlight onPress={props.handleLogin}>
       <Image style={styles.loginButton}source={loginButton} />
     </TouchableHighlight>
   </Image>
 )
+
+const { func } = React.PropTypes
+
+Login.propTypes = {
+  handleLogin: func
+}
 
 const styles = StyleSheet.create({
   backgroundImage: {
