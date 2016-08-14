@@ -25,34 +25,47 @@ class ChallengeFeed extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <TouchableOpacity style={feedStyles.button}>
-          <Text style={styles.buttonText}>Create Challenge</Text>
-        </TouchableOpacity>
-        <ListView
-          style={feedStyles.list}
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => (
-            <TouchableOpacity style={styles.row}>
-              <View style={styles.challengeImageView}>
-                <Image style={styles.challengeImage} source={require('../images/strava_profile_pic.png')} />
-              </View>
-              <View style={styles.challengeDetail}>
-                <Text style={styles.challengeText}>Opponent: OPPONENT</Text>
-                <Text style={styles.challengeText}>Segment: SEGMENT NAME</Text>
-                <Text style={styles.challengeText}>Complete By: DATE HERE</Text>
-              </View>
-            </TouchableOpacity>
-          )}
-        />
+        <View style={feedStyles.create}>
+          <TouchableOpacity style={feedStyles.button}>
+            <Text style={styles.buttonText}>Create Challenge</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={feedStyles.feed}>
+          <ListView
+            contentInset={{bottom: 55}}
+            automaticallyAdjustContentInsets={false}
+            style={feedStyles.list}
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) => (
+              <TouchableOpacity style={styles.row}>
+                <View style={styles.challengeImageView}>
+                  <Image style={styles.challengeImage} source={require('../images/strava_profile_pic.png')} />
+                </View>
+                <View style={styles.challengeDetail}>
+                  <Text style={styles.challengeText}>Opponent: OPPONENT</Text>
+                  <Text style={styles.challengeText}>Segment: SEGMENT NAME</Text>
+                  <Text style={styles.challengeText}>Complete By: DATE HERE</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
       </View>
     )
   }
 }
 
 const feedStyles = StyleSheet.create({
+  create: {
+    flex: 0.2,
+    alignSelf: 'stretch'
+  },
+  feed: {
+    flex: 0.8,
+    alignSelf: 'stretch'
+  },
   list: {
-    alignSelf: 'stretch',
-    marginTop: -60
+    alignSelf: 'stretch'
   },
   button: {
     marginTop: 80,
