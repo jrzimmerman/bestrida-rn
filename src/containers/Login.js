@@ -12,9 +12,7 @@ const loginButton = require('../images/LogInWithStrava@2x.png')
 
 const Login = (props) => (
   <Image style={styles.backgroundImage} source={background}>
-    <StatusBar
-      barStyle="default"
-    />
+    <StatusBar barStyle="default" />
     <Text style={styles.text}>Welcome to Bestrida</Text>
     <TouchableHighlight onPress={props.handleLogin}>
       <Image style={styles.loginButton}source={loginButton} />

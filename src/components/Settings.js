@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {
   Text,
   View,
@@ -9,10 +8,7 @@ import {
 
 const Settings = () => (
   <View style={styles.container}>
-    <StatusBar
-      backgroundColor="black"
-      barStyle="light-content"
-    />
+    <StatusBar barStyle="light-content" />
     <Text>Settings</Text>
   </View>
 )
@@ -20,8 +16,8 @@ const Settings = () => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 30
   }
 })
 
