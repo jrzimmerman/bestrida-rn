@@ -1,12 +1,14 @@
 import React from 'react'
 import {
-  Text,
-  View,
+  Image,
   ListView,
   StatusBar,
   StyleSheet,
-  TouchableOpacity
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native'
+import { styles } from './styles'
 
 class ChallengeFeed extends React.Component {
   constructor (props) {
@@ -23,15 +25,22 @@ class ChallengeFeed extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={feedStyles.button}>
           <Text style={styles.buttonText}>Create Challenge</Text>
         </TouchableOpacity>
         <ListView
-          style={styles.list}
+          style={feedStyles.list}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => (
             <TouchableOpacity style={styles.row}>
-              <Text style={styles.text}>{rowData}</Text>
+              <View style={styles.challengeImageView}>
+                <Image style={styles.challengeImage} source={require('../images/strava_profile_pic.png')} />
+              </View>
+              <View style={styles.challengeDetail}>
+                <Text style={styles.challengeText}>Opponent: OPPONENT</Text>
+                <Text style={styles.challengeText}>Segment: SEGMENT NAME</Text>
+                <Text style={styles.challengeText}>Complete By: DATE HERE</Text>
+              </View>
             </TouchableOpacity>
           )}
         />
@@ -40,30 +49,10 @@ class ChallengeFeed extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#2B2B2B'
-  },
+const feedStyles = StyleSheet.create({
   list: {
     alignSelf: 'stretch',
     marginTop: -60
-  },
-  row: {
-    marginVertical: 5,
-    marginHorizontal: 10,
-    flexDirection: 'row',
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    height: 120,
-    backgroundColor: '#383838'
-  },
-  text: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignSelf: 'center',
-    color: '#CCC'
   },
   button: {
     marginTop: 80,
@@ -78,11 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#ef473a'
-  },
-  buttonText: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    color: '#ef473a'
   }
 })
 

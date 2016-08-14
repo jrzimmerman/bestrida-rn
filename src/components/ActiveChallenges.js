@@ -1,11 +1,13 @@
 import React from 'react'
 import {
-  Text,
-  View,
+  Image,
   ListView,
   StatusBar,
-  StyleSheet
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native'
+import { styles } from './styles'
 
 class ActiveChallenges extends React.Component {
   constructor (props) {
@@ -26,59 +28,21 @@ class ActiveChallenges extends React.Component {
           style={styles.list}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => (
-            <View style={styles.row}>
-              <Text style={styles.text}>{rowData}</Text>
-            </View>
+            <TouchableOpacity style={styles.row}>
+              <View style={styles.challengeImageView}>
+                <Image style={styles.challengeImage} source={require('../images/strava_profile_pic.png')} />
+              </View>
+              <View style={styles.challengeDetail}>
+                <Text style={styles.challengeText}>Opponent: OPPONENT</Text>
+                <Text style={styles.challengeText}>Segment: SEGMENT NAME</Text>
+                <Text style={styles.challengeText}>Complete By: DATE HERE</Text>
+              </View>
+            </TouchableOpacity>
           )}
         />
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#2B2B2B'
-  },
-  list: {
-    alignSelf: 'stretch',
-    marginTop: 5
-  },
-  row: {
-    marginVertical: 5,
-    marginHorizontal: 10,
-    flexDirection: 'row',
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    height: 120,
-    backgroundColor: '#383838'
-  },
-  text: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignSelf: 'center',
-    color: '#CCC'
-  },
-  button: {
-    alignSelf: 'stretch',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    margin: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-    height: 45,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#ef473a'
-  },
-  buttonText: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    color: '#ef473a'
-  }
-})
 
 export default ActiveChallenges

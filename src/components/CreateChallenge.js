@@ -6,9 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native'
+import { styles } from './styles'
 
 const CreateChallenge = () => (
-  <View style={styles.container}>
+  <View style={createStyles.container}>
     <StatusBar barStyle="light-content" />
     <Text style={styles.text}>Create Challenge</Text>
     <TouchableOpacity style={styles.button} onPress={this.handleCreate}>
@@ -17,34 +18,12 @@ const CreateChallenge = () => (
   </View>
 )
 
-const styles = StyleSheet.create({
+const createStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     paddingTop: 80,
     backgroundColor: '#2B2B2B'
-  },
-  text: {
-    flexDirection: 'row',
-    color: '#CCC'
-  },
-  button: {
-    alignSelf: 'stretch',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    margin: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-    height: 45,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#ef473a'
-  },
-  buttonText: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    color: '#ef473a'
   }
 })
 

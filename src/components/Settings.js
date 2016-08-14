@@ -1,12 +1,12 @@
 import React from 'react'
 import {
-  Dimensions,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
 } from 'react-native'
+import { styles } from './styles'
 
 class Settings extends React.Component {
   constructor (props) {
@@ -22,7 +22,7 @@ class Settings extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <TouchableOpacity style={styles.button} onPress={this.handleLogout}>
+        <TouchableOpacity style={settingStyles.button} onPress={this.handleLogout}>
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
       </View>
@@ -32,12 +32,7 @@ class Settings extends React.Component {
 
 // const { width } = Dimensions.get('window')
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#2B2B2B'
-  },
+const settingStyles = StyleSheet.create({
   button: {
     marginTop: 80,
     alignSelf: 'stretch',
@@ -51,11 +46,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#ef473a'
-  },
-  buttonText: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    color: '#ef473a'
   }
 })
 
