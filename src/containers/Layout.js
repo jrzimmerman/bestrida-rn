@@ -1,5 +1,7 @@
 import React from 'react'
 import {
+  NavigatorIOS,
+  StyleSheet,
   TabBarIOS
 } from 'react-native'
 import ChallengeFeed from '../components/ChallengeFeed'
@@ -7,6 +9,7 @@ import ActiveChallenges from '../components/ActiveChallenges'
 import CreateChallenge from '../components/CreateChallenge'
 import CompletedChallenges from '../components/CompletedChallenges'
 import Settings from '../components/Settings'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 class Layout extends React.Component {
   constructor (props) {
@@ -19,62 +22,123 @@ class Layout extends React.Component {
   render () {
     return (
       <TabBarIOS
-        unselectedTintColor="white"
-        tintColor="#fc4c02"
-        barTintColor="black">
-        <TabBarIOS.Item
+        unselectedTintColor="#CCC"
+        tintColor="#ef473a"
+        barTintColor="#2B2B2B">
+        <Icon.TabBarItemIOS
           title="Feed"
+          iconName="ios-home-outline"
+          selectedIconName="ios-home"
           selected={this.state.selectedTab === 'challengeFeed'}
           onPress={() => {
             this.setState({
               selectedTab: 'challengeFeed'
             })
           }}>
-          <ChallengeFeed />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
+          <NavigatorIOS
+            style={styles.nav}
+            titleTextColor={'#CCC'}
+            tintColor={'#fc4c02'}
+            barTintColor={'#2B2B2B'}
+            initialRoute={{
+              title: 'Challenge Feed',
+              component: ChallengeFeed
+            }}
+          />
+        </Icon.TabBarItemIOS>
+        <Icon.TabBarItemIOS
           title="Active"
+          iconName="ios-pulse-outline"
+          selectedIconName="ios-pulse"
           selected={this.state.selectedTab === 'activeChallenges'}
           onPress={() => {
             this.setState({
               selectedTab: 'activeChallenges'
             })
           }}>
-          <ActiveChallenges />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
+          <NavigatorIOS
+            style={styles.nav}
+            titleTextColor={'#CCC'}
+            tintColor={'#fc4c02'}
+            barTintColor={'#2B2B2B'}
+            initialRoute={{
+              title: 'Active Challenges',
+              component: ActiveChallenges
+            }}
+          />
+        </Icon.TabBarItemIOS>
+        <Icon.TabBarItemIOS
           title="Create"
+          iconName="md-list"
+          selectedIconName="md-list-box"
           selected={this.state.selectedTab === 'createChallenge'}
           onPress={() => {
             this.setState({
               selectedTab: 'createChallenge'
             })
           }}>
-          <CreateChallenge />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
+          <NavigatorIOS
+            style={styles.nav}
+            titleTextColor={'#CCC'}
+            tintColor={'#fc4c02'}
+            barTintColor={'#2B2B2B'}
+            initialRoute={{
+              title: 'Create Challenge',
+              component: CreateChallenge
+            }}
+          />
+        </Icon.TabBarItemIOS>
+        <Icon.TabBarItemIOS
           title="Completed"
+          iconName="ios-trophy-outline"
+          selectedIconName="ios-trophy"
           selected={this.state.selectedTab === 'completedChallenges'}
           onPress={() => {
             this.setState({
               selectedTab: 'completedChallenges'
             })
           }}>
-          <CompletedChallenges />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
+          <NavigatorIOS
+            style={styles.nav}
+            titleTextColor={'#CCC'}
+            tintColor={'#fc4c02'}
+            barTintColor={'#2B2B2B'}
+            initialRoute={{
+              title: 'Completed Challenges',
+              component: CompletedChallenges
+            }}
+          />
+        </Icon.TabBarItemIOS>
+        <Icon.TabBarItemIOS
           title="Settings"
+          iconName="ios-settings-outline"
+          selectedIconName="ios-settings"
           selected={this.state.selectedTab === 'settings'}
           onPress={() => {
             this.setState({
               selectedTab: 'settings'
             })
           }}>
-          <Settings />
-        </TabBarIOS.Item>
+          <NavigatorIOS
+            style={styles.nav}
+            titleTextColor={'#CCC'}
+            tintColor={'#fc4c02'}
+            barTintColor={'#2B2B2B'}
+            initialRoute={{
+              title: 'Settings',
+              component: Settings
+            }}
+          />
+        </Icon.TabBarItemIOS>
       </TabBarIOS>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  nav: {
+    flex: 1
+  }
+})
 
 export default Layout

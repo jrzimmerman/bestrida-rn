@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Image,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   StatusBar,
   StyleSheet
 } from 'react-native'
@@ -14,9 +14,9 @@ const Login = (props) => (
   <Image style={styles.backgroundImage} source={background}>
     <StatusBar barStyle="default" />
     <Text style={styles.text}>Welcome to Bestrida</Text>
-    <TouchableHighlight onPress={props.handleLogin}>
+    <TouchableOpacity onPress={props.handleLogin}>
       <Image style={styles.loginButton}source={loginButton} />
-    </TouchableHighlight>
+    </TouchableOpacity>
   </Image>
 )
 
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   text: {
     padding: 20,
     color: 'white',
-    fontSize: 34,
+    fontSize: 26,
     fontWeight: 'bold'
   },
   loginButton: {
