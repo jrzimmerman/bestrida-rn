@@ -17,11 +17,12 @@ class Settings extends React.Component {
   }
 
   handleLogout () {
+    console.log('handleLogout')
     this.props.dispatch(userActions.userLogout)
-    console.log(this.props.loggedIn)
   }
 
   render () {
+    console.log('settings loggedIn: ', this.props.loggedIn)
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -33,10 +34,11 @@ class Settings extends React.Component {
   }
 }
 
-const { func } = React.PropTypes
+const { bool, func } = React.PropTypes
 
 Settings.propTypes = {
-  dispatch: func
+  dispatch: func,
+  loggedIn: bool
 }
 
 const settingStyles = StyleSheet.create({

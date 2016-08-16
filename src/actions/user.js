@@ -12,6 +12,7 @@ export function userLogin (token, userId) {
 }
 
 export function userLogout () {
+  console.log('logging out action')
   return {
     type: constants.USER_AUTH,
     payload: {

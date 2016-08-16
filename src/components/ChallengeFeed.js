@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { styles } from './styles'
+import * as challengeActions from '../actions/challenges'
 
 class ChallengeFeed extends React.Component {
   constructor (props) {
@@ -22,8 +23,13 @@ class ChallengeFeed extends React.Component {
     }
   }
 
+  componentWillMount () {
+    this.props.dispatch(challengeActions.pendingChallenges)
+  }
+
   render () {
     console.log(this.props.userId)
+    console.log(this.props.pending)
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -86,7 +92,8 @@ const feedStyles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  userId: state.user.auth.userId
+  userId: state.user.auth.userId,
+  pending: state.challenges.pending
 })
 
 export default connect(mapStateToProps)(ChallengeFeed)
