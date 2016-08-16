@@ -18,7 +18,15 @@ class Layout extends React.Component {
     this.state = {
       selectedTab: 'challengeFeed'
     }
+    this.handlePress = this.handlePress.bind(this)
   }
+
+  handlePress (tab) {
+    this.setState({
+      selectedTab: tab
+    })
+  }
+
   render () {
     return (
       <TabBarIOS
@@ -30,11 +38,7 @@ class Layout extends React.Component {
           iconName="ios-home-outline"
           selectedIconName="ios-home"
           selected={this.state.selectedTab === 'challengeFeed'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'challengeFeed'
-            })
-          }}>
+          onPress={() => this.handlePress('challengeFeed')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
@@ -51,11 +55,7 @@ class Layout extends React.Component {
           iconName="ios-pulse-outline"
           selectedIconName="ios-pulse"
           selected={this.state.selectedTab === 'activeChallenges'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'activeChallenges'
-            })
-          }}>
+          onPress={() => this.handlePress('activeChallenges')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
@@ -72,11 +72,7 @@ class Layout extends React.Component {
           iconName="md-list"
           selectedIconName="md-list-box"
           selected={this.state.selectedTab === 'createChallenge'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'createChallenge'
-            })
-          }}>
+          onPress={() => this.handlePress('createChallenge')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
@@ -93,11 +89,7 @@ class Layout extends React.Component {
           iconName="ios-trophy-outline"
           selectedIconName="ios-trophy"
           selected={this.state.selectedTab === 'completedChallenges'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'completedChallenges'
-            })
-          }}>
+          onPress={() => this.handlePress('completedChallenges')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
@@ -114,11 +106,7 @@ class Layout extends React.Component {
           iconName="ios-settings-outline"
           selectedIconName="ios-settings"
           selected={this.state.selectedTab === 'settings'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'settings'
-            })
-          }}>
+          onPress={() => this.handlePress('settings')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}

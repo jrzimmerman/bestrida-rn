@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
+import { connect } from 'react-redux'
 import { styles } from './styles'
 
 class ChallengeFeed extends React.Component {
@@ -22,6 +23,7 @@ class ChallengeFeed extends React.Component {
   }
 
   render () {
+    console.log(this.props.userId)
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -83,4 +85,8 @@ const feedStyles = StyleSheet.create({
   }
 })
 
-export default ChallengeFeed
+const mapStateToProps = (state) => ({
+  userId: state.user.auth.userId
+})
+
+export default connect(mapStateToProps)(ChallengeFeed)

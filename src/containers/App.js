@@ -4,18 +4,20 @@ import Login from './Login'
 import Layout from './Layout'
 
 class App extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
-    const { auth } = this.props
-    return auth.loggedIn ? <Layout /> : <Login />
+    const { loggedIn } = this.props
+    return loggedIn ? <Layout /> : <Login />
   }
 }
 
+const { bool } = React.PropTypes
+
+App.propTypes = {
+  loggedIn: bool
+}
+
 const mapStateToProps = (state) => ({
-  auth: state.user.auth
+  loggedIn: state.user.auth.loggedIn
 })
 
 export default connect(mapStateToProps)(App)

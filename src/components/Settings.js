@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
+import { connect } from 'react-redux'
 import { styles } from './styles'
+import * as userActions from '../actions/user'
 
 class Settings extends React.Component {
   constructor (props) {
@@ -15,7 +17,8 @@ class Settings extends React.Component {
   }
 
   handleLogout () {
-
+    this.props.dispatch(userActions.userLogout)
+    console.log(this.props.loggedIn)
   }
 
   render () {
@@ -30,7 +33,11 @@ class Settings extends React.Component {
   }
 }
 
-// const { width } = Dimensions.get('window')
+const { func } = React.PropTypes
+
+Settings.propTypes = {
+  dispatch: func
+}
 
 const settingStyles = StyleSheet.create({
   button: {
@@ -49,4 +56,8 @@ const settingStyles = StyleSheet.create({
   }
 })
 
-export default Settings
+const mapStateToProps = (state) => ({
+  loggedIn: state.user.auth.loggedIn
+})
+
+export default connect(mapStateToProps)(Settings)

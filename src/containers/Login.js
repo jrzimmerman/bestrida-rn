@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  AsyncStorage,
   Image,
   Linking,
   Text,
@@ -32,7 +31,7 @@ class Login extends React.Component {
       var token = url.match('oauth_token=(.*)&userId')[1]
       var userId = url.match('&userId=(.*)')[1]
       SafariView.dismiss()
-      this.props.dispatch(userActions.successfulLogin(token, userId))
+      this.props.dispatch(userActions.userLogin(token, userId))
     }
   }
 
