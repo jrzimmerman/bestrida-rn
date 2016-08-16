@@ -8,7 +8,9 @@ import {
   StatusBar,
   StyleSheet
 } from 'react-native'
+import { connect } from 'react-redux'
 import SafariView from 'react-native-safari-view'
+import * as userActions from '../actions/user'
 
 const background = require('../images/LoginBackground.png')
 const loginButton = require('../images/LogInWithStrava@2x.png')
@@ -25,19 +27,12 @@ class Login extends React.Component {
   }
 
   handleOpenURL (event) {
-    console.log(event.url)
-    console.log(typeof event.url)
     if (event.url) {
       const url = event.url
-      console.log(url.match('oauth_token=(.*)&userId')[1])
-      console.log(url.match('&userId=(.*)')[1])
       var token = url.match('oauth_token=(.*)&userId')[1]
       var userId = url.match('&userId=(.*)')[1]
-      this.setState({
-        token,
-        userId
-      })
       SafariView.dismiss()
+      this.props.dispatch(userActions.successfulLogin(token, userId))
     }
   }
 
@@ -67,6 +62,12 @@ class Login extends React.Component {
   }
 }
 
+const { func } = React.PropTypes
+
+Login.propTypes = {
+  dispatch: func
+}
+
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
@@ -88,4 +89,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Login
+export default connect()(Login)

@@ -1,29 +1,21 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native'
+import { connect } from 'react-redux'
+import Login from './Login'
+import Layout from './Layout'
 
-const App = () => (
-  <View style={styles.container}>
-    <Text style={styles.text}>Bestrida</Text>
-  </View>
-)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fc4c02',
-    padding: 40
-  },
-  text: {
-    color: 'white',
-    fontSize: 34,
-    fontWeight: 'bold'
+class App extends React.Component {
+  constructor (props) {
+    super(props)
   }
+
+  render () {
+    const { auth } = this.props
+    return auth.loggedIn ? <Layout /> : <Login />
+  }
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.user.auth
 })
 
-export default App
+export default connect(mapStateToProps)(App)
