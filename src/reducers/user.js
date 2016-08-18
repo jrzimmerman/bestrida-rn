@@ -1,4 +1,4 @@
-import * as constants from '../constants/user'
+import * as constants from '../constants/user';
 
 const initialState = {
   auth: {
@@ -6,7 +6,7 @@ const initialState = {
     token: null,
     userId: null
   }
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {

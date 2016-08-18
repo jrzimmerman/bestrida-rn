@@ -1,4 +1,4 @@
-import * as constants from '../constants/segments'
+import * as constants from '../constants/segments';
 
 const initialState = {
   _id: 10663090,
@@ -20,7 +20,7 @@ const initialState = {
     -77.433336
   ],
   __v: 0
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {

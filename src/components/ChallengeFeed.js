@@ -21,15 +21,25 @@ class ChallengeFeed extends React.Component {
         'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
       ])
     }
+    this.pendingChallenges = this.pendingChallenges.bind(this)
   }
 
   componentWillMount () {
-    this.props.dispatch(challengeActions.pendingChallenges)
+    console.log(this.props.userId)
+    this.pendingChallenges(this.props.userId)
+  }
+
+  pendingChallenges (userId) {
+    return fetch('http://bestrida.herokuapp.com/api/challenges/pending/' + userId, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error))
   }
 
   render () {
-    console.log(this.props.userId)
-    console.log(this.props.pending)
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />

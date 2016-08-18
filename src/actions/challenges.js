@@ -8,8 +8,7 @@ export function pendingChallenges (userId) {
       type: constants.PENDING_CHALLENGES,
       payload: { loading: true }
     })
-
-    fetch(`${API_URL}challenges/pending/${userId}`, {
+    return fetch(`${API_URL}challenges/pending/${userId}`, {
       headers: {
         'Accept': 'application/json'
       }
@@ -22,6 +21,7 @@ export function pendingChallenges (userId) {
         challenges
       }
     }))
+    .catch(error => console.log(error))
   }
 }
 
@@ -31,19 +31,22 @@ export function completedChallenges (userId) {
       type: constants.COMPLETED_CHALLENGES,
       payload: { loading: true }
     })
-
-    fetch(`${API_URL}challenges/completed/${userId}`, {
+    return fetch(`${API_URL}challenges/completed/${userId}`, {
       headers: {
         'Accept': 'application/json'
       }
     })
     .then(response => response.json())
-    .then(challenges => dispatch({
-      type: constants.COMPLETED_CHALLENGES,
-      payload: {
-        loading: false,
-        challenges
-      }
-    }))
+    .then(challenges => {
+      console.log('challenges: ', challenges)
+      dispatch({
+        type: constants.COMPLETED_CHALLENGES,
+        payload: {
+          loading: false,
+          challenges
+        }
+      })
+    })
+    .catch(error => console.log(error))
   }
 }

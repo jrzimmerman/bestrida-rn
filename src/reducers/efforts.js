@@ -1,12 +1,12 @@
-import * as constants from '../constants/efforts'
+import * as constants from '../constants/efforts';
 
-const initialState = {}
+const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case constants.EFFORTS:
-      return state
+      return state;
     default:
-      return state
+      return state;
   }
-}
+};
