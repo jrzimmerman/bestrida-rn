@@ -1,1 +1,1 @@
-export const EFFORTS = 'EFFORTS'
+export const EFFORTS = 'EFFORTS';

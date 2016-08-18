@@ -1,45 +1,15 @@
-import React from 'react'
+import React from 'react';
 import {
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
-} from 'react-native'
-import { connect } from 'react-redux'
-import { styles } from './styles'
-import * as userActions from '../actions/user'
-
-class Settings extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleLogout = this.handleLogout.bind(this)
-  }
-
-  handleLogout () {
-    console.log('handleLogout')
-    this.props.dispatch(userActions.userLogout)
-  }
-
-  render () {
-    console.log('settings loggedIn: ', this.props.loggedIn)
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
-        <TouchableOpacity style={settingStyles.button} onPress={this.handleLogout}>
-          <Text style={styles.buttonText}>Logout</Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
-}
-
-const { bool, func } = React.PropTypes
-
-Settings.propTypes = {
-  dispatch: func,
-  loggedIn: bool
-}
+} from 'react-native';
+import { connect } from 'react-redux';
+import styles from './styles';
+import Login from '../containers/Login';
+import * as userActions from '../actions/user';
 
 const settingStyles = StyleSheet.create({
   button: {
@@ -56,10 +26,41 @@ const settingStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ef473a'
   }
-})
+});
+
+class Settings extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    console.log('handleLogout');
+    this.props.dispatch(userActions.userLogout);
+  }
+
+  render() {
+    console.log('settings loggedIn: ', this.props.loggedIn);
+    return (
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
+        <TouchableOpacity style={settingStyles.button} onPress={this.handleLogout}>
+          <Text style={styles.buttonText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+const { bool, func, object } = React.PropTypes;
+
+Settings.propTypes = {
+  dispatch: func,
+  loggedIn: bool
+};
 
 const mapStateToProps = (state) => ({
   loggedIn: state.user.auth.loggedIn
-})
+});
 
-export default connect(mapStateToProps)(Settings)
+export default connect(mapStateToProps)(Settings);

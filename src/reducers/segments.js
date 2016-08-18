@@ -25,8 +25,8 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case constants.SEGMENTS:
-      return state
+      return state;
     default:
-      return state
+      return state;
   }
-}
+};

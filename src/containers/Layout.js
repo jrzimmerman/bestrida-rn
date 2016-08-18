@@ -1,33 +1,39 @@
-import React from 'react'
+import React from 'react';
 import {
   NavigatorIOS,
   StyleSheet,
   TabBarIOS
-} from 'react-native'
-import ChallengeFeed from '../components/ChallengeFeed'
-import ActiveChallenges from '../components/ActiveChallenges'
-import CreateChallenge from '../components/CreateChallenge'
-import CompletedChallenges from '../components/CompletedChallenges'
-import Settings from '../components/Settings'
-import Icon from 'react-native-vector-icons/Ionicons'
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import ChallengeFeed from '../components/ChallengeFeed';
+import ActiveChallenges from '../components/ActiveChallenges';
+import CreateChallenge from '../components/CreateChallenge';
+import CompletedChallenges from '../components/CompletedChallenges';
+import Settings from '../components/Settings';
+
+const styles = StyleSheet.create({
+  nav: {
+    flex: 1
+  }
+});
 
 class Layout extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       selectedTab: 'challengeFeed'
-    }
-    this.handlePress = this.handlePress.bind(this)
+    };
+    this.handlePress = this.handlePress.bind(this);
   }
 
-  handlePress (tab) {
+  handlePress(tab) {
     this.setState({
       selectedTab: tab
-    })
+    });
   }
 
-  render () {
+  render() {
     return (
       <TabBarIOS
         unselectedTintColor="#CCC"
@@ -119,14 +125,8 @@ class Layout extends React.Component {
           />
         </Icon.TabBarItemIOS>
       </TabBarIOS>
-    )
+    );
   }
 }
 
-const styles = StyleSheet.create({
-  nav: {
-    flex: 1
-  }
-})
-
-export default Layout
+export default Layout;

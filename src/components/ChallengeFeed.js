@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Image,
   ListView,
@@ -7,71 +7,13 @@ import {
   Text,
   TouchableOpacity,
   View
-} from 'react-native'
-import { connect } from 'react-redux'
-import { styles } from './styles'
-import * as challengeActions from '../actions/challenges'
+} from 'react-native';
+import { connect } from 'react-redux';
+import styles from './styles';
+import PendingChallengeDetail from './PendingChallengeDetail';
+// import * as challengeActions from '../actions/challenges';
 
-class ChallengeFeed extends React.Component {
-  constructor (props) {
-    super(props)
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
-    }
-    this.pendingChallenges = this.pendingChallenges.bind(this)
-  }
-
-  componentWillMount () {
-    console.log(this.props.userId)
-    this.pendingChallenges(this.props.userId)
-  }
-
-  pendingChallenges (userId) {
-    return fetch('http://bestrida.herokuapp.com/api/challenges/pending/' + userId, {
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .catch(error => console.log(error))
-  }
-
-  render () {
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
-        <View style={feedStyles.create}>
-          <TouchableOpacity style={feedStyles.button}>
-            <Text style={styles.buttonText}>Create Challenge</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={feedStyles.feed}>
-          <ListView
-            contentInset={{bottom: 55}}
-            automaticallyAdjustContentInsets={false}
-            style={feedStyles.list}
-            dataSource={this.state.dataSource}
-            renderRow={(rowData) => (
-              <TouchableOpacity style={styles.row}>
-                <View style={styles.challengeImageView}>
-                  <Image style={styles.challengeImage} source={require('../images/strava_profile_pic.png')} />
-                </View>
-                <View style={styles.challengeDetail}>
-                  <Text style={styles.challengeText}>Opponent: OPPONENT</Text>
-                  <Text style={styles.challengeText}>Segment: SEGMENT NAME</Text>
-                  <Text style={styles.challengeText}>Complete By: DATE HERE</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
-      </View>
-    )
-  }
-}
+const stravaProfilePic = require('../images/strava_profile_pic.png');
 
 const feedStyles = StyleSheet.create({
   create: {
@@ -99,11 +41,85 @@ const feedStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ef473a'
   }
-})
+});
+
+class ChallengeFeed extends React.Component {
+  constructor(props) {
+    super(props);
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = {
+      dataSource: ds.cloneWithRows([
+        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
+      ])
+    };
+    this.pendingChallenges = this.pendingChallenges.bind(this);
+    this.handlePress = this.handlePress.bind(this);
+  }
+
+  componentWillMount() {
+    console.log(this.props.userId);
+    this.pendingChallenges(this.props.userId);
+  }
+
+  handlePress() {
+    this.props.navigator.push({ component: PendingChallengeDetail });
+  }
+
+  pendingChallenges(userId) {
+    return fetch(`http://bestrida.herokuapp.com/api/challenges/pending/${userId}`, {
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error));
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
+        <View style={feedStyles.create}>
+          <TouchableOpacity style={feedStyles.button}>
+            <Text style={styles.buttonText}>Create Challenge</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={feedStyles.feed}>
+          <ListView
+            contentInset={{ bottom: 55 }}
+            automaticallyAdjustContentInsets={false}
+            style={feedStyles.list}
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) => (
+              <TouchableOpacity onPress={this.handlePress} style={styles.row}>
+                <View style={styles.challengeImageView}>
+                  <Image
+                    style={styles.challengeImage}
+                    source={stravaProfilePic}
+                  />
+                </View>
+                <View style={styles.challengeDetail}>
+                  <Text style={styles.challengeText}>Opponent: OPPONENT</Text>
+                  <Text style={styles.challengeText}>Segment: SEGMENT NAME</Text>
+                  <Text style={styles.challengeText}>Complete By: DATE HERE</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </View>
+    );
+  }
+}
+const { string } = React.PropTypes;
+
+ChallengeFeed.propTypes = {
+  userId: string
+};
 
 const mapStateToProps = (state) => ({
   userId: state.user.auth.userId,
   pending: state.challenges.pending
-})
+});
 
-export default connect(mapStateToProps)(ChallengeFeed)
+export default connect(mapStateToProps)(ChallengeFeed);

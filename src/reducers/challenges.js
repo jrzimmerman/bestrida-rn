@@ -14,6 +14,6 @@ export default (state = initialState, action) => {
         pending: action.payload
       });
     default:
-      return state
+      return state;
   }
 };

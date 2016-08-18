@@ -1,6 +1,6 @@
-import * as constants from '../constants/user'
+import * as constants from '../constants/user';
 
-export function userLogin (token, userId) {
+export function userLogin(token, userId) {
   return {
     type: constants.USER_AUTH,
     payload: {
@@ -8,11 +8,11 @@ export function userLogin (token, userId) {
       token,
       userId
     }
-  }
+  };
 }
 
-export function userLogout () {
-  console.log('logging out action')
+export function userLogout() {
+  console.log('logging out action');
   return {
     type: constants.USER_AUTH,
     payload: {
@@ -20,5 +20,5 @@ export function userLogout () {
       token: null,
       userId: null
     }
-  }
+  };
 }

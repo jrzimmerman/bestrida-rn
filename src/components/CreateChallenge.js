@@ -1,12 +1,21 @@
-import React from 'react'
+import React from 'react';
 import {
   Text,
   View,
   StatusBar,
   StyleSheet,
   TouchableOpacity
-} from 'react-native'
-import { styles } from './styles'
+} from 'react-native';
+import styles from './styles';
+
+const createStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 80,
+    backgroundColor: '#2B2B2B'
+  }
+});
 
 const CreateChallenge = () => (
   <View style={createStyles.container}>
@@ -16,15 +25,6 @@ const CreateChallenge = () => (
       <Text style={styles.buttonText}>Create Challenge</Text>
     </TouchableOpacity>
   </View>
-)
+);
 
-const createStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: 80,
-    backgroundColor: '#2B2B2B'
-  }
-})
-
-export default CreateChallenge
+export default CreateChallenge;
