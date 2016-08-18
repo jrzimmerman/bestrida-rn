@@ -63,6 +63,52 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginHorizontal: 10,
     marginVertical: 5
+  },
+  challengeTitleView: {
+    flex: 0.2,
+    alignSelf: 'stretch'
+  },
+  challengeTitleText: {
+    paddingTop: 85,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignSelf: 'center',
+    color: '#CCC',
+    fontWeight: 'bold',
+    fontSize: 24
+  },
+  challengeDetailView: {
+    flex: 0.6,
+    alignSelf: 'stretch',
+    backgroundColor: '#383838',
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 40
+  },
+  challengeDetailTitle: {
+    flexDirection: 'column',
+    alignSelf: 'center',
+    color: '#CCC',
+    fontWeight: 'bold',
+    fontSize: 16
+  },
+  challengeDetailText: {
+    flexDirection: 'column',
+    alignSelf: 'center',
+    color: '#CCC',
+    fontSize: 16
+  },
+  challengeCancelView: {
+    flex: 0.2,
+    alignSelf: 'stretch'
+  },
+  detailRowView: {
+    flex: 1,
+    marginTop: 5,
+    marginHorizontal: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignSelf: 'stretch'
   }
 });
 
