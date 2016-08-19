@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Image,
   Linking,
-  NavigatorIOS,
   Text,
   TouchableOpacity,
   StatusBar,
@@ -10,6 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import SafariView from 'react-native-safari-view';
+import Layout from './Layout';
 import * as userActions from '../actions/user';
 
 const background = require('../images/LoginBackground.png');
@@ -41,6 +41,12 @@ class Login extends React.Component {
     super(props);
     this.stravaOauth = this.stravaOauth.bind(this);
     this.handleOpenURL = this.handleOpenURL.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.loggedIn) {
+      this.props.navigator.push({ component: Layout, parentNavigator: this.props.navigator });
+    }
   }
 
   componentDidMount() {
@@ -83,10 +89,16 @@ class Login extends React.Component {
   }
 }
 
-const { func } = React.PropTypes;
+const { bool, func, object } = React.PropTypes;
 
 Login.propTypes = {
-  dispatch: func
+  dispatch: func,
+  navigator: object,
+  loggedIn: bool
 };
 
-export default connect()(Login);
+const mapStateToProps = (state) => ({
+  loggedIn: state.user.loggedIn
+});
+
+export default connect(mapStateToProps)(Login);

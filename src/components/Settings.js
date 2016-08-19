@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import styles from './styles';
-import Login from '../containers/Login';
 import * as userActions from '../actions/user';
 
 const settingStyles = StyleSheet.create({
@@ -37,6 +36,7 @@ class Settings extends React.Component {
   handleLogout() {
     console.log('handleLogout');
     this.props.dispatch(userActions.userLogout);
+    this.props.navigator.popToTop();
   }
 
   render() {
@@ -52,7 +52,7 @@ class Settings extends React.Component {
   }
 }
 
-const { bool, func, object } = React.PropTypes;
+const { bool, func } = React.PropTypes;
 
 Settings.propTypes = {
   dispatch: func,

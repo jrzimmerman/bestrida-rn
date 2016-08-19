@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import styles from './styles';
 import PendingChallengeDetail from './PendingChallengeDetail';
-// import * as challengeActions from '../actions/challenges';
+import * as challengeActions from '../actions/challenges';
 
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
@@ -48,31 +48,35 @@ class ChallengeFeed extends React.Component {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
+      dataSource: ds.cloneWithRows(this.props.pending.challenges)
     };
     this.pendingChallenges = this.pendingChallenges.bind(this);
     this.handlePress = this.handlePress.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log(this.props.userId);
-    this.pendingChallenges(this.props.userId);
+    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
   }
 
   handlePress() {
     this.props.navigator.push({ component: PendingChallengeDetail });
   }
 
-  pendingChallenges(userId) {
-    return fetch(`http://bestrida.herokuapp.com/api/challenges/pending/${userId}`, {
-      headers: {
-        Accept: 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .catch(error => console.log(error));
+  async pendingChallenges(userId) {
+    try {
+      const response = await fetch(`https://bestrida.herokuapp.com/api/challenges/pending/${userId}`, {
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      const responseJson = await response.json();
+      console.log(responseJson);
+      return responseJson;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 
   render() {
@@ -99,9 +103,9 @@ class ChallengeFeed extends React.Component {
                   />
                 </View>
                 <View style={styles.challengeDetail}>
-                  <Text style={styles.challengeText}>Opponent: OPPONENT</Text>
-                  <Text style={styles.challengeText}>Segment: SEGMENT NAME</Text>
-                  <Text style={styles.challengeText}>Complete By: DATE HERE</Text>
+                  <Text style={styles.challengeText}>Opponent: {rowData.challengerName}</Text>
+                  <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
+                  <Text style={styles.challengeText}>Complete By: {rowData.expires}}</Text>
                 </View>
               </TouchableOpacity>
             )}
@@ -111,10 +115,16 @@ class ChallengeFeed extends React.Component {
     );
   }
 }
-const { string } = React.PropTypes;
+const { array, bool, string, object, shape } = React.PropTypes;
 
 ChallengeFeed.propTypes = {
-  userId: string
+  navigator: object,
+  userId: string,
+  pending: shape({
+    loading: bool,
+    challenges: array,
+    error: string
+  })
 };
 
 const mapStateToProps = (state) => ({

@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+  NavigatorIOS
+} from 'react-native';
 import Login from './Login';
 import Layout from './Layout';
 
