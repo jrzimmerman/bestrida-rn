@@ -35,8 +35,7 @@ class Settings extends React.Component {
 
   handleLogout() {
     console.log('handleLogout');
-    this.props.dispatch(userActions.userLogout);
-    this.props.navigator.popToTop();
+    this.props.dispatch(userActions.userLogout());
   }
 
   render() {
