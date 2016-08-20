@@ -1,6 +1,6 @@
 import * as constants from '../constants/challenges';
 
-const API_URL = 'https://bestrida.herokuapp.com/api/';
+const API_URL = 'http://www.bestridaapp.com/api/';
 
 export function pendingChallenges(userId) {
   console.log('pending action');

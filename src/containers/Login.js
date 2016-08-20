@@ -68,7 +68,7 @@ class Login extends React.Component {
       'https://www.strava.com/oauth/authorize',
       '?response_type=code',
       `&client_id=${9169}`,
-      '&redirect_uri=http://bestrida.herokuapp.com/auth/strava/callback'
+      '&redirect_uri=http://www.bestridaapp.com/auth/strava/callback'
     ].join('');
     SafariView.show({
       url
