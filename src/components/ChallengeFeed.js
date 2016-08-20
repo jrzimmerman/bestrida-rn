@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import styles from './styles';
 import PendingChallengeDetail from './PendingChallengeDetail';
 import * as challengeActions from '../actions/challenges';
+import * as navigationActions from '../actions/navigation';
 
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
@@ -44,39 +45,51 @@ const feedStyles = StyleSheet.create({
   }
 });
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 class ChallengeFeed extends React.Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
     this.state = {
       dataSource: ds.cloneWithRows(this.props.pending.challenges),
       refreshing: false
     };
+    this.handleCreate = this.handleCreate.bind(this);
     this.handlePress = this.handlePress.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+    this.setState({
+      dataSource: ds.cloneWithRows(this.props.pending.challenges)
+    });
   }
 
-  handlePress() {
-    this.props.navigator.push({ component: PendingChallengeDetail });
+  handlePress(challenge) {
+    this.props.navigator.push({ component: PendingChallengeDetail, passProps: { challenge } });
+  }
+
+  handleCreate() {
+    this.props.dispatch(navigationActions.changeTab('createChallenge'));
   }
 
   handleRefresh() {
     this.setState({ refreshing: true });
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
-    this.setState({ refreshing: false });
+    this.setState({
+      dataSource: ds.cloneWithRows(this.props.pending.challenges),
+      refreshing: false
+    });
   }
 
   render() {
-    console.log('rendering: ', this.props.pending.challenges);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={feedStyles.create}>
-          <TouchableOpacity style={feedStyles.button}>
+          <TouchableOpacity onPress={this.handleCreate} style={feedStyles.button}>
             <Text style={styles.buttonText}>Create Challenge</Text>
           </TouchableOpacity>
         </View>
@@ -84,6 +97,7 @@ class ChallengeFeed extends React.Component {
           <ListView
             contentInset={{ bottom: 55 }}
             automaticallyAdjustContentInsets={false}
+            enableEmptySections={true}
             style={feedStyles.list}
             dataSource={this.state.dataSource}
             refreshControl={
@@ -93,17 +107,17 @@ class ChallengeFeed extends React.Component {
               />
             }
             renderRow={(rowData) => (
-              <TouchableOpacity onPress={this.handlePress} style={styles.row}>
+              <TouchableOpacity onPress={() => this.handlePress(rowData)} style={styles.row}>
                 <View style={styles.challengeImageView}>
                   <Image
                     style={styles.challengeImage}
-                    source={stravaProfilePic}
+                    source={rowData.opponentPhoto === 'stravaProfilePic' ? stravaProfilePic : rowData.opponentPhoto }
                   />
                 </View>
                 <View style={styles.challengeDetail}>
-                  <Text style={styles.challengeText}>Opponent: {rowData.opponent}</Text>
+                  <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
                   <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                  <Text style={styles.challengeText}>Complete By: {new Date(rowData.expires).toLocaleString("en-us", { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
+                  <Text style={styles.challengeText}>Complete By: {new Date(rowData.expires).toLocaleDateString('en-us', { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
                 </View>
               </TouchableOpacity>
             )}
@@ -113,12 +127,13 @@ class ChallengeFeed extends React.Component {
     );
   }
 }
-const { array, bool, func, string, object, shape } = React.PropTypes;
+
+const { array, bool, func, object, shape, number } = React.PropTypes;
 
 ChallengeFeed.propTypes = {
   dispatch: func,
   navigator: object,
-  userId: string,
+  userId: number,
   pending: shape({
     loading: bool,
     challenges: array,

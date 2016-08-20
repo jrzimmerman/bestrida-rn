@@ -2,6 +2,51 @@ import * as constants from '../constants/challenges';
 
 const API_URL = 'http://www.bestridaapp.com/api/';
 
+function determineOpponent(userId, challenges) {
+  const determineOpponentChallenges = challenges.map((challenge) => {
+    // determine opponent name
+    let opponentName;
+    let opponentPhoto;
+    if (Number(userId) === challenge.challengeeId) {
+      opponentName = challenge.challengerName;
+    } else if (Number(userId) === challenge.challengerId) {
+      opponentName = challenge.challengeeName;
+    } else {
+      console.log('name: something went wrong!');
+    }
+    // determine opponent photo
+    if (Number(userId) === challenge.challengeeId) {
+      // set user photo to challengerPhoto
+      console.log(challenge.challengerPhoto);
+      if (!challenge.challengerPhoto || challenge.challengerPhoto === 'avatar/athlete/large.png') {
+        console.log('challengerPhoto not found');
+        opponentPhoto = 'stravaProfilePic';
+      } else {
+        console.log('set photo as challenger');
+        opponentPhoto = { uri: challenge.challengerPhoto };
+      }
+    } else if (Number(userId) === challenge.challengerId) {
+      // set user photo to challengeePhoto
+      console.log(challenge.challengeePhoto);
+      if (!challenge.challengeePhoto || challenge.challengeePhoto === 'avatar/athlete/large.png') {
+        console.log('challengeePhoto not found');
+        opponentPhoto = 'stravaProfilePic';
+      } else {
+        console.log('set photo as challengee');
+        opponentPhoto = { uri: challenge.challengeePhoto };
+      }
+    } else {
+      console.log('photo: something went wrong!');
+    }
+    console.log('opponent name: ', opponentName);
+    console.log('opponent photo: ', opponentPhoto);
+    const opponentChallenge = { ...challenge, opponentName, opponentPhoto };
+    console.log('post-logic: ', opponentChallenge);
+    return opponentChallenge;
+  });
+  return determineOpponentChallenges;
+}
+
 export function pendingChallenges(userId) {
   console.log('pending action');
   console.log('userId: ', userId);
@@ -16,15 +61,13 @@ export function pendingChallenges(userId) {
       }
     })
     .then(response => response.json())
-    .then(challenges => {
-      challenges.map((challenge) => (
-        challenge.opponent = userId === challenge.challengeeId ? challenge.challengerName : challenge.challengeeName
-      ));
+    .then(challenges => determineOpponent(userId, challenges))
+    .then(opponentChallenges => {
       dispatch({
         type: constants.PENDING_CHALLENGES_SUCCESS,
         payload: {
           loading: false,
-          challenges
+          challenges: opponentChallenges
         }
       });
     })

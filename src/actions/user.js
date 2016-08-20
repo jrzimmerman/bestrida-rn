@@ -7,7 +7,7 @@ export function userLogin(token, userId) {
       payload: {
         loggedIn: true,
         token,
-        userId
+        userId: Number(userId)
       }
     });
   };
