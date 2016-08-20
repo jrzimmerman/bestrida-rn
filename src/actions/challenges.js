@@ -3,6 +3,8 @@ import * as constants from '../constants/challenges';
 const API_URL = 'https://bestrida.herokuapp.com/api/';
 
 export function pendingChallenges(userId) {
+  console.log('pending action');
+  console.log('userId: ', userId);
   return (dispatch) => {
     dispatch({
       type: constants.PENDING_CHALLENGES_LOADING,
@@ -15,7 +17,9 @@ export function pendingChallenges(userId) {
     })
     .then(response => response.json())
     .then(challenges => {
-      console.log('pending: ', challenges)
+      challenges.map((challenge) => (
+        challenge.opponent = userId === challenge.challengeeId ? challenge.challengerName : challenge.challengeeName
+      ));
       dispatch({
         type: constants.PENDING_CHALLENGES_SUCCESS,
         payload: {

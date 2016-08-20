@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Image,
   ListView,
+  RefreshControl,
   StatusBar,
   StyleSheet,
   Text,
@@ -48,14 +49,14 @@ class ChallengeFeed extends React.Component {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.pending.challenges)
+      dataSource: ds.cloneWithRows(this.props.pending.challenges),
+      refreshing: false
     };
-    this.pendingChallenges = this.pendingChallenges.bind(this);
     this.handlePress = this.handlePress.bind(this);
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.props.userId);
+  componentWillMount() {
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
   }
 
@@ -63,23 +64,14 @@ class ChallengeFeed extends React.Component {
     this.props.navigator.push({ component: PendingChallengeDetail });
   }
 
-  async pendingChallenges(userId) {
-    try {
-      const response = await fetch(`https://bestrida.herokuapp.com/api/challenges/pending/${userId}`, {
-        headers: {
-          Accept: 'application/json'
-        }
-      });
-      const responseJson = await response.json();
-      console.log(responseJson);
-      return responseJson;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+  handleRefresh() {
+    this.setState({ refreshing: true });
+    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+    this.setState({ refreshing: false });
   }
 
   render() {
+    console.log('rendering: ', this.props.pending.challenges);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -94,6 +86,12 @@ class ChallengeFeed extends React.Component {
             automaticallyAdjustContentInsets={false}
             style={feedStyles.list}
             dataSource={this.state.dataSource}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.handleRefresh}
+              />
+            }
             renderRow={(rowData) => (
               <TouchableOpacity onPress={this.handlePress} style={styles.row}>
                 <View style={styles.challengeImageView}>
@@ -103,9 +101,9 @@ class ChallengeFeed extends React.Component {
                   />
                 </View>
                 <View style={styles.challengeDetail}>
-                  <Text style={styles.challengeText}>Opponent: {rowData.challengerName}</Text>
+                  <Text style={styles.challengeText}>Opponent: {rowData.opponent}</Text>
                   <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                  <Text style={styles.challengeText}>Complete By: {rowData.expires}}</Text>
+                  <Text style={styles.challengeText}>Complete By: {new Date(rowData.expires).toLocaleString("en-us", { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
                 </View>
               </TouchableOpacity>
             )}
@@ -115,15 +113,16 @@ class ChallengeFeed extends React.Component {
     );
   }
 }
-const { array, bool, string, object, shape } = React.PropTypes;
+const { array, bool, func, string, object, shape } = React.PropTypes;
 
 ChallengeFeed.propTypes = {
+  dispatch: func,
   navigator: object,
   userId: string,
   pending: shape({
     loading: bool,
     challenges: array,
-    error: string
+    error: object
   })
 };
 

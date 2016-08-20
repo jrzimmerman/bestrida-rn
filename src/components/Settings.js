@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import styles from './styles';
 import * as userActions from '../actions/user';
+import * as navigationActions from '../actions/navigation';
 
 const settingStyles = StyleSheet.create({
   button: {
@@ -34,12 +35,11 @@ class Settings extends React.Component {
   }
 
   handleLogout() {
-    console.log('handleLogout');
     this.props.dispatch(userActions.userLogout());
+    this.props.dispatch(navigationActions.changeTab('challengeFeed'));
   }
 
   render() {
-    console.log('settings loggedIn: ', this.props.loggedIn);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />

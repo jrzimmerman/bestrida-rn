@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   NavigatorIOS,
   StyleSheet,
@@ -10,6 +11,7 @@ import ActiveChallenges from '../components/ActiveChallenges';
 import CreateChallenge from '../components/CreateChallenge';
 import CompletedChallenges from '../components/CompletedChallenges';
 import Settings from '../components/Settings';
+import * as navigationActions from '../actions/navigation';
 
 const styles = StyleSheet.create({
   nav: {
@@ -20,17 +22,11 @@ const styles = StyleSheet.create({
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      selectedTab: 'challengeFeed'
-    };
     this.handlePress = this.handlePress.bind(this);
   }
 
   handlePress(tab) {
-    this.setState({
-      selectedTab: tab
-    });
+    this.props.dispatch(navigationActions.changeTab(tab));
   }
 
   render() {
@@ -43,12 +39,12 @@ class Layout extends React.Component {
           title="Feed"
           iconName="ios-home-outline"
           selectedIconName="ios-home"
-          selected={this.state.selectedTab === 'challengeFeed'}
+          selected={this.props.navigation.selectedTab === 'challengeFeed'}
           onPress={() => this.handlePress('challengeFeed')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
-            tintColor={'#fc4c02'}
+            tintColor={'#ef473a'}
             barTintColor={'#2B2B2B'}
             initialRoute={{
               title: 'Challenge Feed',
@@ -60,12 +56,12 @@ class Layout extends React.Component {
           title="Active"
           iconName="ios-pulse-outline"
           selectedIconName="ios-pulse"
-          selected={this.state.selectedTab === 'activeChallenges'}
+          selected={this.props.navigation.selectedTab === 'activeChallenges'}
           onPress={() => this.handlePress('activeChallenges')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
-            tintColor={'#fc4c02'}
+            tintColor={'#ef473a'}
             barTintColor={'#2B2B2B'}
             initialRoute={{
               title: 'Active Challenges',
@@ -77,12 +73,12 @@ class Layout extends React.Component {
           title="Create"
           iconName="md-list"
           selectedIconName="md-list-box"
-          selected={this.state.selectedTab === 'createChallenge'}
+          selected={this.props.navigation.selectedTab === 'createChallenge'}
           onPress={() => this.handlePress('createChallenge')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
-            tintColor={'#fc4c02'}
+            tintColor={'#ef473a'}
             barTintColor={'#2B2B2B'}
             initialRoute={{
               title: 'Create Challenge',
@@ -94,12 +90,12 @@ class Layout extends React.Component {
           title="Completed"
           iconName="ios-trophy-outline"
           selectedIconName="ios-trophy"
-          selected={this.state.selectedTab === 'completedChallenges'}
+          selected={this.props.navigation.selectedTab === 'completedChallenges'}
           onPress={() => this.handlePress('completedChallenges')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
-            tintColor={'#fc4c02'}
+            tintColor={'#ef473a'}
             barTintColor={'#2B2B2B'}
             initialRoute={{
               title: 'Completed Challenges',
@@ -111,12 +107,12 @@ class Layout extends React.Component {
           title="Settings"
           iconName="ios-settings-outline"
           selectedIconName="ios-settings"
-          selected={this.state.selectedTab === 'settings'}
+          selected={this.props.navigation.selectedTab === 'settings'}
           onPress={() => this.handlePress('settings')}>
           <NavigatorIOS
             style={styles.nav}
             titleTextColor={'#CCC'}
-            tintColor={'#fc4c02'}
+            tintColor={'#ef473a'}
             barTintColor={'#2B2B2B'}
             initialRoute={{
               title: 'Settings',
@@ -129,4 +125,15 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout;
+const { func, object } = React.PropTypes;
+
+Layout.propTypes = {
+  dispatch: func,
+  navigation: object
+};
+
+const mapStateToProps = (state) => ({
+  navigation: state.navigation
+});
+
+export default connect(mapStateToProps)(Layout);
