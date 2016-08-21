@@ -27,6 +27,10 @@ const initialState = {
   complete: {
     response: null,
     error: null
+  },
+  create: {
+    response: null,
+    error: null
   }
 };
 
@@ -139,6 +143,20 @@ export default (state = initialState, action) => {
     case constants.COMPLETE_CHALLENGE_FAILURE:
       return Object.assign({}, state, {
         complete: Object.assign({}, state.complete, {
+          response: null,
+          error: action.payload
+        })
+      });
+    case constants.CREATE_CHALLENGE_SUCCESS:
+      return Object.assign({}, state, {
+        create: Object.assign({}, state.create, {
+          response: action.payload,
+          error: null
+        })
+      });
+    case constants.CREATE_CHALLENGE_FAILURE:
+      return Object.assign({}, state, {
+        create: Object.assign({}, state.create, {
           response: null,
           error: action.payload
         })

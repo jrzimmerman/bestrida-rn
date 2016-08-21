@@ -8,3 +8,5 @@ export function changeTab(tab) {
     });
   };
 }
+
+export default changeTab;

@@ -254,3 +254,43 @@ export function completeChallenge(challengeId, userId) {
     })
   );
 }
+
+export function createChallenge(user, challengee, segment, completionDate) {
+  return (dispatch) => (
+    fetch(`${API_URL}challenges/create`, {
+      method: 'POST',
+      body: JSON.stringify({
+        segmentId: segment._id,
+        segmentName: segment.name,
+        challengerId: user._id,
+        challengerName: user.fullName,
+        challengerPhoto: user.photo,
+        challengeeId: challengee.id,
+        challengeeName: challengee.fullName,
+        challengeePhoto: challengee.photo,
+        completionDate
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch({
+        type: constants.CREATE_CHALLENGE_SUCCESS,
+        payload: {
+          response: responseJson
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: constants.CREATE_CHALLENGE_FAILURE,
+        payload: {
+          error
+        }
+      });
+    })
+  );
+}
