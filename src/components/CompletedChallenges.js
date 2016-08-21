@@ -60,7 +60,6 @@ class CompletedChallenges extends React.Component {
   }
 
   render() {
-    const { userId } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -79,15 +78,16 @@ class CompletedChallenges extends React.Component {
               <View style={styles.challengeImageView}>
                 <Image
                   style={styles.challengeImage}
-                  source={rowData.opponentPhoto === 'stravaProfilePic' ? stravaProfilePic : rowData.opponentPhoto }
+                  source={
+                    rowData.opponentPhoto === 'stravaProfilePic' ?
+                    stravaProfilePic : rowData.opponentPhoto
+                  }
                 />
               </View>
               <View style={styles.challengeDetail}>
-              <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
-              <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                <Text style={styles.challengeText}>
-                  {`You ${Number(userId) === rowData.winnerId ? 'won' : 'lost'} this challenge!`}
-                </Text>
+                <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
+                <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
+                <Text style={styles.challengeText}>{rowData.completedStatus}</Text>
               </View>
             </TouchableOpacity>
           )}

@@ -35,6 +35,26 @@ function determineOpponent(userId, challenges) {
   return determineOpponentChallenges;
 }
 
+function completionStatus(userId, challenges) {
+  const completedStatusChallenges = challenges.map((challenge) => {
+    let completedStatus;
+    if (challenge.challengeeCompleted && challenge.challengerCompleted) {
+      if (Number(userId) === challenge.winnerId) {
+        completedStatus = 'You won this challenge!';
+      } else if (Number(userId) === challenge.loserId) {
+        completedStatus = 'You lost this challenge.';
+      } else {
+        completedStatus = 'Challenge is still calculating.';
+      }
+    } else {
+      completedStatus = 'Waiting for opponent.';
+    }
+    const challengeStatus = { ...challenge, completedStatus };
+    return challengeStatus;
+  });
+  return completedStatusChallenges;
+}
+
 export function pendingChallenges(userId) {
   return (dispatch) => {
     dispatch({
@@ -116,12 +136,13 @@ export function completedChallenges(userId) {
     })
     .then(response => response.json())
     .then(challenges => determineOpponent(userId, challenges))
-    .then(opponentChallenges => {
+    .then(opponentChallenges => completionStatus(userId, opponentChallenges))
+    .then(completedStatusChallenges => {
       dispatch({
         type: constants.COMPLETED_CHALLENGES_SUCCESS,
         payload: {
           loading: false,
-          challenges: opponentChallenges
+          challenges: completedStatusChallenges
         }
       });
     })
