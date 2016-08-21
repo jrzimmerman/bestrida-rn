@@ -5,7 +5,9 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
+import { connect } from 'react-redux';
 import styles from './styles';
+import * as challengeActions from '../actions/challenges';
 
 class PendingChallengeDetail extends React.Component {
   constructor(props) {
@@ -13,12 +15,14 @@ class PendingChallengeDetail extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  handleCancel() {
-    console.log('cancel button pressed');
+  handleCancel(challengeId) {
+    console.log('cancel challenge:', challengeId);
+    this.props.navigator.pop();
   }
 
   render() {
     const { challenge } = this.props;
+    console.log('challenge: ', challenge);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -28,11 +32,15 @@ class PendingChallengeDetail extends React.Component {
           <View style={styles.challengeDetailView}>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Distance</Text>
-              <Text style={styles.challengeDetailText}>{ `${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles` }</Text>
+              <Text style={styles.challengeDetailText}>
+                {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles`}
+              </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Location</Text>
-              <Text style={styles.challengeDetailText}>{ `${challenge.segmentCity}, ${challenge.segmentState}` }</Text>
+              <Text style={styles.challengeDetailText}>
+                {`${challenge.segmentCity}, ${challenge.segmentState}`}
+              </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Activity Type</Text>
@@ -44,15 +52,21 @@ class PendingChallengeDetail extends React.Component {
             </View>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Climb Category</Text>
-              <Text style={styles.challengeDetailText}>{ challenge.segmentClimbCategory || 'Not Available' }</Text>
+              <Text style={styles.challengeDetailText}>
+                {challenge.segmentClimbCategory || 'Not Available'}
+              </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Elevation Gain</Text>
-              <Text style={styles.challengeDetailText}>{`${challenge.segmentElevationGain} meters`}</Text>
+              <Text style={styles.challengeDetailText}>
+                {`${challenge.segmentElevationGain} meters`}
+              </Text>
             </View>
           </View>
-          <View style={styles.challengeCancelView}>
-            <TouchableOpacity style={styles.button}>
+          <View style={styles.challengeFooterView}>
+            <TouchableOpacity
+              onPress={() => this.handleCancel(this.props.challenge._id)}
+              style={styles.button}>
               <Text style={styles.buttonText}>Cancel Challenge</Text>
             </TouchableOpacity>
           </View>
@@ -61,5 +75,10 @@ class PendingChallengeDetail extends React.Component {
   }
 }
 
+const { object } = React.PropTypes;
 
-export default PendingChallengeDetail;
+PendingChallengeDetail.propTypes = {
+  challenge: object
+};
+
+export default connect()(PendingChallengeDetail);

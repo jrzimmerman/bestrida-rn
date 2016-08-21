@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  NavigatorIOS
-} from 'react-native';
 import Login from './Login';
 import Layout from './Layout';
 
 class App extends React.Component {
   render() {
     const { loggedIn } = this.props;
-    console.log('App: ', loggedIn);
     return loggedIn ? <Layout /> : <Login />;
   }
 }

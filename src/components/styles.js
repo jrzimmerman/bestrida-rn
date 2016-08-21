@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     color: '#CCC',
     fontSize: 16
   },
-  challengeCancelView: {
+  challengeFooterView: {
     flex: 0.2,
     alignSelf: 'stretch'
   },

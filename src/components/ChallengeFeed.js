@@ -60,15 +60,21 @@ class ChallengeFeed extends React.Component {
     this.handleRefresh = this.handleRefresh.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
     this.setState({
       dataSource: ds.cloneWithRows(this.props.pending.challenges)
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: ds.cloneWithRows(nextProps.pending.challenges)
+    });
+  }
+
   handlePress(challenge) {
-    this.props.navigator.push({ component: PendingChallengeDetail, passProps: { challenge } });
+    this.props.navigator.push({ component: PendingChallengeDetail, passProps: { challenge, navigator: this.props.navigator } });
   }
 
   handleCreate() {
