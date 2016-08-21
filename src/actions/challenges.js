@@ -136,3 +136,100 @@ export function completedChallenges(userId) {
     });
   };
 }
+
+export function acceptChallenge(challengeId) {
+  return (dispatch) => (
+    fetch(`${API_URL}challenges/accept`, {
+      method: 'POST',
+      body: JSON.stringify({
+        id: challengeId
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch({
+        type: constants.ACCEPT_CHALLENGE_SUCCESS,
+        payload: {
+          response: responseJson
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: constants.ACCEPT_CHALLENGE_FAILURE,
+        payload: {
+          error
+        }
+      });
+    })
+  );
+}
+
+export function declineChallenge(challengeId) {
+  return (dispatch) => (
+    fetch(`${API_URL}challenges/decline`, {
+      method: 'POST',
+      body: JSON.stringify({
+        id: challengeId
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch({
+        type: constants.DECLINE_CHALLENGE_SUCCESS,
+        payload: {
+          response: responseJson
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: constants.DECLINE_CHALLENGE_FAILURE,
+        payload: {
+          error
+        }
+      });
+    })
+  );
+}
+
+export function completeChallenge(challengeId, userId) {
+  return (dispatch) => (
+    fetch(`${API_URL}challenges/complete`, {
+      method: 'POST',
+      body: JSON.stringify({
+        id: challengeId,
+        userId
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch({
+        type: constants.COMPLETE_CHALLENGE_SUCCESS,
+        payload: {
+          response: responseJson
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: constants.COMPLETE_CHALLENGE_FAILURE,
+        payload: {
+          error
+        }
+      });
+    })
+  );
+}
