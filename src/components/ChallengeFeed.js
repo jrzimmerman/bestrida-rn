@@ -42,6 +42,41 @@ const feedStyles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#ef473a'
+  },
+  challengeOptions: {
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'stretch'
+  },
+  challengeOptionsDecline: {
+    flex: 0.5,
+    alignSelf: 'stretch',
+    marginHorizontal: 5,
+    borderRadius: 4,
+    height: 25,
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#ef473a'
+  },
+  challengeOptionsDeclineText: {
+    color: '#ef473a',
+    alignSelf: 'center',
+    justifyContent: 'center'
+  },
+  challengeOptionsAccept: {
+    flex: 0.5,
+    alignSelf: 'stretch',
+    marginHorizontal: 5,
+    borderRadius: 4,
+    height: 25,
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#33cd5f'
+  },
+  challengeOptionsAcceptText: {
+    color: '#33cd5f',
+    alignSelf: 'center',
+    justifyContent: 'center'
   }
 });
 
@@ -58,6 +93,8 @@ class ChallengeFeed extends React.Component {
     this.handleCreate = this.handleCreate.bind(this);
     this.handlePress = this.handlePress.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleAccept = this.handleAccept.bind(this);
+    this.handleDecline = this.handleDecline.bind(this);
   }
 
   componentWillMount() {
@@ -79,6 +116,14 @@ class ChallengeFeed extends React.Component {
 
   handleCreate() {
     this.props.dispatch(navigationActions.changeTab('createChallenge'));
+  }
+
+  handleAccept(challengeId) {
+    this.props.dispatch(challengeActions.acceptChallenge(challengeId));
+  }
+
+  handleDecline(challengeId) {
+    this.props.dispatch(challengeActions.declineChallenge(challengeId));
   }
 
   handleRefresh() {
@@ -124,6 +169,16 @@ class ChallengeFeed extends React.Component {
                   <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
                   <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
                   <Text style={styles.challengeText}>Complete By: {new Date(rowData.expires).toLocaleDateString('en-us', { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
+                  { rowData.challengeeId === this.props.userId ?
+                    <View style={feedStyles.challengeOptions}>
+                      <TouchableOpacity onPress={() => this.handleDecline(rowData._id)} style={feedStyles.challengeOptionsDecline}>
+                        <Text style={feedStyles.challengeOptionsDeclineText}>Decline</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.handleAccept(rowData._id)} style={feedStyles.challengeOptionsAccept}>
+                        <Text style={feedStyles.challengeOptionsAcceptText}>Accept</Text>
+                      </TouchableOpacity>
+                    </View>
+                    : null }
                 </View>
               </TouchableOpacity>
             )}

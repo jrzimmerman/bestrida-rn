@@ -172,6 +172,7 @@ export function acceptChallenge(challengeId) {
     })
     .then(response => response.json())
     .then(responseJson => {
+      console.log('response: ', responseJson);
       dispatch({
         type: constants.ACCEPT_CHALLENGE_SUCCESS,
         payload: {
@@ -204,6 +205,7 @@ export function declineChallenge(challengeId) {
     })
     .then(response => response.json())
     .then(responseJson => {
+      console.log('response: ', responseJson);
       dispatch({
         type: constants.DECLINE_CHALLENGE_SUCCESS,
         payload: {

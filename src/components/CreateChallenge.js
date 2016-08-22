@@ -22,14 +22,15 @@ const createStyles = StyleSheet.create({
   }
 });
 
+const newDate = new Date();
+
 class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       selectedOpponent: '',
       selectedSegment: '',
-      selectedCompletionDate: ''
+      selectedCompletionDate: newDate
     };
 
     this.handleSelectOpponent = this.handleSelectOpponent.bind(this);
@@ -46,7 +47,8 @@ class CreateChallenge extends React.Component {
   }
 
   handleSelectCompletionDate(date) {
-
+    console.log('change date');
+    this.setState({selectedCompletionDate: date});
   }
 
   handleSumbit() {
@@ -57,15 +59,22 @@ class CreateChallenge extends React.Component {
     this.setState({
       selectedOpponent: '',
       selectedSegment: '',
-      selectedCompletionDate: ''
+      selectedCompletionDate: newDate
     });
   }
 
   render() {
+    console.log('render date: ', this.state.selectedCompletionDate);
     return (
       <View style={createStyles.container}>
         <StatusBar barStyle="light-content" />
-        <Text style={styles.text}>Create Challenge</Text>
+        <Text style={styles.text}>Set Completion Date</Text>
+        <DatePickerIOS
+          minimumDate={newDate}
+          date={this.state.selectedCompletionDate}
+          mode="date"
+          onDateChange={this.handleSelectCompletionDate}
+        />
         <TouchableOpacity style={styles.button} onPress={() => this.handleSumbit()}>
           <Text style={styles.buttonText}>Create Challenge</Text>
         </TouchableOpacity>
@@ -74,15 +83,17 @@ class CreateChallenge extends React.Component {
   }
 }
 
-const { func, object } = React.PropTypes;
+const { func, object, number } = React.PropTypes;
 
 CreateChallenge.propTypes = {
   dispatch: func,
-  userId: object
+  userId: number,
+  user: object
 };
 
 const mapStateToProps = (state) => ({
-  userId: state.user.user
+  userId: state.user.auth.userId,
+  user: state.user.user
 });
 
 export default connect(mapStateToProps)(CreateChallenge);

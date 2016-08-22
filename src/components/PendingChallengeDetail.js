@@ -17,11 +17,12 @@ class PendingChallengeDetail extends React.Component {
 
   handleCancel(challengeId) {
     console.log('cancel challenge:', challengeId);
+    this.props.dispatch(challengeActions.declineChallenge(challengeId));
     this.props.navigator.pop();
   }
 
   render() {
-    const { challenge } = this.props;
+    const { challenge, userId } = this.props;
     console.log('challenge: ', challenge);
     return (
       <View style={styles.container}>
@@ -64,21 +65,29 @@ class PendingChallengeDetail extends React.Component {
             </View>
           </View>
           <View style={styles.challengeFooterView}>
-            <TouchableOpacity
-              onPress={() => this.handleCancel(this.props.challenge._id)}
+            { challenge.challengeeId === userId ?
+              <TouchableOpacity
+              onPress={() => this.handleCancel(challenge._id)}
               style={styles.button}>
               <Text style={styles.buttonText}>Cancel Challenge</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> : <Text style={styles.challengeDetailTitle}>Challenger</Text> }
           </View>
       </View>
     );
   }
 }
 
-const { object } = React.PropTypes;
+const { func, number, object } = React.PropTypes;
 
 PendingChallengeDetail.propTypes = {
-  challenge: object
+  dispatch: func,
+  challenge: object,
+  userId: number,
+  navigator: object
 };
 
-export default connect()(PendingChallengeDetail);
+const mapStateToProps = (state) => ({
+  userId: state.user.auth.userId
+});
+
+export default connect(mapStateToProps)(PendingChallengeDetail);
