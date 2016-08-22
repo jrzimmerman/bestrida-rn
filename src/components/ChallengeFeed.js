@@ -120,10 +120,13 @@ class ChallengeFeed extends React.Component {
 
   handleAccept(challengeId) {
     this.props.dispatch(challengeActions.acceptChallenge(challengeId));
+    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+    this.props.dispatch(navigationActions.changeTab('activeChallenges'));
   }
 
   handleDecline(challengeId) {
     this.props.dispatch(challengeActions.declineChallenge(challengeId));
+    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
   }
 
   handleRefresh() {

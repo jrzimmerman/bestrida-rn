@@ -52,9 +52,10 @@ class CreateChallenge extends React.Component {
   }
 
   handleSumbit() {
-    const { dispatch, userId } = this.props;
+    const { dispatch, userId, user } = this.props;
     const { selectedOpponent, selectedSegment, selectedCompletionDate } = this.state;
     dispatch(challengeActions.createChallenge(user, selectedOpponent, selectedSegment, selectedCompletionDate));
+    dispatch(challengeActions.pendingChallenges(userId));
     dispatch(navigationActions.changeTab('challengeFeed'));
     this.setState({
       selectedOpponent: '',

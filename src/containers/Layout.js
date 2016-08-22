@@ -12,6 +12,7 @@ import CreateChallenge from '../components/CreateChallenge';
 import CompletedChallenges from '../components/CompletedChallenges';
 import Settings from '../components/Settings';
 import * as navigationActions from '../actions/navigation';
+import * as challengeActions from '../actions/challenges';
 
 const styles = StyleSheet.create({
   nav: {
@@ -26,6 +27,9 @@ class Layout extends React.Component {
   }
 
   handlePress(tab) {
+    if (tab === 'activeChallenges') this.props.dispatch(challengeActions.activeChallenges(this.props.userId));
+    if (tab === 'challengeFeed') this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+    if (tab === 'completedChallenges') this.props.dispatch(challengeActions.completedChallenges(this.props.userId));
     this.props.dispatch(navigationActions.changeTab(tab));
   }
 
@@ -125,15 +129,17 @@ class Layout extends React.Component {
   }
 }
 
-const { func, object } = React.PropTypes;
+const { func, object, number } = React.PropTypes;
 
 Layout.propTypes = {
   dispatch: func,
-  navigation: object
+  navigation: object,
+  userId: number
 };
 
 const mapStateToProps = (state) => ({
-  navigation: state.navigation
+  navigation: state.navigation,
+  userId: state.user.auth.userId
 });
 
 export default connect(mapStateToProps)(Layout);

@@ -40,7 +40,7 @@ class ActiveChallengeDetail extends React.Component {
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Location</Text>
               <Text style={styles.challengeDetailText}>
-                {`${challenge.segmentCity}, ${challenge.segmentState}`}
+                {`${challenge.segmentCity ? challenge.segmentCity + ',' : ''} ${challenge.segmentState}`}
               </Text>
             </View>
             <View style={styles.detailRowView}>
