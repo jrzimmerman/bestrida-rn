@@ -56,6 +56,7 @@ function completionStatus(userId, challenges) {
 }
 
 export function pendingChallenges(userId) {
+  console.log('pending challenges');
   return (dispatch) => {
     dispatch({
       type: constants.PENDING_CHALLENGES_LOADING,
@@ -90,6 +91,7 @@ export function pendingChallenges(userId) {
 }
 
 export function activeChallenges(userId) {
+  console.log('active challenges');
   return (dispatch) => {
     dispatch({
       type: constants.ACTIVE_CHALLENGES_LOADING,
@@ -158,7 +160,7 @@ export function completedChallenges(userId) {
   };
 }
 
-export function acceptChallenge(challengeId) {
+export function acceptChallenge(challengeId, userId) {
   return (dispatch) => (
     fetch(`${API_URL}challenges/accept`, {
       method: 'POST',
@@ -172,7 +174,6 @@ export function acceptChallenge(challengeId) {
     })
     .then(response => response.json())
     .then(responseJson => {
-      console.log('response: ', responseJson);
       dispatch({
         type: constants.ACCEPT_CHALLENGE_SUCCESS,
         payload: {
@@ -180,6 +181,7 @@ export function acceptChallenge(challengeId) {
         }
       });
     })
+    .then(activeChallenges(userId))
     .catch(error => {
       dispatch({
         type: constants.ACCEPT_CHALLENGE_FAILURE,
@@ -191,7 +193,7 @@ export function acceptChallenge(challengeId) {
   );
 }
 
-export function declineChallenge(challengeId) {
+export function declineChallenge(challengeId, userId) {
   return (dispatch) => (
     fetch(`${API_URL}challenges/decline`, {
       method: 'POST',
@@ -205,7 +207,6 @@ export function declineChallenge(challengeId) {
     })
     .then(response => response.json())
     .then(responseJson => {
-      console.log('response: ', responseJson);
       dispatch({
         type: constants.DECLINE_CHALLENGE_SUCCESS,
         payload: {
@@ -213,6 +214,7 @@ export function declineChallenge(challengeId) {
         }
       });
     })
+    .then(pendingChallenges(userId))
     .catch(error => {
       dispatch({
         type: constants.DECLINE_CHALLENGE_FAILURE,

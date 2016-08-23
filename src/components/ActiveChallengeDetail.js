@@ -16,14 +16,16 @@ class ActiveChallengeDetail extends React.Component {
     this.handleComplete = this.handleComplete.bind(this);
   }
 
-  handleComplete(challengeId) {
-    console.log('complete challenge: ', challengeId);
-    this.props.dispatch(navigationActions.changeTab('completedChallenges'));
-    this.props.navigator.pop();
+  handleComplete(challengeId, userId) {
+    const { dispatch, navigator } = this.props;
+    dispatch(challengeActions.completeChallenge(challengeId, userId));
+    dispatch(challengeActions.completedChallenges(userId));
+    dispatch(navigationActions.changeTab('completedChallenges'));
+    navigator.pop();
   }
 
   render() {
-    const { challenge } = this.props;
+    const { challenge, userId } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -70,7 +72,7 @@ class ActiveChallengeDetail extends React.Component {
           </View>
           <View style={styles.challengeFooterView}>
             <TouchableOpacity
-              onPress={() => this.handleComplete(this.props.challenge._id)}
+              onPress={() => this.handleComplete(challenge._id, userId)}
               style={styles.button}>
               <Text style={styles.buttonText}>Complete Challenge</Text>
             </TouchableOpacity>
@@ -80,12 +82,17 @@ class ActiveChallengeDetail extends React.Component {
   }
 }
 
-const { func, object } = React.PropTypes;
+const { func, object, number } = React.PropTypes;
 
 ActiveChallengeDetail.propTypes = {
   challenge: object,
   dispatch: func,
-  navigator: object
+  navigator: object,
+  userId: number
 };
 
-export default connect()(ActiveChallengeDetail);
+const mapStateToProps = (state) => ({
+  userId: state.user.auth.userId
+});
+
+export default connect(mapStateToProps)(ActiveChallengeDetail);

@@ -58,22 +58,19 @@ class PendingChallengeDetail extends React.Component {
     this.handleDecline = this.handleDecline.bind(this);
   }
 
-  handleAccept(challengeId) {
-    this.props.dispatch(challengeActions.acceptChallenge(challengeId));
-    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+  handleAccept(challengeId, userId) {
+    this.props.dispatch(challengeActions.acceptChallenge(challengeId, userId));
     this.props.dispatch(navigationActions.changeTab('activeChallenges'));
     this.props.navigator.pop();
   }
 
-  handleDecline(challengeId) {
-    this.props.dispatch(challengeActions.declineChallenge(challengeId));
-    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+  handleDecline(challengeId, userId) {
+    this.props.dispatch(challengeActions.declineChallenge(challengeId, userId));
     this.props.navigator.pop();
   }
 
   render() {
     const { challenge, userId } = this.props;
-    console.log('challenge: ', challenge);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -117,15 +114,15 @@ class PendingChallengeDetail extends React.Component {
           <View style={styles.challengeFooterView}>
             { challenge.challengeeId === userId ?
               <View style={pendingStyles.challengeOptions}>
-                <TouchableOpacity onPress={() => this.handleDecline(challenge._id)} style={pendingStyles.challengeOptionsDecline}>
+                <TouchableOpacity onPress={() => this.handleDecline(challenge._id, userId)} style={pendingStyles.challengeOptionsDecline}>
                   <Text style={pendingStyles.challengeOptionsDeclineText}>Decline</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handleAccept(challenge._id)} style={pendingStyles.challengeOptionsAccept}>
+                <TouchableOpacity onPress={() => this.handleAccept(challenge._id, userId)} style={pendingStyles.challengeOptionsAccept}>
                   <Text style={pendingStyles.challengeOptionsAcceptText}>Accept</Text>
                 </TouchableOpacity>
               </View> :
               <TouchableOpacity
-                onPress={() => this.handleDecline(challenge._id)}
+                onPress={() => this.handleDecline(challenge._id, userId)}
                 style={styles.button}>
                 <Text style={styles.buttonText}>Cancel Challenge</Text>
             </TouchableOpacity> }

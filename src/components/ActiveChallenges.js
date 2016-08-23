@@ -83,8 +83,7 @@ class ActiveChallenges extends React.Component {
                 <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
                 <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
                 <Text style={styles.challengeText}>
-                  Complete By: {new Date(rowData.expires).toLocaleDateString('en-us',
-                  { month: 'short', day: 'numeric', year: 'numeric' })}
+                  Complete By: {new Date(rowData.expires).toDateString()}
                 </Text>
               </View>
             </TouchableOpacity>

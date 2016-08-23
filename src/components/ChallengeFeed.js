@@ -118,15 +118,21 @@ class ChallengeFeed extends React.Component {
     this.props.dispatch(navigationActions.changeTab('createChallenge'));
   }
 
-  handleAccept(challengeId) {
-    this.props.dispatch(challengeActions.acceptChallenge(challengeId));
-    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+  handleAccept(challengeId, userId) {
+    this.props.dispatch(challengeActions.acceptChallenge(challengeId, userId));
     this.props.dispatch(navigationActions.changeTab('activeChallenges'));
+    this.setState({
+      dataSource: ds.cloneWithRows(this.props.pending.challenges),
+      refreshing: false
+    });
   }
 
-  handleDecline(challengeId) {
-    this.props.dispatch(challengeActions.declineChallenge(challengeId));
-    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+  handleDecline(challengeId, userId) {
+    this.props.dispatch(challengeActions.declineChallenge(challengeId, userId));
+    this.setState({
+      dataSource: ds.cloneWithRows(this.props.pending.challenges),
+      refreshing: false
+    });
   }
 
   handleRefresh() {
@@ -171,13 +177,13 @@ class ChallengeFeed extends React.Component {
                 <View style={styles.challengeDetail}>
                   <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
                   <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                  <Text style={styles.challengeText}>Complete By: {new Date(rowData.expires).toLocaleDateString('en-us', { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
+                  <Text style={styles.challengeText}>Complete By: {new Date(rowData.expires).toDateString()}</Text>
                   { rowData.challengeeId === this.props.userId ?
                     <View style={feedStyles.challengeOptions}>
-                      <TouchableOpacity onPress={() => this.handleDecline(rowData._id)} style={feedStyles.challengeOptionsDecline}>
+                      <TouchableOpacity onPress={() => this.handleDecline(rowData._id, this.props.userId)} style={feedStyles.challengeOptionsDecline}>
                         <Text style={feedStyles.challengeOptionsDeclineText}>Decline</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => this.handleAccept(rowData._id)} style={feedStyles.challengeOptionsAccept}>
+                      <TouchableOpacity onPress={() => this.handleAccept(rowData._id, this.props.userId)} style={feedStyles.challengeOptionsAccept}>
                         <Text style={feedStyles.challengeOptionsAcceptText}>Accept</Text>
                       </TouchableOpacity>
                     </View>
