@@ -4,6 +4,7 @@ import {
   ListView,
   RefreshControl,
   StatusBar,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View
@@ -16,6 +17,24 @@ import * as challengeActions from '../actions/challenges';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1._id !== r2._id });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
+const activeStyles = StyleSheet.create({
+  errorView: {
+    alignSelf: 'stretch',
+    backgroundColor: '#ef473a'
+  },
+  errorButton: {
+    marginTop: 80,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
+    borderRadius: 4,
+    height: 45
+  }
+});
+
 class ActiveChallenges extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +45,7 @@ class ActiveChallenges extends React.Component {
     };
     this.handlePress = this.handlePress.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleDismiss = this.handleDismiss.bind(this);
   }
 
   componentWillMount() {
@@ -57,10 +77,28 @@ class ActiveChallenges extends React.Component {
     });
   }
 
+  handleDismiss() {
+    this.props.dispatch(challengeActions.clearCompleteError());
+  }
+
   render() {
+    let errorView;
+    if (this.props.challenges.complete.error) {
+      errorView = (
+        <View style={activeStyles.errorView}>
+          <TouchableOpacity onPress={this.handleDismiss} style={activeStyles.errorButton}>
+            <Text style={{ color: 'white', alignSelf: 'center', fontSize: 16, fontWeight: 'bold' }}> Error Completing Challenge </Text>
+            <Text style={{ color: 'white', alignSelf: 'center' }}> Effort not found on Strava</Text>
+            <Text style={{ color: 'white', alignSelf: 'center' }}> Tap to dismiss </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
+        { errorView }
         <ListView
           enableEmptySections={true}
           style={styles.list}
@@ -104,12 +142,14 @@ ActiveChallenges.propTypes = {
     loading: bool,
     challenges: array,
     error: object
-  })
+  }),
+  challenges: object
 };
 
 const mapStateToProps = (state) => ({
   userId: state.user.auth.userId,
-  active: state.challenges.active
+  active: state.challenges.active,
+  challenges: state.challenges
 });
 
 export default connect(mapStateToProps)(ActiveChallenges);

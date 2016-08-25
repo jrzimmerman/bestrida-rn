@@ -1,7 +1,7 @@
 import * as constants from '../constants/challenges';
 import * as navigationActions from './navigation';
 
-const API_URL = 'http://www.bestridaapp.com/api/';
+const API_URL = 'http://localhost:8000/api/';
 
 function determineOpponent(userId, challenges) {
   const determineOpponentChallenges = challenges.map((challenge) => {
@@ -249,15 +249,28 @@ export function completeChallenge(challengeId, userId) {
     })
     .then(response => response.json())
     .then(responseJson => {
-      dispatch({
-        type: constants.COMPLETE_CHALLENGE_SUCCESS,
-        payload: {
-          response: responseJson
+      console.log('response: ', responseJson);
+      try {
+        if (responseJson.error) {
+          throw new Error(responseJson.error);
         }
-      });
+        dispatch({
+          type: constants.COMPLETE_CHALLENGE_SUCCESS,
+          payload: {
+            response: responseJson
+          }
+        });
+      } catch (error) {
+        console.log('catch response error');
+        dispatch({
+          type: constants.COMPLETE_CHALLENGE_FAILURE,
+          payload: {
+            error
+          }
+        });
+      }
     })
     .then(dispatch(completedChallenges(userId)))
-    .then(dispatch(navigationActions.changeTab('completedChallenges')))
     .catch(error => {
       console.log('complete error: ', error);
       dispatch({
@@ -267,6 +280,13 @@ export function completeChallenge(challengeId, userId) {
         }
       });
     });
+  };
+}
+
+export function clearCompleteError() {
+  return (dispatch) => {
+    console.log('clear error');
+    dispatch({ type: constants.CLEAR_COMPLETE_ERROR });
   };
 }
 

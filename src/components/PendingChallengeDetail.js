@@ -77,6 +77,18 @@ class PendingChallengeDetail extends React.Component {
           </View>
           <View style={styles.challengeDetailView}>
             <View style={styles.detailRowView}>
+              <Text style={styles.challengeDetailTitle}>Start Date</Text>
+              <Text style={styles.challengeDetailText}>
+                 {new Date(challenge.created).toDateString()}
+              </Text>
+            </View>
+            <View style={styles.detailRowView}>
+              <Text style={styles.challengeDetailTitle}>End Date</Text>
+              <Text style={styles.challengeDetailText}>
+                 {new Date(challenge.expires).toDateString()}
+              </Text>
+            </View>
+            <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Distance</Text>
               <Text style={styles.challengeDetailText}>
                 {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles`}

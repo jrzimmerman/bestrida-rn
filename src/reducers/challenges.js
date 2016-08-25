@@ -159,6 +159,13 @@ export default (state = initialState, action) => {
           error: action.payload
         })
       });
+    case constants.CLEAR_COMPLETE_ERROR:
+      console.log('CLEAR_COMPLETE_ERROR');
+      return Object.assign({}, state, {
+        complete: Object.assign({}, state.complete, {
+          error: null
+        })
+      });
     case constants.CREATE_CHALLENGE_SUCCESS:
       console.log('CREATE_CHALLENGE_SUCCESS');
       return Object.assign({}, state, {

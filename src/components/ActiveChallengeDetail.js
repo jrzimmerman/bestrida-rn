@@ -19,6 +19,7 @@ class ActiveChallengeDetail extends React.Component {
   handleComplete(challengeId, userId) {
     const { dispatch, navigator } = this.props;
     dispatch(challengeActions.completeChallenge(challengeId, userId));
+    dispatch(challengeActions.activeChallenges(userId));
     navigator.pop();
   }
 
@@ -32,6 +33,18 @@ class ActiveChallengeDetail extends React.Component {
             <Text style={styles.challengeTitleText}>{ challenge.segmentName }</Text>
           </View>
           <View style={styles.challengeDetailView}>
+            <View style={styles.detailRowView}>
+              <Text style={styles.challengeDetailTitle}>Start Date</Text>
+              <Text style={styles.challengeDetailText}>
+                 {new Date(challenge.created).toDateString()}
+              </Text>
+            </View>
+            <View style={styles.detailRowView}>
+              <Text style={styles.challengeDetailTitle}>End Date</Text>
+              <Text style={styles.challengeDetailText}>
+                 {new Date(challenge.expires).toDateString()}
+              </Text>
+            </View>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Distance</Text>
               <Text style={styles.challengeDetailText}>
