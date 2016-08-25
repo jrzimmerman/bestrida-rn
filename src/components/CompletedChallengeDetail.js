@@ -156,6 +156,10 @@ const CompletedChallengeDetail = (props) => {
               {challenge.challengeeAvgWatts === 0 ? null : challenge.challengeeAvgWatts}
             </Text>
           </View>
+          <View style={styles.detailRowView}>
+            <Text style={completedStyles.completedDetailTitle}>Completed On</Text>
+            <Text style={completedStyles.completedDetailText}>{new Date(challenge.completed).toDateString()}</Text>
+          </View>
         </View>
       </View>
     );
