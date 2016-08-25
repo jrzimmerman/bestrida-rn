@@ -47,6 +47,7 @@ class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60),
       selectedOpponent: '',
       selectedSegment: '',
       selectedCompletionDate: newDate,
@@ -139,7 +140,7 @@ class CreateChallenge extends React.Component {
           <Modal
             animated={true}
             transparent={false}
-            visible={this.state.showModal}>
+            visible={this.state.showDateModal}>
             <View style={styles.modalContainer}>
               <View style={styles.modalNav}>
                 <TouchableHighlight underlayColor="#fff" onPress={() => this._closeModal()}><Text style={[styles.btnText,{width:80,textAlign:"left"}]}>Cancle</Text></TouchableHighlight>
@@ -147,12 +148,12 @@ class CreateChallenge extends React.Component {
                 <TouchableHighlight underlayColor="#fff" onPress={() => this._setTime()}><Text style={[styles.btnText,,{width:80,textAlign:"right"}]}>Set</Text></TouchableHighlight>
               </View>
               <View style={styles.modalContent}>
-                   <DatePickerIOS
-                date={this.state.setDate}
-                mode="date"
-                timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
-                onDateChange={(date) => this._onDateChange(date)}
-              />
+                 <DatePickerIOS
+                    date={this.state.selectedCompletionDate}
+                    mode="date"
+                    timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
+                    onDateChange={(date) => this.handleSelectCompletionDate(date)}
+                  />
               </View>
           </View>
         </Modal>
