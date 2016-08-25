@@ -80,7 +80,7 @@ const feedStyles = StyleSheet.create({
   }
 });
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1._id !== r2._id) });
 
 class ChallengeFeed extends React.Component {
   constructor(props) {
@@ -129,6 +129,7 @@ class ChallengeFeed extends React.Component {
 
   handleDecline(challengeId, userId) {
     this.props.dispatch(challengeActions.declineChallenge(challengeId, userId));
+    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
     this.setState({
       dataSource: ds.cloneWithRows(this.props.pending.challenges),
       refreshing: false

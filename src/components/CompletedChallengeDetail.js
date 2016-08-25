@@ -7,8 +7,6 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-// const stravaProfilePic = require('../images/strava_profile_pic.png');
-
 const completedStyles = StyleSheet.create({
   completedTitleView: {
     flex: 0.3,

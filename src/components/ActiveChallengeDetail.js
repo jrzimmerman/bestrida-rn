@@ -19,13 +19,12 @@ class ActiveChallengeDetail extends React.Component {
   handleComplete(challengeId, userId) {
     const { dispatch, navigator } = this.props;
     dispatch(challengeActions.completeChallenge(challengeId, userId));
-    dispatch(challengeActions.completedChallenges(userId));
-    dispatch(navigationActions.changeTab('completedChallenges'));
     navigator.pop();
   }
 
   render() {
     const { challenge, userId } = this.props;
+    console.log('active detail challenge: ', challenge);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />

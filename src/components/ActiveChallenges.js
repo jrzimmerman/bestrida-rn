@@ -13,7 +13,7 @@ import styles from './styles';
 import ActiveChallengeDetail from './ActiveChallengeDetail';
 import * as challengeActions from '../actions/challenges';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1._id !== r2._id });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
 class ActiveChallenges extends React.Component {

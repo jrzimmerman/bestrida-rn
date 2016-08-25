@@ -44,6 +44,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.PENDING_CHALLENGES_SUCCESS:
+      console.log('PENDING_CHALLENGES_SUCCESS');
       return Object.assign({}, state, {
         pending: Object.assign({}, state.pending, {
           loading: action.payload.loading,
@@ -52,6 +53,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.PENDING_CHALLENGES_FAILURE:
+      console.log('PENDING_CHALLENGES_FAILURE');
       return Object.assign({}, state, {
         pending: Object.assign({}, state.pending, {
           loading: action.payload.loading,
@@ -67,6 +69,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.ACTIVE_CHALLENGES_SUCCESS:
+      console.log('ACTIVE_CHALLENGES_SUCCESS');
       return Object.assign({}, state, {
         active: Object.assign({}, state.active, {
           loading: action.payload.loading,
@@ -75,6 +78,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.ACTIVE_CHALLENGES_FAILURE:
+      console.log('ACTIVE_CHALLENGES_FAILURE');
       return Object.assign({}, state, {
         active: Object.assign({}, state.active, {
           loading: action.payload.loading,
@@ -90,6 +94,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.COMPLETED_CHALLENGES_SUCCESS:
+      console.log('COMPLETED_CHALLENGES_SUCCESS');
       return Object.assign({}, state, {
         completed: Object.assign({}, state.completed, {
           loading: action.payload.loading,
@@ -98,6 +103,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.COMPLETED_CHALLENGES_FAILURE:
+    console.log('COMPLETED_CHALLENGES_FAILURE');
       return Object.assign({}, state, {
         completed: Object.assign({}, state.completed, {
           loading: action.payload.loading,
@@ -106,6 +112,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.ACCEPT_CHALLENGE_SUCCESS:
+      console.log('ACCEPT_CHALLENGE_SUCCESS');
       return Object.assign({}, state, {
         accept: Object.assign({}, state.accept, {
           response: action.payload,
@@ -113,6 +120,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.ACCEPT_CHALLENGE_FAILURE:
+    console.log('ACCEPT_CHALLENGE_FAILURE');
       return Object.assign({}, state, {
         accept: Object.assign({}, state.accept, {
           response: null,
@@ -120,6 +128,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.DECLINE_CHALLENGE_SUCCESS:
+      console.log('DECLINE_CHALLENGE_SUCCESS');
       return Object.assign({}, state, {
         decline: Object.assign({}, state.decline, {
           response: action.payload,
@@ -127,6 +136,7 @@ export default (state = initialState, action) => {
         })
       });
     case constants.DECLINE_CHALLENGE_FAILURE:
+      console.log('DECLINE_CHALLENGE_FAILURE');
       return Object.assign({}, state, {
         decline: Object.assign({}, state.decline, {
           response: null,

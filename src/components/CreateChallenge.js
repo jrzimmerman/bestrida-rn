@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   DatePickerIOS,
-  PickerIOS,
   StatusBar,
   StyleSheet,
   Text,

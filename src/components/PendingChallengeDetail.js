@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import styles from './styles';
-import * as navigationActions from '../actions/navigation';
 import * as challengeActions from '../actions/challenges';
 
 const pendingStyles = StyleSheet.create({
@@ -60,7 +59,6 @@ class PendingChallengeDetail extends React.Component {
 
   handleAccept(challengeId, userId) {
     this.props.dispatch(challengeActions.acceptChallenge(challengeId, userId));
-    this.props.dispatch(navigationActions.changeTab('activeChallenges'));
     this.props.navigator.pop();
   }
 

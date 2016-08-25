@@ -1,4 +1,5 @@
 import * as constants from '../constants/challenges';
+import * as navigationActions from './navigation';
 
 const API_URL = 'http://www.bestridaapp.com/api/';
 
@@ -91,7 +92,7 @@ export function pendingChallenges(userId) {
 }
 
 export function activeChallenges(userId) {
-  console.log('active challenges');
+  console.log('getting active challenges');
   return (dispatch) => {
     dispatch({
       type: constants.ACTIVE_CHALLENGES_LOADING,
@@ -126,6 +127,7 @@ export function activeChallenges(userId) {
 }
 
 export function completedChallenges(userId) {
+  console.log('getting completed challenges');
   return (dispatch) => {
     dispatch({
       type: constants.COMPLETED_CHALLENGES_LOADING,
@@ -161,7 +163,8 @@ export function completedChallenges(userId) {
 }
 
 export function acceptChallenge(challengeId, userId) {
-  return (dispatch) => (
+  console.log('accept challenge action');
+  return (dispatch) => {
     fetch(`${API_URL}challenges/accept`, {
       method: 'POST',
       body: JSON.stringify({
@@ -181,20 +184,23 @@ export function acceptChallenge(challengeId, userId) {
         }
       });
     })
-    .then(activeChallenges(userId))
+    .then(dispatch(activeChallenges(userId)))
+    .then(dispatch(navigationActions.changeTab('activeChallenges')))
     .catch(error => {
+      console.log('accept error: ', error);
       dispatch({
         type: constants.ACCEPT_CHALLENGE_FAILURE,
         payload: {
           error
         }
       });
-    })
-  );
+    });
+  };
 }
 
 export function declineChallenge(challengeId, userId) {
-  return (dispatch) => (
+  console.log('decline challenge action');
+  return (dispatch) => {
     fetch(`${API_URL}challenges/decline`, {
       method: 'POST',
       body: JSON.stringify({
@@ -214,20 +220,22 @@ export function declineChallenge(challengeId, userId) {
         }
       });
     })
-    .then(pendingChallenges(userId))
+    .then(dispatch(pendingChallenges(userId)))
     .catch(error => {
+      console.log('decline error: ', error);
       dispatch({
         type: constants.DECLINE_CHALLENGE_FAILURE,
         payload: {
           error
         }
       });
-    })
-  );
+    });
+  };
 }
 
 export function completeChallenge(challengeId, userId) {
-  return (dispatch) => (
+  console.log('complete challenge');
+  return (dispatch) => {
     fetch(`${API_URL}challenges/complete`, {
       method: 'POST',
       body: JSON.stringify({
@@ -248,19 +256,23 @@ export function completeChallenge(challengeId, userId) {
         }
       });
     })
+    .then(dispatch(completedChallenges(userId)))
+    .then(dispatch(navigationActions.changeTab('completedChallenges')))
     .catch(error => {
+      console.log('complete error: ', error);
       dispatch({
         type: constants.COMPLETE_CHALLENGE_FAILURE,
         payload: {
           error
         }
       });
-    })
-  );
+    });
+  };
 }
 
 export function createChallenge(user, challengee, segment, completionDate) {
-  return (dispatch) => (
+  console.log('create challenge');
+  return (dispatch) => {
     fetch(`${API_URL}challenges/create`, {
       method: 'POST',
       body: JSON.stringify({
@@ -295,6 +307,6 @@ export function createChallenge(user, challengee, segment, completionDate) {
           error
         }
       });
-    })
-  );
+    });
+  };
 }
