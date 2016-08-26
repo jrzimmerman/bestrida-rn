@@ -1,7 +1,7 @@
 import * as constants from '../constants/challenges';
 import * as navigationActions from './navigation';
 
-const API_URL = 'http://localhost:8000/api/';
+const API_URL = 'http://www.bestridaapp.com/api/';
 
 function determineOpponent(userId, challenges) {
   const determineOpponentChallenges = challenges.map((challenge) => {
@@ -285,7 +285,6 @@ export function completeChallenge(challengeId, userId) {
 
 export function clearCompleteError() {
   return (dispatch) => {
-    console.log('clear error');
     dispatch({ type: constants.CLEAR_COMPLETE_ERROR });
   };
 }

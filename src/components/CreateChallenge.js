@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import styles from './styles';
 import * as challengeActions from '../actions/challenges';
 import * as navigationActions from '../actions/navigation';
+import * as userActions from '../actions/user';
 
 const createStyles = StyleSheet.create({
   container: {
@@ -60,6 +61,10 @@ class CreateChallenge extends React.Component {
     this.handleChangeCompletionDate = this.handleChangeCompletionDate.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
     this.toggleDateModal = this.toggleDateModal.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.dispatch(userActions.getUser(this.props.userId));
   }
 
   handleChangeOpponent() {
@@ -139,7 +144,7 @@ class CreateChallenge extends React.Component {
             <Text style={styles.text}>Completion Date</Text>
             <View>
               <TouchableOpacity style={createStyles.selectorButton} onPress={this.handleChangeCompletionDate}>
-                <Text style={styles.text}>{new Date(this.state.selectedCompletionDate).toDateString()}</Text>
+                <Text style={styles.text}>{this.state.selectedCompletionDate.toDateString()}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -149,8 +154,7 @@ class CreateChallenge extends React.Component {
             visible={this.state.showDateModal}>
             <View>
               <View>
-                <TouchableOpacity onPress={this.toggleDateModal}><Text>Cancel</Text></TouchableOpacity>
-                <Text>Choose a time</Text>
+                <Text>Choose Completion Date</Text>
                 <TouchableOpacity onPress={this.toggleDateModal}><Text>Set</Text></TouchableOpacity>
               </View>
               <View>
