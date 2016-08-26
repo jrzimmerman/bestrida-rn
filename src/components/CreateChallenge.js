@@ -37,20 +37,18 @@ const createStyles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'stretch',
     marginVertical: 10,
-    marginHorizontal: 20
+    marginHorizontal: 10
   }
 });
-
-const newDate = new Date();
 
 class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60),
+      timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,
       selectedOpponent: '',
       selectedSegment: '',
-      selectedCompletionDate: newDate,
+      selectedCompletionDate: new Date(),
       showDateModal: false
     };
 
@@ -61,6 +59,7 @@ class CreateChallenge extends React.Component {
     this.handleChangeSegment = this.handleChangeSegment.bind(this);
     this.handleChangeCompletionDate = this.handleChangeCompletionDate.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.toggleDateModal = this.toggleDateModal.bind(this);
   }
 
   handleChangeOpponent() {
@@ -87,21 +86,29 @@ class CreateChallenge extends React.Component {
   }
 
   handleSelectCompletionDate(date) {
-    console.log('change date');
+    console.log('change date: ', date);
     this.setState({ selectedCompletionDate: date });
   }
 
   handleSumbit() {
     const { dispatch, userId, user } = this.props;
     const { selectedOpponent, selectedSegment, selectedCompletionDate } = this.state;
-    dispatch(challengeActions.createChallenge(user, selectedOpponent, selectedSegment, selectedCompletionDate));
-    dispatch(challengeActions.pendingChallenges(userId));
-    dispatch(navigationActions.changeTab('challengeFeed'));
-    this.setState({
-      selectedOpponent: '',
-      selectedSegment: '',
-      selectedCompletionDate: newDate
-    });
+    if (!selectedOpponent || !selectedSegment || !selectedCompletionDate || selectedCompletionDate < newDate) {
+      console.log('form invalid');
+    } else {
+      dispatch(challengeActions.createChallenge(user, selectedOpponent, selectedSegment, selectedCompletionDate));
+      dispatch(challengeActions.pendingChallenges(userId));
+      dispatch(navigationActions.changeTab('challengeFeed'));
+      this.setState({
+        selectedOpponent: '',
+        selectedSegment: '',
+        selectedCompletionDate: new Date()
+      });
+    }
+  }
+
+  toggleDateModal() {
+    this.setState({ showDateModal: !this.state.showDateModal });
   }
 
   render() {
@@ -138,18 +145,18 @@ class CreateChallenge extends React.Component {
           </View>
 
           <Modal
-            animated={true}
             transparent={false}
             visible={this.state.showDateModal}>
-            <View style={styles.modalContainer}>
-              <View style={styles.modalNav}>
-                <TouchableHighlight underlayColor="#fff" onPress={() => this._closeModal()}><Text style={[styles.btnText,{width:80,textAlign:"left"}]}>Cancle</Text></TouchableHighlight>
-                <Text style={styles.navTitle}>Choose a time</Text>
-                <TouchableHighlight underlayColor="#fff" onPress={() => this._setTime()}><Text style={[styles.btnText,,{width:80,textAlign:"right"}]}>Set</Text></TouchableHighlight>
+            <View>
+              <View>
+                <TouchableOpacity onPress={this.toggleDateModal}><Text>Cancel</Text></TouchableOpacity>
+                <Text>Choose a time</Text>
+                <TouchableOpacity onPress={this.toggleDateModal}><Text>Set</Text></TouchableOpacity>
               </View>
-              <View style={styles.modalContent}>
+              <View>
                  <DatePickerIOS
                     date={this.state.selectedCompletionDate}
+                    minimumDate={new Date()}
                     mode="date"
                     timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
                     onDateChange={(date) => this.handleSelectCompletionDate(date)}

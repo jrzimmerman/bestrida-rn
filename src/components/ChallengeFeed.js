@@ -80,7 +80,7 @@ const feedStyles = StyleSheet.create({
   }
 });
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1._id !== r2._id) });
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
 
 class ChallengeFeed extends React.Component {
   constructor(props) {
