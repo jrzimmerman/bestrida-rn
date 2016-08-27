@@ -1,10 +1,13 @@
 import React from 'react';
 import {
+  Animated,
   DatePickerIOS,
+  Dimensions,
   Modal,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
@@ -14,6 +17,7 @@ import * as challengeActions from '../actions/challenges';
 import * as navigationActions from '../actions/navigation';
 import * as userActions from '../actions/user';
 
+const { height } = Dimensions.get('window');
 const createStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -30,15 +34,49 @@ const createStyles = StyleSheet.create({
     alignSelf: 'stretch'
   },
   selectorView: {
-
+    flex: 1
   },
   selectorButton: {
     height: 40,
     backgroundColor: '#383838',
     justifyContent: 'center',
     alignSelf: 'stretch',
-    marginVertical: 10,
-    marginHorizontal: 10
+    margin: 10,
+    borderWidth: 1,
+    borderColor: '#CCC',
+  },
+  selectorInput: {
+    height: 40,
+    backgroundColor: '#383838',
+    borderWidth: 1,
+    borderColor: '#CCC',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    margin: 10,
+    color: '#CCC'
+  },
+  datePickerView: {
+    backgroundColor: '#fff',
+    marginTop: height - 259
+  },
+  datePicker: {
+    marginTop: 42,
+    borderTopColor: '#ccc',
+    borderTopWidth: 1
+  },
+  btnConfirm: {
+    position: 'absolute',
+    top: 0,
+    height: 42,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 0
+  },
+  btnText: {
+    fontSize: 16,
+    color: '#46cf98'
   }
 });
 
@@ -46,8 +84,10 @@ class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,
+      timeZoneOffsetInHours: ((-1) * (new Date()).getTimezoneOffset()) / 60,
+      selectedOpponentText: '',
       selectedOpponent: '',
+      selectedSegmentText: '',
       selectedSegment: '',
       selectedCompletionDate: new Date(),
       showDateModal: false
@@ -56,8 +96,8 @@ class CreateChallenge extends React.Component {
     this.handleSelectOpponent = this.handleSelectOpponent.bind(this);
     this.handleSelectSegment = this.handleSelectSegment.bind(this);
     this.handleSelectCompletionDate = this.handleSelectCompletionDate.bind(this);
-    this.handleChangeOpponent = this.handleChangeOpponent.bind(this);
-    this.handleChangeSegment = this.handleChangeSegment.bind(this);
+    this.handleChangeOpponentText = this.handleChangeOpponentText.bind(this);
+    this.handleChangeSegmentText = this.handleChangeSegmentText.bind(this);
     this.handleChangeCompletionDate = this.handleChangeCompletionDate.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
     this.toggleDateModal = this.toggleDateModal.bind(this);
@@ -67,38 +107,34 @@ class CreateChallenge extends React.Component {
     this.props.dispatch(userActions.getUser(this.props.userId));
   }
 
-  handleChangeOpponent() {
-    console.log('change opponent');
+  handleChangeOpponentText(e) {
+    this.setState({ selectedOpponentText: e.target.value });
   }
 
-  handleChangeSegment() {
-    console.log('change segment');
+  handleChangeSegmentText(e) {
+    this.setState({ selectedSegmentText: e.target.value });
   }
 
   handleChangeCompletionDate() {
-    console.log('change date');
     this.setState({ showDateModal: true });
   }
 
   handleSelectOpponent(opponent) {
-    console.log('change opponent');
     this.setState({ selectedOpponent: opponent });
   }
 
   handleSelectSegment(segment) {
-    console.log('change segment');
     this.setState({ selectedSegment: segment });
   }
 
   handleSelectCompletionDate(date) {
-    console.log('change date: ', date);
     this.setState({ selectedCompletionDate: date });
   }
 
   handleSumbit() {
     const { dispatch, userId, user } = this.props;
     const { selectedOpponent, selectedSegment, selectedCompletionDate } = this.state;
-    if (!selectedOpponent || !selectedSegment || !selectedCompletionDate || selectedCompletionDate < newDate) {
+    if (!selectedOpponent || !selectedSegment || !selectedCompletionDate || selectedCompletionDate < new Date()) {
       console.log('form invalid');
     } else {
       dispatch(challengeActions.createChallenge(user, selectedOpponent, selectedSegment, selectedCompletionDate));
@@ -124,20 +160,12 @@ class CreateChallenge extends React.Component {
 
           <View style={createStyles.selectorView}>
             <Text style={styles.text}>Opponent</Text>
-            <View>
-              <TouchableOpacity style={createStyles.selectorButton} onPress={this.handleChangeOpponent}>
-                <Text style={styles.text}>{'Select Opponent'}</Text>
-              </TouchableOpacity>
-            </View>
+            <TextInput value={this.state.selectedOpponentText} style={createStyles.selectorInput} onChange={this.handleChangeOpponentText} placeholder={'Select Opponent'} />
           </View>
 
           <View style={createStyles.selectorView}>
             <Text style={styles.text}>Segment</Text>
-            <View>
-              <TouchableOpacity style={createStyles.selectorButton} onPress={this.handleChangeSegment}>
-                <Text style={styles.text}>Select Segment</Text>
-              </TouchableOpacity>
-            </View>
+            <TextInput value={this.state.selectedSegmentText} style={createStyles.selectorInput} onChange={this.handleChangeSegmentText} placeholder={'Select Segment'} />
           </View>
 
           <View style={createStyles.selectorView}>
@@ -147,27 +175,25 @@ class CreateChallenge extends React.Component {
                 <Text style={styles.text}>{this.state.selectedCompletionDate.toDateString()}</Text>
               </TouchableOpacity>
             </View>
-          </View>
-
-          <Modal
-            transparent={false}
-            visible={this.state.showDateModal}>
-            <View>
-              <View>
-                <Text>Choose Completion Date</Text>
-                <TouchableOpacity onPress={this.toggleDateModal}><Text>Set</Text></TouchableOpacity>
-              </View>
-              <View>
+            <Modal
+              animationType={'slide'}
+              transparent={true}
+              visible={this.state.showDateModal}>
+              <Animated.View style={createStyles.datePickerView}>
+                <TouchableOpacity style={createStyles.btnConfirm} onPress={this.toggleDateModal}>
+                  <Text style={createStyles.btnText}>Set Date</Text>
+                </TouchableOpacity>
                  <DatePickerIOS
                     date={this.state.selectedCompletionDate}
                     minimumDate={new Date()}
-                    mode="date"
+                    mode={'date'}
                     timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
                     onDateChange={(date) => this.handleSelectCompletionDate(date)}
+                    style={createStyles.datePicker}
                   />
-              </View>
+              </Animated.View>
+          </Modal>
           </View>
-        </Modal>
 
         </View>
         <View style={createStyles.createButtonView}>
