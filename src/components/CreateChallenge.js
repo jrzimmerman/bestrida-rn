@@ -227,6 +227,8 @@ class CreateChallenge extends React.Component {
       this.setState({
         selectedOpponent: null,
         selectedSegment: null,
+        selectedOpponentText: '',
+        selectedSegmentText: '',
         selectedCompletionDate: new Date(),
         showOpponentList: true,
         showSegmentList: true,
@@ -241,14 +243,20 @@ class CreateChallenge extends React.Component {
 
   toggleSelectedOpponent() {
     if (!this.state.showOpponentList) {
-      this.setState({ selectedOpponent: null });
+      this.setState({
+        selectedOpponent: null,
+        selectedOpponentText: ''
+      });
     }
     this.setState({ showOpponentList: !this.state.showOpponentList });
   }
 
   toggleSelectedSegment() {
     if (!this.state.showSegmentList) {
-      this.setState({ selectedSegment: null });
+      this.setState({
+        selectedSegment: null,
+        selectedSegmentText: ''
+      });
     }
     this.setState({ showSegmentList: !this.state.showSegmentList });
   }
