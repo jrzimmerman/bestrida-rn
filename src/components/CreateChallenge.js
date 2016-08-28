@@ -26,12 +26,12 @@ const createStyles = StyleSheet.create({
     backgroundColor: '#2B2B2B'
   },
   createDetailView: {
-    flex: 0.8,
+    flex: 0.825,
     alignSelf: 'stretch',
     justifyContent: 'space-around'
   },
   createButtonView: {
-    flex: 0.2,
+    flex: 0.175,
     alignSelf: 'stretch'
   },
   selectorInputView: {
@@ -43,7 +43,7 @@ const createStyles = StyleSheet.create({
     paddingVertical: 5
   },
   selectorButton: {
-    height: 40,
+    height: 44,
     backgroundColor: '#383838',
     justifyContent: 'center',
     alignSelf: 'stretch',
@@ -52,7 +52,7 @@ const createStyles = StyleSheet.create({
     borderColor: '#CCC',
   },
   selectorInput: {
-    height: 40,
+    height: 44,
     backgroundColor: '#383838',
     borderWidth: 1,
     borderColor: '#CCC',
@@ -92,7 +92,7 @@ const createStyles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 6,
     paddingHorizontal: 8,
-    height: 40,
+    height: 44,
     backgroundColor: '#383838',
     alignItems: 'center',
     justifyContent: 'center'
@@ -209,7 +209,7 @@ class CreateChallenge extends React.Component {
     const { dispatch, userId, user } = this.props;
     const { selectedOpponent, selectedSegment, selectedCompletionDate } = this.state;
     if (!selectedOpponent || !selectedSegment ||
-      !selectedCompletionDate || selectedCompletionDate < this.state.newDate) {
+      !selectedCompletionDate || selectedCompletionDate <= this.state.newDate) {
       if (!selectedOpponent && !selectedSegment) {
         this.setState({ createChallengeError: 'Please select both an opponent and segment' });
       } else if (!selectedOpponent) {
@@ -229,7 +229,7 @@ class CreateChallenge extends React.Component {
         selectedSegment: null,
         selectedOpponentText: '',
         selectedSegmentText: '',
-        selectedCompletionDate: new Date(),
+        selectedCompletionDate: this.state.newDate,
         showOpponentList: true,
         showSegmentList: true,
         createChallengeError: null,
@@ -377,7 +377,7 @@ class CreateChallenge extends React.Component {
                 </TouchableOpacity>
                  <DatePickerIOS
                     date={this.state.selectedCompletionDate}
-                    minimumDate={new Date()}
+                    minimumDate={this.state.newDate}
                     mode={'date'}
                     timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
                     onDateChange={(date) => this.handleSelectCompletionDate(date)}
