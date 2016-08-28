@@ -116,18 +116,18 @@ const createStyles = StyleSheet.create({
 
 const opponentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
 const segmentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
-
+const newDate = new Date();
 class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newDate: new Date(),
-      timeZoneOffsetInHours: ((-1) * (new Date()).getTimezoneOffset()) / 60,
+      newDate: newDate,
+      timeZoneOffsetInHours: ((-1) * newDate.getTimezoneOffset()) / 60,
       selectedOpponentText: '',
       selectedOpponent: null,
       selectedSegmentText: '',
       selectedSegment: null,
-      selectedCompletionDate: new Date(),
+      selectedCompletionDate: newDate,
       showDateModal: false,
       segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
       opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends),
@@ -209,8 +209,10 @@ class CreateChallenge extends React.Component {
     const { dispatch, userId, user } = this.props;
     const { selectedOpponent, selectedSegment, selectedCompletionDate } = this.state;
     if (!selectedOpponent || !selectedSegment ||
-      !selectedCompletionDate || selectedCompletionDate <= this.state.newDate) {
-      if (!selectedOpponent && !selectedSegment) {
+      !selectedCompletionDate || selectedCompletionDate < this.state.newDate) {
+      if (!selectedCompletionDate || selectedCompletionDate < this.state.newDate) {
+        this.setState({ createChallengeError: 'Please select a completion date' });
+      } else if (!selectedOpponent && !selectedSegment) {
         this.setState({ createChallengeError: 'Please select both an opponent and segment' });
       } else if (!selectedOpponent) {
         this.setState({ createChallengeError: 'Please select an opponent' });
