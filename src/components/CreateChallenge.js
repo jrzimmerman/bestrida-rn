@@ -92,7 +92,7 @@ const createStyles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 6,
     paddingHorizontal: 8,
-    height: 30,
+    height: 40,
     backgroundColor: '#383838',
     alignItems: 'center',
     justifyContent: 'center'
