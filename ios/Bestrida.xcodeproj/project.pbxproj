@@ -742,7 +742,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Bestrida;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bestridaapp.Bestrida;
 				PRODUCT_NAME = Bestrida;
 				PROVISIONING_PROFILE = "";
 			};
@@ -771,7 +771,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Bestrida;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bestridaapp.Bestrida;
 				PRODUCT_NAME = Bestrida;
 				PROVISIONING_PROFILE = "";
 			};
