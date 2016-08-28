@@ -150,6 +150,17 @@ class CreateChallenge extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(userActions.getUser(this.props.userId));
+    this.setState({
+      segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
+      opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      segmentDataSource: segmentDS.cloneWithRows(nextProps.user.segments),
+      opponentDataSource: opponentDS.cloneWithRows(nextProps.user.friends)
+    });
   }
 
   handleChangeOpponentText(text) {
