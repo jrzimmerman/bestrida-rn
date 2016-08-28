@@ -15,6 +15,7 @@
     "strict": 0,
     "no-global-assign": 0,
     "no-unsafe-negation": 0,
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "no-underscore-dangle": 0
   }
 }
