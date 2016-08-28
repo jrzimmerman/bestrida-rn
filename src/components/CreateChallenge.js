@@ -232,7 +232,9 @@ class CreateChallenge extends React.Component {
         selectedCompletionDate: new Date(),
         showOpponentList: true,
         showSegmentList: true,
-        createChallengeError: null
+        createChallengeError: null,
+        segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
+        opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
       });
     }
   }
@@ -245,7 +247,8 @@ class CreateChallenge extends React.Component {
     if (!this.state.showOpponentList) {
       this.setState({
         selectedOpponent: null,
-        selectedOpponentText: ''
+        selectedOpponentText: '',
+        pponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
       });
     }
     this.setState({ showOpponentList: !this.state.showOpponentList });
@@ -255,7 +258,8 @@ class CreateChallenge extends React.Component {
     if (!this.state.showSegmentList) {
       this.setState({
         selectedSegment: null,
-        selectedSegmentText: ''
+        selectedSegmentText: '',
+        segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments)
       });
     }
     this.setState({ showSegmentList: !this.state.showSegmentList });
