@@ -208,9 +208,8 @@ class CreateChallenge extends React.Component {
   handleSumbit() {
     const { dispatch, userId, user } = this.props;
     const { selectedOpponent, selectedSegment, selectedCompletionDate } = this.state;
-    if (!selectedOpponent || !selectedSegment ||
-      !selectedCompletionDate || selectedCompletionDate < this.state.newDate) {
-      if (!selectedCompletionDate || selectedCompletionDate < this.state.newDate) {
+    if (!selectedOpponent || !selectedSegment || !selectedCompletionDate) {
+      if (!selectedCompletionDate) {
         this.setState({ createChallengeError: 'Please select a completion date' });
       } else if (!selectedOpponent && !selectedSegment) {
         this.setState({ createChallengeError: 'Please select both an opponent and segment' });
@@ -231,7 +230,7 @@ class CreateChallenge extends React.Component {
         selectedSegment: null,
         selectedOpponentText: '',
         selectedSegmentText: '',
-        selectedCompletionDate: this.state.newDate,
+        selectedCompletionDate: new Date(),
         showOpponentList: true,
         showSegmentList: true,
         createChallengeError: null,
@@ -379,7 +378,7 @@ class CreateChallenge extends React.Component {
                 </TouchableOpacity>
                  <DatePickerIOS
                     date={this.state.selectedCompletionDate}
-                    minimumDate={this.state.newDate}
+                    minimumDate={newDate}
                     mode={'date'}
                     timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
                     onDateChange={(date) => this.handleSelectCompletionDate(date)}
