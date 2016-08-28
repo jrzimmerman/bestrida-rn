@@ -14,7 +14,7 @@ import styles from './styles';
 import ActiveChallengeDetail from './ActiveChallengeDetail';
 import * as challengeActions from '../actions/challenges';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1._id !== r2._id });
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
 const activeStyles = StyleSheet.create({
@@ -87,7 +87,10 @@ class ActiveChallenges extends React.Component {
       errorView = (
         <View style={activeStyles.errorView}>
           <TouchableOpacity onPress={this.handleDismiss} style={activeStyles.errorButton}>
-            <Text style={{ color: 'white', alignSelf: 'center', fontSize: 16, fontWeight: 'bold' }}> Error Completing Challenge </Text>
+            <Text
+              style={{ color: 'white', alignSelf: 'center', fontSize: 16, fontWeight: 'bold' }}>
+              Error Completing Challenge
+            </Text>
             <Text style={{ color: 'white', alignSelf: 'center' }}> Effort not found on Strava</Text>
             <Text style={{ color: 'white', alignSelf: 'center' }}> Tap to dismiss </Text>
           </TouchableOpacity>
@@ -114,7 +117,8 @@ class ActiveChallenges extends React.Component {
               <View style={styles.challengeImageView}>
                 <Image
                   style={styles.challengeImage}
-                  source={rowData.opponentPhoto === 'stravaProfilePic' ? stravaProfilePic : rowData.opponentPhoto }
+                  source={rowData.opponentPhoto === 'stravaProfilePic' ?
+                  stravaProfilePic : rowData.opponentPhoto }
                 />
               </View>
               <View style={styles.challengeDetail}>

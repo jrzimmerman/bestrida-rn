@@ -27,9 +27,15 @@ class Layout extends React.Component {
   }
 
   handlePress(tab) {
-    if (tab === 'activeChallenges') this.props.dispatch(challengeActions.activeChallenges(this.props.userId));
-    if (tab === 'challengeFeed') this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
-    if (tab === 'completedChallenges') this.props.dispatch(challengeActions.completedChallenges(this.props.userId));
+    if (tab === 'activeChallenges') {
+      this.props.dispatch(challengeActions.activeChallenges(this.props.userId));
+    }
+    if (tab === 'challengeFeed') {
+      this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
+    }
+    if (tab === 'completedChallenges') {
+      this.props.dispatch(challengeActions.completedChallenges(this.props.userId));
+    }
     this.props.dispatch(navigationActions.changeTab(tab));
   }
 

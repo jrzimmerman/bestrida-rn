@@ -58,13 +58,17 @@ class PendingChallengeDetail extends React.Component {
   }
 
   handleAccept(challengeId, userId) {
-    this.props.dispatch(challengeActions.acceptChallenge(challengeId, userId));
-    this.props.navigator.pop();
+    const { dispatch, navigator } = this.props;
+    dispatch(challengeActions.acceptChallenge(challengeId, userId));
+    dispatch(challengeActions.pendingChallenges(userId));
+    navigator.pop();
   }
 
   handleDecline(challengeId, userId) {
-    this.props.dispatch(challengeActions.declineChallenge(challengeId, userId));
-    this.props.navigator.pop();
+    const { dispatch, navigator } = this.props;
+    dispatch(challengeActions.declineChallenge(challengeId, userId));
+    dispatch(challengeActions.pendingChallenges(userId));
+    navigator.pop();
   }
 
   render() {
@@ -97,12 +101,15 @@ class PendingChallengeDetail extends React.Component {
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Location</Text>
               <Text style={styles.challengeDetailText}>
-                {`${challenge.segmentCity ? challenge.segmentCity + ',' : ''} ${challenge.segmentState}`}
+                {`${challenge.segmentCity ?
+                  `${challenge.segmentCity},` : ''} ${challenge.segmentState}`}
               </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Activity Type</Text>
-              <Text style={styles.challengeDetailText}>{ challenge.segmentActivityType  || 'Not Available' }</Text>
+              <Text style={styles.challengeDetailText}>
+                { challenge.segmentActivityType || 'Not Available' }
+              </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Average Grade</Text>
@@ -124,10 +131,14 @@ class PendingChallengeDetail extends React.Component {
           <View style={styles.challengeFooterView}>
             { challenge.challengeeId === userId ?
               <View style={pendingStyles.challengeOptions}>
-                <TouchableOpacity onPress={() => this.handleDecline(challenge._id, userId)} style={pendingStyles.challengeOptionsDecline}>
+                <TouchableOpacity
+                  onPress={() => this.handleDecline(challenge._id, userId)}
+                  style={pendingStyles.challengeOptionsDecline}>
                   <Text style={pendingStyles.challengeOptionsDeclineText}>Decline</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handleAccept(challenge._id, userId)} style={pendingStyles.challengeOptionsAccept}>
+                <TouchableOpacity
+                  onPress={() => this.handleAccept(challenge._id, userId)}
+                  style={pendingStyles.challengeOptionsAccept}>
                   <Text style={pendingStyles.challengeOptionsAcceptText}>Accept</Text>
                 </TouchableOpacity>
               </View> :

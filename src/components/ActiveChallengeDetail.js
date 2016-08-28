@@ -8,7 +8,6 @@ import {
 import { connect } from 'react-redux';
 import styles from './styles';
 import * as challengeActions from '../actions/challenges';
-import * as navigationActions from '../actions/navigation';
 
 class ActiveChallengeDetail extends React.Component {
   constructor(props) {
@@ -25,7 +24,6 @@ class ActiveChallengeDetail extends React.Component {
 
   render() {
     const { challenge, userId } = this.props;
-    console.log('active detail challenge: ', challenge);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -54,7 +52,8 @@ class ActiveChallengeDetail extends React.Component {
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Location</Text>
               <Text style={styles.challengeDetailText}>
-                {`${challenge.segmentCity ? challenge.segmentCity + ',' : ''} ${challenge.segmentState}`}
+                {`${challenge.segmentCity ?
+                  `${challenge.segmentCity},` : ''} ${challenge.segmentState}`}
               </Text>
             </View>
             <View style={styles.detailRowView}>

@@ -158,7 +158,9 @@ const CompletedChallengeDetail = (props) => {
           </View>
           <View style={styles.detailRowView}>
             <Text style={completedStyles.completedDetailTitle}>Completed On</Text>
-            <Text style={completedStyles.completedDetailText}>{new Date(challenge.completed).toDateString()}</Text>
+            <Text style={completedStyles.completedDetailText}>
+              {new Date(challenge.completed).toDateString()}
+            </Text>
           </View>
         </View>
       </View>

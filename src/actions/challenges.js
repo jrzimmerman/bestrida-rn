@@ -57,7 +57,6 @@ function completionStatus(userId, challenges) {
 }
 
 export function pendingChallenges(userId) {
-  console.log('pending challenges');
   return (dispatch) => {
     dispatch({
       type: constants.PENDING_CHALLENGES_LOADING,
@@ -92,7 +91,6 @@ export function pendingChallenges(userId) {
 }
 
 export function activeChallenges(userId) {
-  console.log('getting active challenges');
   return (dispatch) => {
     dispatch({
       type: constants.ACTIVE_CHALLENGES_LOADING,
@@ -127,7 +125,6 @@ export function activeChallenges(userId) {
 }
 
 export function completedChallenges(userId) {
-  console.log('getting completed challenges');
   return (dispatch) => {
     dispatch({
       type: constants.COMPLETED_CHALLENGES_LOADING,
@@ -163,7 +160,6 @@ export function completedChallenges(userId) {
 }
 
 export function acceptChallenge(challengeId, userId) {
-  console.log('accept challenge action');
   return (dispatch) => {
     fetch(`${API_URL}challenges/accept`, {
       method: 'POST',
@@ -187,7 +183,6 @@ export function acceptChallenge(challengeId, userId) {
     .then(dispatch(activeChallenges(userId)))
     .then(dispatch(navigationActions.changeTab('activeChallenges')))
     .catch(error => {
-      console.log('accept error: ', error);
       dispatch({
         type: constants.ACCEPT_CHALLENGE_FAILURE,
         payload: {
@@ -199,7 +194,6 @@ export function acceptChallenge(challengeId, userId) {
 }
 
 export function declineChallenge(challengeId, userId) {
-  console.log('decline challenge action');
   return (dispatch) => {
     fetch(`${API_URL}challenges/decline`, {
       method: 'POST',
@@ -222,7 +216,6 @@ export function declineChallenge(challengeId, userId) {
     })
     .then(dispatch(pendingChallenges(userId)))
     .catch(error => {
-      console.log('decline error: ', error);
       dispatch({
         type: constants.DECLINE_CHALLENGE_FAILURE,
         payload: {
@@ -234,7 +227,6 @@ export function declineChallenge(challengeId, userId) {
 }
 
 export function completeChallenge(challengeId, userId) {
-  console.log('complete challenge');
   return (dispatch) => {
     fetch(`${API_URL}challenges/complete`, {
       method: 'POST',
@@ -249,7 +241,6 @@ export function completeChallenge(challengeId, userId) {
     })
     .then(response => response.json())
     .then(responseJson => {
-      console.log('response: ', responseJson);
       try {
         if (responseJson.error) {
           throw new Error(responseJson.error);
@@ -261,7 +252,6 @@ export function completeChallenge(challengeId, userId) {
           }
         });
       } catch (error) {
-        console.log('catch response error');
         dispatch({
           type: constants.COMPLETE_CHALLENGE_FAILURE,
           payload: {
@@ -272,7 +262,6 @@ export function completeChallenge(challengeId, userId) {
     })
     .then(dispatch(completedChallenges(userId)))
     .catch(error => {
-      console.log('complete error: ', error);
       dispatch({
         type: constants.COMPLETE_CHALLENGE_FAILURE,
         payload: {
@@ -290,7 +279,6 @@ export function clearCompleteError() {
 }
 
 export function createChallenge(user, challengee, segment, completionDate) {
-  console.log('create challenge');
   return (dispatch) => {
     fetch(`${API_URL}challenges/create`, {
       method: 'POST',

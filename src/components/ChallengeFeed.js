@@ -111,7 +111,10 @@ class ChallengeFeed extends React.Component {
   }
 
   handlePress(challenge) {
-    this.props.navigator.push({ component: PendingChallengeDetail, passProps: { challenge, navigator: this.props.navigator } });
+    this.props.navigator.push({
+      component: PendingChallengeDetail,
+      passProps: { challenge, navigator: this.props.navigator }
+    });
   }
 
   handleCreate() {
@@ -172,19 +175,26 @@ class ChallengeFeed extends React.Component {
                 <View style={styles.challengeImageView}>
                   <Image
                     style={styles.challengeImage}
-                    source={rowData.opponentPhoto === 'stravaProfilePic' ? stravaProfilePic : rowData.opponentPhoto }
+                    source={rowData.opponentPhoto === 'stravaProfilePic' ?
+                      stravaProfilePic : rowData.opponentPhoto }
                   />
                 </View>
                 <View style={styles.challengeDetail}>
                   <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
                   <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                  <Text style={styles.challengeText}>Complete By: {new Date(rowData.expires).toDateString()}</Text>
+                  <Text style={styles.challengeText}>
+                    Complete By: {new Date(rowData.expires).toDateString()}
+                  </Text>
                   { rowData.challengeeId === this.props.userId ?
                     <View style={feedStyles.challengeOptions}>
-                      <TouchableOpacity onPress={() => this.handleDecline(rowData._id, this.props.userId)} style={feedStyles.challengeOptionsDecline}>
+                      <TouchableOpacity
+                        onPress={() => this.handleDecline(rowData._id, this.props.userId)}
+                        style={feedStyles.challengeOptionsDecline}>
                         <Text style={feedStyles.challengeOptionsDeclineText}>Decline</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => this.handleAccept(rowData._id, this.props.userId)} style={feedStyles.challengeOptionsAccept}>
+                      <TouchableOpacity
+                        onPress={() => this.handleAccept(rowData._id, this.props.userId)}
+                        style={feedStyles.challengeOptionsAccept}>
                         <Text style={feedStyles.challengeOptionsAcceptText}>Accept</Text>
                       </TouchableOpacity>
                     </View>

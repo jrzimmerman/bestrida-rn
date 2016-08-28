@@ -29,7 +29,6 @@ export function userLogout() {
 }
 
 export function getUser(userId) {
-  console.log('getting user info');
   return (dispatch) => {
     dispatch({
       type: constants.GET_USER_LOADING,
