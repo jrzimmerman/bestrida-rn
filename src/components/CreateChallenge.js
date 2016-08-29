@@ -178,7 +178,7 @@ class CreateChallenge extends React.Component {
     if (this.state.createChallengeError) {
       errorView = (
         <View style={styles.errorView}>
-          <TouchableOpacity onPress={this.handleDismiss} style={styles.errorButton}>
+          <TouchableOpacity onPress={this.handleDismiss} style={styles.createErrorButton}>
             <Text style={styles.errorTitle}>
               Error Completing Challenge
             </Text>

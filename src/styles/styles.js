@@ -120,6 +120,17 @@ if (PixelRatio.get() < 3) {
       backgroundColor: '#ef473a'
     },
     errorButton: {
+      marginTop: 80,
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 10,
+      paddingVertical: 6,
+      paddingHorizontal: 8,
+      borderRadius: 4,
+      height: 45
+    },
+    createErrorButton: {
       marginTop: 20,
       alignSelf: 'stretch',
       alignItems: 'center',
@@ -128,7 +139,7 @@ if (PixelRatio.get() < 3) {
       paddingVertical: 6,
       paddingHorizontal: 8,
       borderRadius: 4,
-      height: 40
+      height: 45
     },
     errorTitle: {
       color: 'white',
@@ -163,6 +174,7 @@ if (PixelRatio.get() < 3) {
       backgroundColor: '#383838'
     },
     text: {
+      fontSize: 14,
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignSelf: 'center',
@@ -258,6 +270,17 @@ if (PixelRatio.get() < 3) {
       backgroundColor: '#ef473a'
     },
     errorButton: {
+      marginTop: 80,
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 10,
+      paddingVertical: 6,
+      paddingHorizontal: 8,
+      borderRadius: 4,
+      height: 45
+    },
+    createErrorButton: {
       marginTop: 20,
       alignSelf: 'stretch',
       alignItems: 'center',
