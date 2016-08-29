@@ -4,36 +4,17 @@ import {
   ListView,
   RefreshControl,
   StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './styles';
+import styles from '../styles/styles';
 import ActiveChallengeDetail from './ActiveChallengeDetail';
 import * as challengeActions from '../actions/challenges';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
-
-const activeStyles = StyleSheet.create({
-  errorView: {
-    alignSelf: 'stretch',
-    backgroundColor: '#ef473a'
-  },
-  errorButton: {
-    marginTop: 80,
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-    height: 45
-  }
-});
 
 class ActiveChallenges extends React.Component {
   constructor(props) {
@@ -85,14 +66,17 @@ class ActiveChallenges extends React.Component {
     let errorView;
     if (this.props.challenges.complete.error) {
       errorView = (
-        <View style={activeStyles.errorView}>
-          <TouchableOpacity onPress={this.handleDismiss} style={activeStyles.errorButton}>
-            <Text
-              style={{ color: 'white', alignSelf: 'center', fontSize: 16, fontWeight: 'bold' }}>
+        <View style={styles.errorView}>
+          <TouchableOpacity onPress={this.handleDismiss} style={styles.errorButton}>
+            <Text style={styles.errorTitle}>
               Error Completing Challenge
             </Text>
-            <Text style={{ color: 'white', alignSelf: 'center' }}> Effort not found on Strava</Text>
-            <Text style={{ color: 'white', alignSelf: 'center' }}> Tap to dismiss </Text>
+            <Text style={styles.errorText}>
+              Effort not found on Strava
+            </Text>
+            <Text style={styles.errorText}>
+              Tap to dismiss
+            </Text>
           </TouchableOpacity>
         </View>
       );
@@ -122,9 +106,13 @@ class ActiveChallenges extends React.Component {
                 />
               </View>
               <View style={styles.challengeDetail}>
-                <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
-                <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                <Text style={styles.challengeText}>
+                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  Opponent: {rowData.opponentName}
+                </Text>
+                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  Segment: {rowData.segmentName}
+                </Text>
+                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
                   Complete By: {new Date(rowData.expires).toDateString()}
                 </Text>
               </View>

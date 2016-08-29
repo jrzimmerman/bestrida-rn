@@ -2,56 +2,10 @@ import React from 'react';
 import {
   View,
   StatusBar,
-  StyleSheet,
   Text
 } from 'react-native';
-import styles from './styles';
-
-const completedStyles = StyleSheet.create({
-  completedTitleView: {
-    flex: 0.3,
-    alignSelf: 'stretch',
-    justifyContent: 'space-around'
-  },
-  completedTitleText: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignSelf: 'center',
-    color: '#CCC',
-    fontWeight: 'bold',
-    fontSize: 24
-  },
-  completedDetailTitle: {
-    flexDirection: 'column',
-    alignSelf: 'center',
-    color: '#CCC',
-    fontWeight: 'bold',
-    fontSize: 13
-  },
-  completedDetailText: {
-    flexDirection: 'column',
-    alignSelf: 'center',
-    color: '#CCC',
-    fontSize: 13
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    height: 80
-  },
-  completedImageView: {
-    flex: 0.5,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignSelf: 'center'
-  },
-  completedImage: {
-    height: 100,
-    flexDirection: 'column',
-    resizeMode: 'contain',
-    alignSelf: 'center'
-  },
-});
+import styles from '../styles/styles';
+import completedStyles from '../styles/completedStyles';
 
 // Use this function to convert seconds in human-readable time
 function secondsToTime(secs) {

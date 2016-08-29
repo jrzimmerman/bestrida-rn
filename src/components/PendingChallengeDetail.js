@@ -2,53 +2,13 @@ import React from 'react';
 import {
   View,
   StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './styles';
+import styles from '../styles/styles';
+import pendingStyles from '../styles/pendingStyles';
 import * as challengeActions from '../actions/challenges';
-
-const pendingStyles = StyleSheet.create({
-  challengeOptions: {
-    flex: 1,
-    flexDirection: 'row',
-    alignSelf: 'stretch'
-  },
-  challengeOptionsDecline: {
-    flex: 0.5,
-    alignSelf: 'stretch',
-    margin: 10,
-    padding: 10,
-    borderRadius: 4,
-    height: 45,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#ef473a'
-  },
-  challengeOptionsDeclineText: {
-    color: '#ef473a',
-    alignSelf: 'center',
-    justifyContent: 'center'
-  },
-  challengeOptionsAccept: {
-    flex: 0.5,
-    alignSelf: 'stretch',
-    margin: 10,
-    padding: 10,
-    borderRadius: 4,
-    height: 45,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#33cd5f'
-  },
-  challengeOptionsAcceptText: {
-    color: '#33cd5f',
-    alignSelf: 'center',
-    justifyContent: 'center'
-  }
-});
 
 class PendingChallengeDetail extends React.Component {
   constructor(props) {

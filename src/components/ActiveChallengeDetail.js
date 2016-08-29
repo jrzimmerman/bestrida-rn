@@ -6,7 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './styles';
+import styles from '../styles/styles';
 import * as challengeActions from '../actions/challenges';
 
 class ActiveChallengeDetail extends React.Component {

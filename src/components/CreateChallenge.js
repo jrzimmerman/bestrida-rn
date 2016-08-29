@@ -1,11 +1,9 @@
 import React from 'react';
 import {
   DatePickerIOS,
-  Dimensions,
   ListView,
   Modal,
   StatusBar,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -13,115 +11,20 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import fuzzy from 'fuzzy';
-import styles from './styles';
+import styles from '../styles/styles';
+import createStyles from '../styles/createStyles';
 import * as challengeActions from '../actions/challenges';
 import * as navigationActions from '../actions/navigation';
 import * as userActions from '../actions/user';
 
-const { height } = Dimensions.get('window');
-const createStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 69,
-    backgroundColor: '#2B2B2B'
-  },
-  createDetailView: {
-    flex: 0.825,
-    alignSelf: 'stretch',
-    justifyContent: 'space-around'
-  },
-  createButtonView: {
-    flex: 0.175,
-    alignSelf: 'stretch'
-  },
-  selectorInputView: {
-    flex: 0.45,
-    paddingVertical: 5
-  },
-  selectorButtonView: {
-    flex: 0.15,
-    paddingVertical: 5
-  },
-  selectorButton: {
-    height: 44,
-    backgroundColor: '#383838',
-    justifyContent: 'center',
-    alignSelf: 'stretch',
-    margin: 10,
-    borderWidth: 1,
-    borderColor: '#CCC',
-  },
-  selectorInput: {
-    height: 44,
-    backgroundColor: '#383838',
-    borderWidth: 1,
-    borderColor: '#CCC',
-    justifyContent: 'center',
-    alignSelf: 'stretch',
-    margin: 10,
-    fontSize: 14,
-    color: '#CCC',
-    paddingLeft: 10
-  },
-  datePickerView: {
-    backgroundColor: '#FFF',
-    marginTop: height - 259
-  },
-  datePicker: {
-    marginTop: 42,
-    borderTopColor: '#CCC',
-    borderTopWidth: 1
-  },
-  btnConfirm: {
-    position: 'absolute',
-    top: 0,
-    height: 42,
-    padding: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 0
-  },
-  btnText: {
-    fontSize: 16,
-    color: '#007AFF'
-  },
-  row: {
-    marginBottom: 5,
-    marginHorizontal: 20,
-    flexDirection: 'row',
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    height: 44,
-    backgroundColor: '#383838',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  errorView: {
-    alignSelf: 'stretch',
-    backgroundColor: '#ef473a'
-  },
-  errorButton: {
-    marginTop: 20,
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-    height: 45
-  }
-});
-
 const opponentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
 const segmentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
 const newDate = new Date();
+
 class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newDate: newDate,
       timeZoneOffsetInHours: ((-1) * newDate.getTimezoneOffset()) / 60,
       selectedOpponentText: '',
       selectedOpponent: null,
@@ -274,15 +177,15 @@ class CreateChallenge extends React.Component {
     let errorView;
     if (this.state.createChallengeError) {
       errorView = (
-        <View style={createStyles.errorView}>
-          <TouchableOpacity onPress={this.handleDismiss} style={createStyles.errorButton}>
-            <Text style={{ color: 'white', alignSelf: 'center', fontSize: 16, fontWeight: 'bold' }}>
+        <View style={styles.errorView}>
+          <TouchableOpacity onPress={this.handleDismiss} style={styles.errorButton}>
+            <Text style={styles.errorTitle}>
               Error Completing Challenge
             </Text>
-            <Text style={{ color: 'white', alignSelf: 'center' }}>
+            <Text style={styles.errorText}>
               {this.state.createChallengeError}
             </Text>
-            <Text style={{ color: 'white', alignSelf: 'center' }}>
+            <Text style={styles.errorText}>
               Tap to dismiss
             </Text>
           </TouchableOpacity>
@@ -293,8 +196,8 @@ class CreateChallenge extends React.Component {
     return (
       <View style={createStyles.container}>
         <StatusBar barStyle="light-content" />
+        {errorView}
         <View style={createStyles.createDetailView}>
-          {errorView}
           { this.state.showOpponentList ?
             <View style={createStyles.selectorInputView}>
               <Text style={styles.text}>Opponent</Text>

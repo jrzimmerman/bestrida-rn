@@ -9,7 +9,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './styles';
+import styles from '../styles/styles';
 import CompletedChallengeDetail from './CompletedChallengeDetail';
 import * as challengeActions from '../actions/challenges';
 
@@ -85,9 +85,15 @@ class CompletedChallenges extends React.Component {
                 />
               </View>
               <View style={styles.challengeDetail}>
-                <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
-                <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                <Text style={styles.challengeText}>{rowData.completedStatus}</Text>
+                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  Opponent: {rowData.opponentName}
+                </Text>
+                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  Segment: {rowData.segmentName}
+                </Text>
+                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  {rowData.completedStatus}
+                </Text>
               </View>
             </TouchableOpacity>
           )}

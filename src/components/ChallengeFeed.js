@@ -4,81 +4,18 @@ import {
   ListView,
   RefreshControl,
   StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './styles';
+import styles from '../styles/styles';
+import feedStyles from '../styles/feedStyles';
 import PendingChallengeDetail from './PendingChallengeDetail';
 import * as challengeActions from '../actions/challenges';
 import * as navigationActions from '../actions/navigation';
 
 const stravaProfilePic = require('../images/strava_profile_pic.png');
-
-const feedStyles = StyleSheet.create({
-  create: {
-    flex: 0.2,
-    alignSelf: 'stretch'
-  },
-  feed: {
-    flex: 0.8,
-    alignSelf: 'stretch'
-  },
-  list: {
-    alignSelf: 'stretch'
-  },
-  button: {
-    marginTop: 80,
-    alignSelf: 'stretch',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    margin: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-    height: 45,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#ef473a'
-  },
-  challengeOptions: {
-    flex: 1,
-    flexDirection: 'row',
-    alignSelf: 'stretch'
-  },
-  challengeOptionsDecline: {
-    flex: 0.5,
-    alignSelf: 'stretch',
-    marginHorizontal: 5,
-    borderRadius: 4,
-    height: 25,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#ef473a'
-  },
-  challengeOptionsDeclineText: {
-    color: '#ef473a',
-    alignSelf: 'center',
-    justifyContent: 'center'
-  },
-  challengeOptionsAccept: {
-    flex: 0.5,
-    alignSelf: 'stretch',
-    marginHorizontal: 5,
-    borderRadius: 4,
-    height: 25,
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#33cd5f'
-  },
-  challengeOptionsAcceptText: {
-    color: '#33cd5f',
-    alignSelf: 'center',
-    justifyContent: 'center'
-  }
-});
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
 
@@ -180,9 +117,13 @@ class ChallengeFeed extends React.Component {
                   />
                 </View>
                 <View style={styles.challengeDetail}>
-                  <Text style={styles.challengeText}>Opponent: {rowData.opponentName}</Text>
-                  <Text style={styles.challengeText}>Segment: {rowData.segmentName}</Text>
-                  <Text style={styles.challengeText}>
+                  <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                    Opponent: {rowData.opponentName}
+                  </Text>
+                  <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                    Segment: {rowData.segmentName}
+                  </Text>
+                  <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
                     Complete By: {new Date(rowData.expires).toDateString()}
                   </Text>
                   { rowData.challengeeId === this.props.userId ?

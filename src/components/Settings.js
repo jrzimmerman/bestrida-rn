@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  PixelRatio,
   StatusBar,
   StyleSheet,
   Text,
@@ -7,10 +8,11 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './styles';
+import styles from '../styles/styles';
 import * as userActions from '../actions/user';
 import * as navigationActions from '../actions/navigation';
 
+const buttonHeight = PixelRatio.get() < 3 ? 40 : 45;
 const settingStyles = StyleSheet.create({
   button: {
     marginTop: 80,
@@ -21,7 +23,7 @@ const settingStyles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 8,
     borderRadius: 4,
-    height: 45,
+    height: buttonHeight,
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#ef473a'
