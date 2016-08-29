@@ -50,11 +50,11 @@ const CompletedChallengeDetail = (props) => {
             { Number(userId) === challenge.winnerId ? 'You Won!' : 'You Lost!' }
           </Text>
           <Text
-            style={[completedStyles.completedTitleText, { fontSize: 18 }]}>
+            style={completedStyles.completedSubTitleText}>
             {challenge.segmentName}
           </Text>
           <Text
-            style={[completedStyles.completedTitleText, { fontSize: 16 }]}>
+            style={completedStyles.completedSubTitleText}>
             { `${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles` }
           </Text>
         </View>

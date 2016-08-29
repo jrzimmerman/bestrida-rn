@@ -109,6 +109,7 @@ if (PixelRatio.get() < 3) {
       borderColor: '#ef473a'
     },
     challengeOptionsDeclineText: {
+      fontSize: 16,
       color: '#ef473a',
       alignSelf: 'center',
       justifyContent: 'center'
@@ -124,6 +125,7 @@ if (PixelRatio.get() < 3) {
       borderColor: '#33cd5f'
     },
     challengeOptionsAcceptText: {
+      fontSize: 16,
       color: '#33cd5f',
       alignSelf: 'center',
       justifyContent: 'center'

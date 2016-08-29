@@ -14,20 +14,28 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'center',
       color: '#CCC',
       fontWeight: 'bold',
-      fontSize: 24
+      fontSize: 18
+    },
+    completedSubTitleText: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignSelf: 'center',
+      color: '#CCC',
+      fontWeight: 'bold',
+      fontSize: 16
     },
     completedDetailTitle: {
       flexDirection: 'column',
       alignSelf: 'center',
       color: '#CCC',
       fontWeight: 'bold',
-      fontSize: 13
+      fontSize: 12
     },
     completedDetailText: {
       flexDirection: 'column',
       alignSelf: 'center',
       color: '#CCC',
-      fontSize: 13
+      fontSize: 12
     },
     row: {
       flex: 1,
@@ -38,7 +46,7 @@ if (PixelRatio.get() < 3) {
 } else {
   styles = StyleSheet.create({
     completedTitleView: {
-      flex: 0.3,
+      flex: 0.2,
       alignSelf: 'stretch',
       justifyContent: 'space-around'
     },
@@ -48,25 +56,33 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'center',
       color: '#CCC',
       fontWeight: 'bold',
-      fontSize: 18
+      fontSize: 22
+    },
+    completedSubTitleText: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignSelf: 'center',
+      color: '#CCC',
+      fontWeight: 'bold',
+      fontSize: 20
     },
     completedDetailTitle: {
       flexDirection: 'column',
       alignSelf: 'center',
       color: '#CCC',
       fontWeight: 'bold',
-      fontSize: 11
+      fontSize: 14
     },
     completedDetailText: {
       flexDirection: 'column',
       alignSelf: 'center',
       color: '#CCC',
-      fontSize: 11
+      fontSize: 14
     },
     row: {
       flex: 1,
       flexDirection: 'row',
-      height: 80
+      height: 120
     }
   });
 }

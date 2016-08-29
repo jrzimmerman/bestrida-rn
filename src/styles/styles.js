@@ -81,7 +81,7 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'center',
       color: '#CCC',
       fontWeight: 'bold',
-      fontSize: 20
+      fontSize: 18
     },
     challengeDetailView: {
       flex: 0.6,
@@ -174,7 +174,7 @@ if (PixelRatio.get() < 3) {
       backgroundColor: '#383838'
     },
     text: {
-      fontSize: 14,
+      fontSize: 16,
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignSelf: 'center',
@@ -232,7 +232,7 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'center',
       color: '#CCC',
       fontWeight: 'bold',
-      fontSize: 24
+      fontSize: 22
     },
     challengeDetailView: {
       flex: 0.6,
