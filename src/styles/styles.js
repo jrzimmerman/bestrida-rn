@@ -194,6 +194,7 @@ if (PixelRatio.get() < 3) {
       borderColor: '#ef473a'
     },
     buttonText: {
+      fontSize: 16,
       flexDirection: 'row',
       alignSelf: 'center',
       color: '#ef473a'
@@ -214,6 +215,7 @@ if (PixelRatio.get() < 3) {
       justifyContent: 'center'
     },
     challengeText: {
+      fontSize: 16,
       color: '#CCC',
       alignSelf: 'flex-start',
       marginHorizontal: 10,
