@@ -19,6 +19,12 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainApplication extends Application implements ReactApplication {
 
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    Fabric.with(this, new Crashlytics());
+  }
+
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     protected boolean getUseDeveloperSupport() {
