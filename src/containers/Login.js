@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Image,
   Linking,
+  Platform,
   Text,
   TouchableOpacity,
   StatusBar,
@@ -11,6 +12,7 @@ import { connect } from 'react-redux';
 import SafariView from 'react-native-safari-view';
 import Layout from './Layout';
 import * as userActions from '../actions/user';
+
 
 const background = require('../images/LoginBackground.png');
 const loginButton = require('../images/LogInWithStrava@2x.png');
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch'
   },
   text: {
-    padding: 20,
+    paddingBottom: 20,
     color: 'white',
     fontSize: 26,
     fontWeight: 'bold'
@@ -58,7 +60,9 @@ class Login extends React.Component {
       const url = event.url;
       const token = url.match('oauth_token=(.*)&userId')[1];
       const userId = url.match('&userId=(.*)')[1];
-      SafariView.dismiss();
+      if (Platform.OS === 'ios') {
+        SafariView.dismiss();
+      }
       this.props.dispatch(userActions.userLogin(token, userId));
     }
   }
@@ -70,9 +74,13 @@ class Login extends React.Component {
       `&client_id=${9169}`,
       '&redirect_uri=http://www.bestridaapp.com/auth/strava/callback'
     ].join('');
-    SafariView.show({
-      url
-    });
+    if (Platform.OS === 'ios') {
+      SafariView.show({
+        url
+      });
+    } else {
+      Linking.openURL(url);
+    }
     Linking.addEventListener('url', this.handleOpenURL.bind(this));
   }
 
