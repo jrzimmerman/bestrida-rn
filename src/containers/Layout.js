@@ -13,6 +13,7 @@ import CompletedChallenges from '../components/CompletedChallenges';
 import Settings from '../components/Settings';
 import * as navigationActions from '../actions/navigation';
 import * as challengeActions from '../actions/challenges';
+import * as userActions from '../actions/user';
 
 const styles = StyleSheet.create({
   nav: {
@@ -35,6 +36,9 @@ class Layout extends React.Component {
     }
     if (tab === 'completedChallenges') {
       this.props.dispatch(challengeActions.completedChallenges(this.props.userId));
+    }
+    if (tab === 'createChallenge') {
+      this.props.dispatch(userActions.getUser(this.props.userId));
     }
     this.props.dispatch(navigationActions.changeTab(tab));
   }

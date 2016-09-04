@@ -59,6 +59,15 @@ class CreateChallenge extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.props.dispatch(userActions.getUserSegments(this.props.userId));
+    this.props.dispatch(userActions.getUserFriends(this.props.userId));
+    this.setState({
+      segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
+      opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       segmentDataSource: segmentDS.cloneWithRows(nextProps.user.segments),

@@ -54,3 +54,57 @@ export function getUser(userId) {
     });
   };
 }
+
+export function getUserSegments(userId) {
+  return (dispatch) => {
+    dispatch({
+      type: constants.GET_USER_SEGMENTS_LOADING,
+      payload: true
+    });
+    return fetch(`${API_URL}users/${userId}/segments`, {
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch({
+        type: constants.GET_USER_SEGMENTS_SUCCESS,
+        payload: responseJson
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: constants.GET_USER_SEGMENTS_FAILURE,
+        payload: error
+      });
+    });
+  };
+}
+
+export function getUserFriends(userId) {
+  return (dispatch) => {
+    dispatch({
+      type: constants.GET_USER_FRIENDS_LOADING,
+      payload: true
+    });
+    return fetch(`${API_URL}users/${userId}/friends`, {
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      dispatch({
+        type: constants.GET_USER_FRIENDS_SUCCESS,
+        payload: responseJson
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: constants.GET_USER_FRIENDS_FAILURE,
+        payload: error
+      });
+    });
+  };
+}
