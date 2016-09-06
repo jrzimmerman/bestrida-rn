@@ -22,7 +22,14 @@ function secondsToTime(secs) {
   const minuteString = minutes < 10 ? `0${minutes}` : `${minutes}`;
   const secondString = seconds < 10 ? `0${seconds}` : `${seconds}`;
 
-  return `${hourString}:${minuteString}:${secondString}`;
+  let resultTime;
+
+  if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+    resultTime = '';
+  } else {
+    resultTime = `${hourString}:${minuteString}:${secondString}`;
+  }
+  return resultTime;
 }
 
 const CompletedChallengeDetail = (props) => {
