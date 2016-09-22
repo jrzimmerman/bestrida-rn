@@ -6,7 +6,22 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "fuzzy": "^0.1.1",
     "react": "15.3.1",
-    "react-native": "0.33.0"
+    "react-native": "0.33.0",
+    "react-native-fabric": "^0.3.0",
+    "react-native-safari-view": "^1.1.0",
+    "react-native-vector-icons": "^2.1.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "redux-persist": "^4.0.0-alpha5",
+    "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb-base": "^7.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-react": "^6.3.0"
   }
 }
