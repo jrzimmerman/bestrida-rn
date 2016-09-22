@@ -1,9 +1,10 @@
 {
   "name": "Bestrida",
-  "version": "0.0.1",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "fuzzy": "^0.1.1",
