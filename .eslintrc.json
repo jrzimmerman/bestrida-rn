@@ -18,13 +18,14 @@
 
   },
 
-  "plugins": ["react", "import"],
+  "plugins": ["react", "import", "jsx-a11y"],
 
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/react"
+    "plugin:import/react",
+    "plugin:jsx-a11y/recommended"
   ]
 }
