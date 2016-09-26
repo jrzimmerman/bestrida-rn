@@ -40,4 +40,8 @@ buck-out/
 android/app/libs
 android/keystores/debug.keystore
 
+# Fabric
 fabric.properties
+
+# coverage files
+coverage
