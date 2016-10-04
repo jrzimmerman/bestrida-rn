@@ -15,7 +15,7 @@ import * as userActions from '../actions/user';
 
 
 const background = require('../images/LoginBackground.png');
-const loginButton = require('../images/LogInWithStrava@2x.png');
+const loginButton = require('../images/btn_strava_connectwith_orange@2x.png');
 
 const styles = StyleSheet.create({
   backgroundImage: {
