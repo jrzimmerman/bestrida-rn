@@ -32,7 +32,7 @@ function secondsToTime(secs) {
   return resultTime;
 }
 
-const CompletedChallengeDetail = (props) => {
+export const CompletedChallengeDetail = (props) => {
   const { userId, challenge } = props;
   let completedDetail;
 

@@ -19,7 +19,7 @@ const stravaProfilePic = require('../images/strava_profile_pic.png');
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
 
-class ChallengeFeed extends React.Component {
+export class ChallengeFeed extends React.Component {
   constructor(props) {
     super(props);
 

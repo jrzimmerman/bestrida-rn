@@ -16,7 +16,7 @@ import * as challengeActions from '../actions/challenges';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
-class ActiveChallenges extends React.Component {
+export class ActiveChallenges extends React.Component {
   constructor(props) {
     super(props);
 
