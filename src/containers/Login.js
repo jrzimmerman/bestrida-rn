@@ -15,7 +15,7 @@ import * as userActions from '../actions/user';
 
 
 const background = require('../images/LoginBackground.png');
-const loginButton = require('../images/btn_strava_connectwith_orange@2x.png');
+const loginButton = require('../images/btn_strava_connectwith_orange.png');
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Login extends React.Component {
+export class Login extends React.Component {
   constructor(props) {
     super(props);
     this.stravaOauth = this.stravaOauth.bind(this);
