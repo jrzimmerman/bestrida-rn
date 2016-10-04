@@ -30,7 +30,7 @@ const settingStyles = StyleSheet.create({
   }
 });
 
-class Settings extends React.Component {
+export class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);

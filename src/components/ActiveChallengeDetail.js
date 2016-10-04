@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import * as challengeActions from '../actions/challenges';
 
-class ActiveChallengeDetail extends React.Component {
+export class ActiveChallengeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.handleComplete = this.handleComplete.bind(this);

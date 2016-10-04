@@ -10,7 +10,7 @@ import styles from '../styles/styles';
 import pendingStyles from '../styles/pendingStyles';
 import * as challengeActions from '../actions/challenges';
 
-class PendingChallengeDetail extends React.Component {
+export class PendingChallengeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.handleAccept = this.handleAccept.bind(this);
