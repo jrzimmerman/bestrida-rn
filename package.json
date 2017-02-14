@@ -5,18 +5,20 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint ./src",
-    "test": "jest"
+    "test": "jest",
+    "cover": "npm run test -- --coverage",
+    "update": "npm run test -- --updateSnapshot"
   },
   "dependencies": {
     "fuzzy": "^0.1.3",
-    "jest": "^16.0.1",
-    "jest-react-native": "^16.0.0",
+    "jest": "^18.1.0",
+    "jest-react-native": "^18.0.0",
     "react": "^15.3.2",
-    "react-native": "^0.34.1",
-    "react-native-fabric": "^0.3.1",
-    "react-native-safari-view": "^1.2.0",
-    "react-native-vector-icons": "^2.1.0",
-    "react-redux": "^4.4.5",
+    "react-native": "^0.41.2",
+    "react-native-fabric": "^0.4.1",
+    "react-native-safari-view": "^2.0.0",
+    "react-native-vector-icons": "^4.0.0",
+    "react-redux": "^5.0.2",
     "react-test-renderer": "^15.3.2",
     "redux": "^3.6.0",
     "redux-persist": "^4.0.0-alpha6",
@@ -24,12 +26,13 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
-    "babel-jest": "^16.0.0",
+    "babel-jest": "^18.0.0",
     "babel-preset-react-native": "^1.9.0",
     "eslint": "^3.8.0",
     "eslint-plugin-import": "^2.0.1",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1"
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.4.1",
+    "eslint-plugin-react-native": "^2.2.1"
   },
   "jest": {
     "preset": "jest-react-native"
