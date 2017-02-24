@@ -2,14 +2,13 @@ import React from 'react';
 import {
   Image,
   Linking,
-  Platform,
   Text,
   TouchableOpacity,
   StatusBar,
-  StyleSheet
+  StyleSheet,
+  WebView
 } from 'react-native';
 import { connect } from 'react-redux';
-import SafariView from 'react-native-safari-view';
 import Layout from './Layout';
 import * as userActions from '../actions/user';
 
@@ -41,6 +40,11 @@ const styles = StyleSheet.create({
 export class Login extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showWebView: false
+    };
+
     this.stravaOauth = this.stravaOauth.bind(this);
     this.handleOpenURL = this.handleOpenURL.bind(this);
   }
@@ -51,49 +55,55 @@ export class Login extends React.Component {
     }
   }
 
-  componentDidMount() {
-    Linking.addEventListener('url', this.handleOpenURL.bind(this));
-  }
-
   handleOpenURL(event) {
+    console.log('handle open URL');
     if (event.url) {
       const url = event.url;
       const token = url.match('oauth_token=(.*)&userId')[1];
       const userId = url.match('&userId=(.*)')[1];
-      if (Platform.OS === 'ios') {
-        SafariView.dismiss();
-      }
       this.props.dispatch(userActions.userLogin(token, userId));
+
+      this.setState({
+        showWebView: false
+      });
+      Linking.removeEventListener('url', this.handleOpenURL);
     }
+    
   }
 
   stravaOauth() {
+    console.log('strava oauth');
+    Linking.addEventListener('url', this.handleOpenURL);
+    this.setState({
+      showWebView: true
+    });
+  }
+
+  render() {
+    const { showWebView } = this.state;
     const url = [
       'https://www.strava.com/oauth/authorize',
       '?response_type=code',
       `&client_id=${9169}`,
       '&redirect_uri=http://www.bestridaapp.com/auth/strava/callback'
     ].join('');
-    if (Platform.OS === 'ios') {
-      SafariView.show({
-        url
-      });
+    let view;
+    if (showWebView) {
+      view = (
+        <WebView source={{uri: url}} />
+      );
     } else {
-      Linking.openURL(url);
+      view = (
+        <Image style={styles.backgroundImage} source={background}>
+          <StatusBar barStyle="default" />
+          <Text style={styles.text}>Welcome to Bestrida</Text>
+          <TouchableOpacity onPress={this.stravaOauth}>
+            <Image style={styles.loginButton}source={loginButton} />
+          </TouchableOpacity>
+        </Image>
+      );
     }
-    Linking.addEventListener('url', this.handleOpenURL.bind(this));
-  }
-
-  render() {
-    return (
-      <Image style={styles.backgroundImage} source={background}>
-        <StatusBar barStyle="default" />
-        <Text style={styles.text}>Welcome to Bestrida</Text>
-        <TouchableOpacity onPress={this.stravaOauth}>
-          <Image style={styles.loginButton}source={loginButton} />
-        </TouchableOpacity>
-      </Image>
-    );
+    return view;
   }
 }
 
