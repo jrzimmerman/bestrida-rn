@@ -1,4 +1,6 @@
-exports[`test renders PendingChallengeDetail component 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PendingChallengeDetail component 1`] = `
 <View
   style={
     Object {
@@ -6,14 +8,16 @@ exports[`test renders PendingChallengeDetail component 1`] = `
       "backgroundColor": "#2B2B2B",
       "flex": 1,
     }
-  }>
+  }
+>
   <View
     style={
       Object {
         "alignSelf": "stretch",
         "flex": 0.2,
       }
-    }>
+    }
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -28,7 +32,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "justifyContent": "space-around",
           "paddingTop": 80,
         }
-      }>
+      }
+    >
       Test Segment
     </Text>
   </View>
@@ -41,7 +46,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
         "marginHorizontal": 20,
         "marginVertical": 10,
       }
-    }>
+    }
+  >
     <View
       style={
         Object {
@@ -52,7 +58,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -65,7 +72,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Start Date
       </Text>
       <Text
@@ -79,7 +87,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         Invalid Date
       </Text>
     </View>
@@ -93,7 +102,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -106,7 +116,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         End Date
       </Text>
       <Text
@@ -120,7 +131,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         Invalid Date
       </Text>
     </View>
@@ -134,7 +146,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -147,7 +160,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Distance
       </Text>
       <Text
@@ -161,7 +175,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         NaN Miles
       </Text>
     </View>
@@ -175,7 +190,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -188,7 +204,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Location
       </Text>
       <Text
@@ -202,7 +219,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
          undefined
       </Text>
     </View>
@@ -216,7 +234,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -229,7 +248,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Activity Type
       </Text>
       <Text
@@ -243,7 +263,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         Not Available
       </Text>
     </View>
@@ -257,7 +278,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -270,7 +292,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Average Grade
       </Text>
       <Text
@@ -284,7 +307,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         undefined %
       </Text>
     </View>
@@ -298,7 +322,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -311,7 +336,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Climb Category
       </Text>
       <Text
@@ -325,7 +351,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         Not Available
       </Text>
     </View>
@@ -339,7 +366,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -352,7 +380,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "fontSize": 14,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Elevation Gain
       </Text>
       <Text
@@ -366,7 +395,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         undefined meters
       </Text>
     </View>
@@ -377,7 +407,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
         "alignSelf": "stretch",
         "flex": 0.2,
       }
-    }>
+    }
+  >
     <View
       style={
         Object {
@@ -385,7 +416,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           "flex": 1,
           "flexDirection": "row",
         }
-      }>
+      }
+    >
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
@@ -415,7 +447,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           }
         }
         testID={undefined}
-        tvParallaxProperties={undefined}>
+        tvParallaxProperties={undefined}
+      >
         <Text
           accessible={true}
           allowFontScaling={true}
@@ -426,7 +459,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
               "color": "#ef473a",
               "justifyContent": "center",
             }
-          }>
+          }
+        >
           Decline
         </Text>
       </View>
@@ -459,7 +493,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
           }
         }
         testID={undefined}
-        tvParallaxProperties={undefined}>
+        tvParallaxProperties={undefined}
+      >
         <Text
           accessible={true}
           allowFontScaling={true}
@@ -470,7 +505,8 @@ exports[`test renders PendingChallengeDetail component 1`] = `
               "color": "#33cd5f",
               "justifyContent": "center",
             }
-          }>
+          }
+        >
           Accept
         </Text>
       </View>

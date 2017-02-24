@@ -1,4 +1,6 @@
-exports[`test renders CompletedChallengeDetail component 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders CompletedChallengeDetail component 1`] = `
 <View
   style={
     Object {
@@ -6,7 +8,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
       "backgroundColor": "#2B2B2B",
       "flex": 1,
     }
-  }>
+  }
+>
   <View
     style={
       Object {
@@ -14,7 +17,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
         "flex": 0.3,
         "justifyContent": "space-around",
       }
-    }>
+    }
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -33,7 +37,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "paddingTop": 80,
           },
         ]
-      }>
+      }
+    >
       You Lost!
     </Text>
     <Text
@@ -49,7 +54,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "fontWeight": "bold",
           "justifyContent": "space-around",
         }
-      }>
+      }
+    >
       Test Segment
     </Text>
     <Text
@@ -65,7 +71,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "fontWeight": "bold",
           "justifyContent": "space-around",
         }
-      }>
+      }
+    >
       NaN Miles
     </Text>
   </View>
@@ -83,7 +90,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginBottom": 75,
         },
       ]
-    }>
+    }
+  >
     <View
       style={
         Object {
@@ -94,7 +102,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -107,7 +116,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        } />
+        }
+      />
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -120,7 +130,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        } />
+        }
+      />
     </View>
     <View
       style={
@@ -132,7 +143,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -144,7 +156,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         
       </Text>
       <Text
@@ -159,7 +172,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Time
       </Text>
       <Text
@@ -173,7 +187,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         
       </Text>
     </View>
@@ -187,7 +202,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -199,7 +215,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -212,7 +229,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Average Heart Rate
       </Text>
       <Text
@@ -226,7 +244,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
     </View>
     <View
       style={
@@ -238,7 +257,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -250,7 +270,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -263,7 +284,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Max Heart Rate
       </Text>
       <Text
@@ -277,7 +299,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
     </View>
     <View
       style={
@@ -289,7 +312,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -301,7 +325,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -314,7 +339,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Cadence
       </Text>
       <Text
@@ -328,7 +354,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
     </View>
     <View
       style={
@@ -340,7 +367,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -352,7 +380,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -365,7 +394,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Watts
       </Text>
       <Text
@@ -379,7 +409,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        } />
+        }
+      />
     </View>
     <View
       style={
@@ -391,7 +422,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -404,7 +436,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "fontSize": 12,
             "fontWeight": "bold",
           }
-        }>
+        }
+      >
         Completed On
       </Text>
       <Text
@@ -418,7 +451,8 @@ exports[`test renders CompletedChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
         Invalid Date
       </Text>
     </View>

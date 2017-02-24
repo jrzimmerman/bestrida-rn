@@ -1,4 +1,6 @@
-exports[`test renders CompletedChallenges component 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders CompletedChallenges component 1`] = `
 <View
   style={
     Object {
@@ -6,7 +8,8 @@ exports[`test renders CompletedChallenges component 1`] = `
       "backgroundColor": "#2B2B2B",
       "flex": 1,
     }
-  }>
+  }
+>
   <View>
     <RCTScrollView>
       <View />

@@ -1,4 +1,6 @@
-exports[`test renders ChallengeFeed component 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ChallengeFeed component 1`] = `
 <View
   style={
     Object {
@@ -6,14 +8,16 @@ exports[`test renders ChallengeFeed component 1`] = `
       "backgroundColor": "#2B2B2B",
       "flex": 1,
     }
-  }>
+  }
+>
   <View
     style={
       Object {
         "alignSelf": "stretch",
         "flex": 0.225,
       }
-    }>
+    }
+  >
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
@@ -46,7 +50,8 @@ exports[`test renders ChallengeFeed component 1`] = `
         }
       }
       testID={undefined}
-      tvParallaxProperties={undefined}>
+      tvParallaxProperties={undefined}
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -58,7 +63,8 @@ exports[`test renders ChallengeFeed component 1`] = `
             "flexDirection": "row",
             "fontSize": 14,
           }
-        }>
+        }
+      >
         Create Challenge
       </Text>
     </View>
@@ -69,7 +75,8 @@ exports[`test renders ChallengeFeed component 1`] = `
         "alignSelf": "stretch",
         "flex": 0.775,
       }
-    }>
+    }
+  >
     <View>
       <RCTScrollView>
         <View />
