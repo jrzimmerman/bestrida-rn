@@ -37,7 +37,7 @@ export class Settings extends React.Component {
 
   handleLogout() {
     this.props.dispatch(userActions.userLogout());
-    this.props.navigation.navigate('/feed');
+    this.props.navigation.navigate('ChallengeFeed');
   }
 
   render() {
