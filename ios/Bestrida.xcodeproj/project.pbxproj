@@ -1237,7 +1237,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bestridaapp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Bestrida;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1262,7 +1262,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bestridaapp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Bestrida;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
