@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders CompletedChallenges component 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#2B2B2B",
+      "flex": 1,
+    }
+  }
+>
+  <View>
+    <RCTScrollView>
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;

@@ -1,13 +1,14 @@
 import 'react-native';
 import React from 'react';
-import { Login } from '../Login';
+import { Settings } from '../Settings';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders Login component', () => {
+test('renders Settings component', () => {
   const tree = renderer.create(
-    <Login
+    <Settings
+      dispatch={fn => fn}
     />
   ).toJSON();
   expect(tree).toMatchSnapshot();

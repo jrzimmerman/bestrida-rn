@@ -1,19 +1,26 @@
 import 'react-native';
 import React from 'react';
-import { CompletedChallenges } from '../CompletedChallenges';
+import { ActiveChallenges } from '../ActiveChallenges';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders CompletedChallenges component', () => {
-  const completed = {
+test('renders ActiveChallenges component', () => {
+  const active = {
     loading: false,
     challenges: [],
     error: null
   };
+  const challenges = {
+    complete: {
+      response: null,
+      error: null
+    }
+  };
   const tree = renderer.create(
-    <CompletedChallenges
-      completed={completed}
+    <ActiveChallenges
+      active={active}
+      challenges={challenges}
       dispatch={fn => fn}
     />
   ).toJSON();

@@ -33,7 +33,7 @@ function secondsToTime(secs) {
 }
 
 export const CompletedChallengeDetail = (props) => {
-  const { userId, challenge } = props;
+  const { userId, challenge } = props.navigation.state.params;
   let completedDetail;
 
   if (challenge.completedStatus === 'Challenge is still calculating.' ||
@@ -42,7 +42,7 @@ export const CompletedChallengeDetail = (props) => {
       <View style={styles.container}>
       <StatusBar barStyle="light-content" />
         <Text
-          style={[completedStyles.completedTitleText, { paddingTop: 80 }]}>
+          style={completedStyles.completedTitleText}>
           { challenge.completedStatus }
         </Text>
       </View>
@@ -53,7 +53,7 @@ export const CompletedChallengeDetail = (props) => {
         <StatusBar barStyle="light-content" />
         <View style={completedStyles.completedTitleView}>
           <Text
-            style={[completedStyles.completedTitleText, { paddingTop: 80 }]}>
+            style={completedStyles.completedTitleText}>
             { Number(userId) === challenge.winnerId ? 'You Won!' : 'You Lost!' }
           </Text>
           <Text

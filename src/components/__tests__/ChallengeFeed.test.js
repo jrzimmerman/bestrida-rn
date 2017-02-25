@@ -1,17 +1,20 @@
 import 'react-native';
 import React from 'react';
-import { CompletedChallengeDetail } from '../CompletedChallengeDetail';
+import { ChallengeFeed } from '../ChallengeFeed';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders CompletedChallengeDetail component', () => {
-  const challenge = {
-    segmentName: "Test Segment"
+test('renders ChallengeFeed component', () => {
+  const pending = {
+    loading: false,
+    challenges: [],
+    error: null
   };
   const tree = renderer.create(
-    <CompletedChallengeDetail
-      challenge={challenge}
+    <ChallengeFeed
+      pending={pending}
+      dispatch={fn => fn}
     />
   ).toJSON();
   expect(tree).toMatchSnapshot();

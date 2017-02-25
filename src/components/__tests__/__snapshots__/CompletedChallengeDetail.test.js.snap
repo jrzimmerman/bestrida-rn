@@ -1,4 +1,6 @@
-exports[`test renders ActiveChallengeDetail component 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders CompletedChallengeDetail component 1`] = `
 <View
   style={
     Object {
@@ -6,14 +8,17 @@ exports[`test renders ActiveChallengeDetail component 1`] = `
       "backgroundColor": "#2B2B2B",
       "flex": 1,
     }
-  }>
+  }
+>
   <View
     style={
       Object {
         "alignSelf": "stretch",
-        "flex": 0.2,
+        "flex": 0.3,
+        "justifyContent": "space-around",
       }
-    }>
+    }
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -26,22 +31,62 @@ exports[`test renders ActiveChallengeDetail component 1`] = `
           "fontSize": 18,
           "fontWeight": "bold",
           "justifyContent": "space-around",
-          "paddingTop": 80,
         }
-      }>
+      }
+    >
+      You Lost!
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#CCC",
+          "flexDirection": "row",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "justifyContent": "space-around",
+        }
+      }
+    >
       Test Segment
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#CCC",
+          "flexDirection": "row",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      NaN Miles
     </Text>
   </View>
   <View
     style={
-      Object {
-        "alignSelf": "stretch",
-        "backgroundColor": "#383838",
-        "flex": 0.6,
-        "marginHorizontal": 20,
-        "marginVertical": 10,
-      }
-    }>
+      Array [
+        Object {
+          "alignSelf": "stretch",
+          "backgroundColor": "#383838",
+          "flex": 0.6,
+          "marginHorizontal": 20,
+          "marginVertical": 10,
+        },
+        Object {
+          "marginBottom": 75,
+        },
+      ]
+    }
+  >
     <View
       style={
         Object {
@@ -52,7 +97,8 @@ exports[`test renders ActiveChallengeDetail component 1`] = `
           "marginHorizontal": 20,
           "marginTop": 5,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -62,11 +108,68 @@ exports[`test renders ActiveChallengeDetail component 1`] = `
             "alignSelf": "center",
             "color": "#CCC",
             "flexDirection": "column",
-            "fontSize": 14,
+            "fontSize": 12,
             "fontWeight": "bold",
           }
-        }>
-        Start Date
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 20,
+          "marginTop": 5,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      >
+        
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Time
       </Text>
       <Text
         accessible={true}
@@ -79,346 +182,273 @@ exports[`test renders ActiveChallengeDetail component 1`] = `
             "flexDirection": "column",
             "fontSize": 12,
           }
-        }>
+        }
+      >
+        
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 20,
+          "marginTop": 5,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Average Heart Rate
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 20,
+          "marginTop": 5,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Max Heart Rate
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 20,
+          "marginTop": 5,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Cadence
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 20,
+          "marginTop": 5,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Watts
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 20,
+          "marginTop": 5,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Completed On
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#CCC",
+            "flexDirection": "column",
+            "fontSize": 12,
+          }
+        }
+      >
         Invalid Date
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginHorizontal": 20,
-          "marginTop": 5,
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 14,
-            "fontWeight": "bold",
-          }
-        }>
-        End Date
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 12,
-          }
-        }>
-        Invalid Date
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginHorizontal": 20,
-          "marginTop": 5,
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 14,
-            "fontWeight": "bold",
-          }
-        }>
-        Distance
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 12,
-          }
-        }>
-        NaN Miles
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginHorizontal": 20,
-          "marginTop": 5,
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 14,
-            "fontWeight": "bold",
-          }
-        }>
-        Location
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 12,
-          }
-        }>
-         undefined
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginHorizontal": 20,
-          "marginTop": 5,
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 14,
-            "fontWeight": "bold",
-          }
-        }>
-        Activity Type
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 12,
-          }
-        } />
-    </View>
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginHorizontal": 20,
-          "marginTop": 5,
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 14,
-            "fontWeight": "bold",
-          }
-        }>
-        Average Grade
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 12,
-          }
-        }>
-        undefined %
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginHorizontal": 20,
-          "marginTop": 5,
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 14,
-            "fontWeight": "bold",
-          }
-        }>
-        Climb Category
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 12,
-          }
-        }>
-        Not Available
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "marginHorizontal": 20,
-          "marginTop": 5,
-        }
-      }>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 14,
-            "fontWeight": "bold",
-          }
-        }>
-        Elevation Gain
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "column",
-            "fontSize": 12,
-          }
-        }>
-        undefined meters
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "alignSelf": "stretch",
-        "flex": 0.2,
-      }
-    }>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hitSlop={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "backgroundColor": "transparent",
-          "borderColor": "#ef473a",
-          "borderRadius": 4,
-          "borderWidth": 1,
-          "flexDirection": "row",
-          "height": 40,
-          "justifyContent": "space-around",
-          "margin": 10,
-          "opacity": 1,
-          "paddingHorizontal": 8,
-          "paddingVertical": 6,
-        }
-      }
-      testID={undefined}>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#ef473a",
-            "flexDirection": "row",
-            "fontSize": 14,
-          }
-        }>
-        Complete Challenge
       </Text>
     </View>
   </View>

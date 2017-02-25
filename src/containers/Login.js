@@ -8,9 +8,8 @@ import {
   StatusBar,
   StyleSheet
 } from 'react-native';
-import { connect } from 'react-redux';
 import SafariView from 'react-native-safari-view';
-import Layout from './Layout';
+import { connect } from 'react-redux';
 import * as userActions from '../actions/user';
 
 
@@ -41,21 +40,18 @@ const styles = StyleSheet.create({
 export class Login extends React.Component {
   constructor(props) {
     super(props);
+
     this.stravaOauth = this.stravaOauth.bind(this);
     this.handleOpenURL = this.handleOpenURL.bind(this);
   }
 
   componentWillMount() {
     if (this.props.loggedIn) {
-      this.props.navigator.push({ component: Layout, parentNavigator: this.props.navigator });
+      this.props.navigation.navigate('ChallengeFeed');
     }
   }
 
-  componentDidMount() {
-    Linking.addEventListener('url', this.handleOpenURL.bind(this));
-  }
-
-  handleOpenURL(event) {
+   handleOpenURL(event) {
     if (event.url) {
       const url = event.url;
       const token = url.match('oauth_token=(.*)&userId')[1];
@@ -81,7 +77,7 @@ export class Login extends React.Component {
     } else {
       Linking.openURL(url);
     }
-    Linking.addEventListener('url', this.handleOpenURL.bind(this));
+    Linking.addEventListener('url', this.handleOpenURL);
   }
 
   render() {
@@ -101,7 +97,7 @@ const { bool, func, object } = React.PropTypes;
 
 Login.propTypes = {
   dispatch: func,
-  navigator: object,
+  navigation: object,
   loggedIn: bool
 };
 

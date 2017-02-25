@@ -4,18 +4,18 @@ let styles;
 if (PixelRatio.get() < 3) {
   styles = StyleSheet.create({
     create: {
-      flex: 0.225,
+      flex: 0.15,
       alignSelf: 'stretch'
     },
     feed: {
-      flex: 0.775,
+      flex: 0.85,
       alignSelf: 'stretch'
     },
     list: {
       alignSelf: 'stretch'
     },
     button: {
-      marginTop: 80,
+      marginTop: 20,
       alignSelf: 'stretch',
       justifyContent: 'space-around',
       flexDirection: 'row',
@@ -69,18 +69,18 @@ if (PixelRatio.get() < 3) {
 } else {
   styles = StyleSheet.create({
     create: {
-      flex: 0.2,
+      flex: 0.15,
       alignSelf: 'stretch'
     },
     feed: {
-      flex: 0.8,
+      flex: 0.85,
       alignSelf: 'stretch'
     },
     list: {
       alignSelf: 'stretch'
     },
     button: {
-      marginTop: 80,
+      marginTop: 20,
       alignSelf: 'stretch',
       justifyContent: 'space-around',
       flexDirection: 'row',

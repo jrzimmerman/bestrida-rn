@@ -1,4 +1,6 @@
-exports[`test renders Settings component 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Settings component 1`] = `
 <View
   style={
     Object {
@@ -6,13 +8,15 @@ exports[`test renders Settings component 1`] = `
       "backgroundColor": "#2B2B2B",
       "flex": 1,
     }
-  }>
+  }
+>
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}
     accessibilityTraits={undefined}
     accessible={true}
     hitSlop={undefined}
+    isTVSelectable={true}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -31,13 +35,15 @@ exports[`test renders Settings component 1`] = `
         "height": 40,
         "justifyContent": "space-around",
         "margin": 10,
-        "marginTop": 80,
+        "marginTop": 20,
         "opacity": 1,
         "paddingHorizontal": 8,
         "paddingVertical": 6,
       }
     }
-    testID={undefined}>
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -49,7 +55,8 @@ exports[`test renders Settings component 1`] = `
           "flexDirection": "row",
           "fontSize": 14,
         }
-      }>
+      }
+    >
       Logout
     </Text>
   </View>
