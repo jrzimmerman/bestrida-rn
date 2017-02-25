@@ -4,8 +4,6 @@ const API_URL = 'http://www.bestridaapp.com/api/';
 
 export function userLogin(token, userId) {
   return (dispatch) => {
-    console.log('userLogin Id: ', userId);
-    console.log('userLogin Token: ', token);
     dispatch({
       type: constants.USER_AUTH,
       payload: {
