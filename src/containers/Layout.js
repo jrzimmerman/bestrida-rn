@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, TabView } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ChallengeFeedTab from './ChallengeFeedTab';
 import ActiveChallengesTab from './ActiveChallengesTab';
@@ -86,14 +86,15 @@ export const Layout = () => {
     }
   },
   {
+    tabBarComponent: TabView.TabBarBottom,
+    tabBarPosition: 'bottom',
     tabBarOptions: {
       activeTintColor: '#ef473a',
       inactiveTintColor: '#CCC',
       labelStyle: { fontSize: 12 },
       style: {
         backgroundColor: '#2B2B2B',
-      },
-      tabBarPosition: 'bottom'
+      }
     }
   });
 
