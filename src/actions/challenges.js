@@ -1,5 +1,4 @@
 import * as constants from '../constants/challenges';
-import * as navigationActions from './navigation';
 
 const API_URL = 'http://www.bestridaapp.com/api/';
 
@@ -181,7 +180,7 @@ export function acceptChallenge(challengeId, userId) {
       });
     })
     .then(dispatch(activeChallenges(userId)))
-    .then(dispatch(navigationActions.changeTab('activeChallenges')))
+    // navigate back to active challenges
     .catch(error => {
       dispatch({
         type: constants.ACCEPT_CHALLENGE_FAILURE,

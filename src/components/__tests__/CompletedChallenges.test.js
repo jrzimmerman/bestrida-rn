@@ -5,7 +5,7 @@ import { CompletedChallenges } from '../CompletedChallenges';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders CompletedChallenges component', () => {
+test('renders CompletedChallenges component', () => {
   const completed = {
     loading: false,
     challenges: [],

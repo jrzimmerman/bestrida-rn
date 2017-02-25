@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../styles/styles';
-import CompletedChallengeDetail from './CompletedChallengeDetail';
 import * as challengeActions from '../actions/challenges';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
@@ -42,11 +41,11 @@ export class CompletedChallenges extends React.Component {
   }
 
   handlePress(challenge) {
-    const { navigator, userId } = this.props;
-    navigator.push({
-      component: CompletedChallengeDetail,
-      passProps: { challenge, userId }
-    });
+    const { navigation, userId } = this.props;
+    navigation.navigate(
+      'CompletedChallengeDetail',
+      { challenge: challenge, userId: userId }
+    );
   }
 
   handleRefresh() {
@@ -107,7 +106,7 @@ const { array, bool, func, object, shape, number } = React.PropTypes;
 
 CompletedChallenges.propTypes = {
   dispatch: func,
-  navigator: object,
+  navigation: object,
   userId: number,
   completed: shape({
     loading: bool,

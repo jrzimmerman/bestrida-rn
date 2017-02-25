@@ -5,7 +5,7 @@ import { ChallengeFeed } from '../ChallengeFeed';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders ChallengeFeed component', () => {
+test('renders ChallengeFeed component', () => {
   const pending = {
     loading: false,
     challenges: [],

@@ -14,7 +14,6 @@ import fuzzy from 'fuzzy';
 import styles from '../styles/styles';
 import createStyles from '../styles/createStyles';
 import * as challengeActions from '../actions/challenges';
-import * as navigationActions from '../actions/navigation';
 import * as userActions from '../actions/user';
 
 const opponentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
@@ -136,7 +135,7 @@ class CreateChallenge extends React.Component {
       dispatch(challengeActions.createChallenge(user, selectedOpponent,
         selectedSegment, selectedCompletionDate));
       dispatch(challengeActions.pendingChallenges(userId));
-      dispatch(navigationActions.changeTab('challengeFeed'));
+      this.props.navigation.navigate('ChallengeFeed');
       this.setState({
         selectedOpponent: null,
         selectedSegment: null,
@@ -316,7 +315,8 @@ const { func, object, number } = React.PropTypes;
 CreateChallenge.propTypes = {
   dispatch: func,
   userId: number,
-  user: object
+  user: object,
+  navigation: object
 };
 
 const mapStateToProps = (state) => ({

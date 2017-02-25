@@ -11,9 +11,7 @@ import {
 import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import feedStyles from '../styles/feedStyles';
-import PendingChallengeDetail from './PendingChallengeDetail';
 import * as challengeActions from '../actions/challenges';
-import * as navigationActions from '../actions/navigation';
 
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
@@ -48,19 +46,19 @@ export class ChallengeFeed extends React.Component {
   }
 
   handlePress(challenge) {
-    this.props.navigator.push({
-      component: PendingChallengeDetail,
-      passProps: { challenge, navigator: this.props.navigator }
-    });
+    this.props.navigation.navigate(
+      'PendingChallengeDetail',
+      { challenge: challenge }
+    );
   }
 
   handleCreate() {
-    this.props.dispatch(navigationActions.changeTab('createChallenge'));
+    this.props.navigation.navigate('CreateChallenge');
   }
 
   handleAccept(challengeId, userId) {
     this.props.dispatch(challengeActions.acceptChallenge(challengeId, userId));
-    this.props.dispatch(navigationActions.changeTab('activeChallenges'));
+    this.props.navigation.navigate('ActiveChallenges');
     this.setState({
       dataSource: ds.cloneWithRows(this.props.pending.challenges),
       refreshing: false
@@ -154,7 +152,7 @@ const { array, bool, func, object, shape, number } = React.PropTypes;
 
 ChallengeFeed.propTypes = {
   dispatch: func,
-  navigator: object,
+  navigation: object,
   userId: number,
   pending: shape({
     loading: bool,

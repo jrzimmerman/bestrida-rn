@@ -16,14 +16,14 @@ export class ActiveChallengeDetail extends React.Component {
   }
 
   handleComplete(challengeId, userId) {
-    const { dispatch, navigator } = this.props;
+    const { dispatch, navigation } = this.props;
     dispatch(challengeActions.completeChallenge(challengeId, userId));
     dispatch(challengeActions.activeChallenges(userId));
-    navigator.pop();
+    navigation.goBack();
   }
 
   render() {
-    const { challenge, userId } = this.props;
+    const { challenge, userId } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -98,7 +98,7 @@ const { func, object, number } = React.PropTypes;
 ActiveChallengeDetail.propTypes = {
   challenge: object,
   dispatch: func,
-  navigator: object,
+  navigation: object,
   userId: number
 };
 

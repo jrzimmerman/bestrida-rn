@@ -18,21 +18,21 @@ export class PendingChallengeDetail extends React.Component {
   }
 
   handleAccept(challengeId, userId) {
-    const { dispatch, navigator } = this.props;
+    const { dispatch, navigation } = this.props;
     dispatch(challengeActions.acceptChallenge(challengeId, userId));
     dispatch(challengeActions.pendingChallenges(userId));
-    navigator.pop();
+    navigation.goBack();
   }
 
   handleDecline(challengeId, userId) {
-    const { dispatch, navigator } = this.props;
+    const { dispatch, navigation } = this.props;
     dispatch(challengeActions.declineChallenge(challengeId, userId));
     dispatch(challengeActions.pendingChallenges(userId));
-    navigator.pop();
+    navigation.goBack();
   }
 
   render() {
-    const { challenge, userId } = this.props;
+    const { challenge, userId } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -55,7 +55,7 @@ export class PendingChallengeDetail extends React.Component {
             <View style={styles.detailRowView}>
               <Text style={styles.challengeDetailTitle}>Distance</Text>
               <Text style={styles.challengeDetailText}>
-                {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles`}
+                {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles` || '0'}
               </Text>
             </View>
             <View style={styles.detailRowView}>
@@ -119,7 +119,7 @@ PendingChallengeDetail.propTypes = {
   dispatch: func,
   challenge: object,
   userId: number,
-  navigator: object
+  navigation: object
 };
 
 const mapStateToProps = (state) => ({

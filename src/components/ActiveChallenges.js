@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../styles/styles';
-import ActiveChallengeDetail from './ActiveChallengeDetail';
 import * as challengeActions from '../actions/challenges';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -43,10 +42,9 @@ export class ActiveChallenges extends React.Component {
   }
 
   handlePress(challenge) {
-    this.props.navigator.push({
-      component: ActiveChallengeDetail,
-      passProps: { challenge, navigator: this.props.navigator }
-    });
+    this.props.navigation.navigate('ActiveChallengeDetail',
+      { challenge: challenge }
+    );
   }
 
   handleRefresh() {
@@ -128,7 +126,7 @@ const { array, bool, func, object, shape, number } = React.PropTypes;
 
 ActiveChallenges.propTypes = {
   dispatch: func,
-  navigator: object,
+  navigation: object,
   userId: number,
   active: shape({
     loading: bool,

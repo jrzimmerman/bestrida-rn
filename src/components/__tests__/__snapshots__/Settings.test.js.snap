@@ -35,7 +35,7 @@ exports[`renders Settings component 1`] = `
         "height": 40,
         "justifyContent": "space-around",
         "margin": 10,
-        "marginTop": 80,
+        "marginTop": 20,
         "opacity": 1,
         "paddingHorizontal": 8,
         "paddingVertical": 6,

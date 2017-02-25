@@ -24,19 +24,14 @@ exports[`renders CompletedChallengeDetail component 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Array [
-          Object {
-            "alignSelf": "center",
-            "color": "#CCC",
-            "flexDirection": "row",
-            "fontSize": 18,
-            "fontWeight": "bold",
-            "justifyContent": "space-around",
-          },
-          Object {
-            "paddingTop": 80,
-          },
-        ]
+        Object {
+          "alignSelf": "center",
+          "color": "#CCC",
+          "flexDirection": "row",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "justifyContent": "space-around",
+        }
       }
     >
       You Lost!

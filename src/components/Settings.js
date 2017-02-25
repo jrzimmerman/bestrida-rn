@@ -10,12 +10,11 @@ import {
 import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import * as userActions from '../actions/user';
-import * as navigationActions from '../actions/navigation';
 
 const buttonHeight = PixelRatio.get() < 3 ? 40 : 45;
 const settingStyles = StyleSheet.create({
   button: {
-    marginTop: 80,
+    marginTop: 20,
     alignSelf: 'stretch',
     justifyContent: 'space-around',
     flexDirection: 'row',
@@ -38,7 +37,7 @@ export class Settings extends React.Component {
 
   handleLogout() {
     this.props.dispatch(userActions.userLogout());
-    this.props.dispatch(navigationActions.changeTab('challengeFeed'));
+    this.props.navigation.navigate('/feed');
   }
 
   render() {
@@ -53,11 +52,12 @@ export class Settings extends React.Component {
   }
 }
 
-const { bool, func } = React.PropTypes;
+const { bool, func, object } = React.PropTypes;
 
 Settings.propTypes = {
   dispatch: func,
-  loggedIn: bool
+  loggedIn: bool,
+  navigation: object
 };
 
 const mapStateToProps = (state) => ({
