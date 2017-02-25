@@ -7,7 +7,7 @@ if (PixelRatio.get() < 3) {
   styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 69,
+      paddingTop: 20,
       backgroundColor: '#2B2B2B'
     },
     createDetailView: {
@@ -87,7 +87,7 @@ if (PixelRatio.get() < 3) {
   styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 69,
+      paddingTop: 20,
       backgroundColor: '#2B2B2B'
     },
     createDetailView: {
