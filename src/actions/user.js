@@ -1,4 +1,6 @@
 import * as constants from '../constants/user';
+import { Crashlytics } from 'react-native-fabric';
+
 
 const API_URL = 'http://www.bestridaapp.com/api/';
 
@@ -45,6 +47,10 @@ export function getUser(userId) {
         type: constants.GET_USER_SUCCESS,
         payload: responseJson
       });
+      if (responseJson.fullName) Crashlytics.setUserName(responseJson.fullName);
+      if (responseJson.email) Crashlytics.setUserEmail(responseJson.email);
+      if (responseJson._id) Crashlytics.setUserIdentifier(String(responseJson._id));
+      Crashlytics.log('Get User: Success');
     })
     .catch(error => {
       dispatch({

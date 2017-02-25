@@ -1,4 +1,5 @@
 import * as constants from '../constants/challenges';
+import { Answers } from 'react-native-fabric';
 
 const API_URL = 'http://www.bestridaapp.com/api/';
 
@@ -178,6 +179,7 @@ export function acceptChallenge(challengeId, userId) {
           response: responseJson
         }
       });
+      Answers.logCustom('Accept Challenge: Success', {challengeId, userId});
     })
     .then(dispatch(activeChallenges(userId)))
     // navigate back to active challenges
@@ -188,6 +190,7 @@ export function acceptChallenge(challengeId, userId) {
           error
         }
       });
+      Answers.logCustom('Accept Challenge: Failure', {challengeId, userId});
     });
   };
 }
@@ -212,6 +215,7 @@ export function declineChallenge(challengeId, userId) {
           response: responseJson
         }
       });
+      Answers.logCustom('Decline Challenge: Success', {challengeId, userId});
     })
     .then(dispatch(pendingChallenges(userId)))
     .catch(error => {
@@ -221,6 +225,7 @@ export function declineChallenge(challengeId, userId) {
           error
         }
       });
+      Answers.logCustom('Decline Challenge: Failure', {challengeId, userId});
     });
   };
 }
@@ -250,6 +255,7 @@ export function completeChallenge(challengeId, userId) {
             response: responseJson
           }
         });
+        Answers.logCustom('Complete Challenge: Success', {challengeId, userId});
       } catch (error) {
         dispatch({
           type: constants.COMPLETE_CHALLENGE_FAILURE,
@@ -257,6 +263,7 @@ export function completeChallenge(challengeId, userId) {
             error
           }
         });
+        Answers.logCustom('Complete Challenge: Failure', {challengeId, userId});
       }
     })
     .then(dispatch(completedChallenges(userId)))
@@ -305,6 +312,7 @@ export function createChallenge(user, challengee, segment, completionDate) {
           response: responseJson
         }
       });
+      Answers.logCustom('Create Challenge: Success', {user, challengee, segment, completionDate});
     })
     .catch(error => {
       dispatch({
@@ -313,6 +321,7 @@ export function createChallenge(user, challengee, segment, completionDate) {
           error
         }
       });
+      Answers.logCustom('Create Challenge: Failure', {user, challengee, segment, completionDate});
     });
   };
 }
