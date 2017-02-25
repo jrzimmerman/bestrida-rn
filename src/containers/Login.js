@@ -51,28 +51,27 @@ export class Login extends React.Component {
 
   componentWillMount() {
     if (this.props.loggedIn) {
-      this.props.navigator.push({ component: Layout, parentNavigator: this.props.navigator });
+      console.log('logged in, navigating!');
+      this.props.navigation.navigate('ChallengeFeed');
     }
   }
 
   handleOpenURL(event) {
-    console.log('handle open URL');
-    if (event.url) {
+    if (event.url && event.url.match('oauth_token=(.*)&userId') && event.url.match('&userId=(.*)')) {
       const url = event.url;
       const token = url.match('oauth_token=(.*)&userId')[1];
+      console.log('token: ', token);
       const userId = url.match('&userId=(.*)')[1];
+      console.log('userId: ', userId);
       this.props.dispatch(userActions.userLogin(token, userId));
-
       this.setState({
         showWebView: false
       });
       Linking.removeEventListener('url', this.handleOpenURL);
     }
-    
   }
 
   stravaOauth() {
-    console.log('strava oauth');
     Linking.addEventListener('url', this.handleOpenURL);
     this.setState({
       showWebView: true
@@ -90,7 +89,10 @@ export class Login extends React.Component {
     let view;
     if (showWebView) {
       view = (
-        <WebView source={{uri: url}} />
+        <WebView
+          source={{uri: url}}
+          onNavigationStateChange={this.handleOpenURL}
+        />
       );
     } else {
       view = (
@@ -111,7 +113,7 @@ const { bool, func, object } = React.PropTypes;
 
 Login.propTypes = {
   dispatch: func,
-  navigator: object,
+  navigation: object,
   loggedIn: bool
 };
 
