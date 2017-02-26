@@ -1,10 +1,12 @@
 {
   "name": "Bestrida",
-  "version": "1.0.7",
+  "version": "1.0.6",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "postversion": "react-native-version",
+    "preversion": "npm run test",
+    "postversion": "react-native-version --never-amend",
+    "bump-build": "react-native-version --increment-build --never-amend",
     "lint": "eslint ./src",
     "test": "jest",
     "test:cover": "npm run test -- --coverage",
