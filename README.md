@@ -5,7 +5,7 @@
 
 # Deployment
 
-## Make sure to bump version `npm version (major|minor|patch)`
+## Make sure to bump version `npm version (major|minor|patch)` or build `npm run bump-build`
 
 ## (iOS) Deploy to Apple Store
 https://facebook.github.io/react-native/docs/running-on-device.html
