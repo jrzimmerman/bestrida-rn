@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "preversion": "npm run test",
-    "postversion": "react-native-version --never-amend",
-    "bump-build": "react-native-version --increment-build --never-amend",
+    "postversion": "react-native-version",
+    "bump-build": "react-native-version --increment-build",
     "lint": "eslint ./src",
     "test": "jest",
     "test:cover": "npm run test -- --coverage",
