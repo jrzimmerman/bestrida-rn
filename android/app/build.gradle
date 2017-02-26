@@ -90,7 +90,7 @@ android {
         applicationId "com.bestrida"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 3
+        versionCode 10
         versionName "1.0.6"
         ndk {
             abiFilters "armeabi-v7a", "x86"
