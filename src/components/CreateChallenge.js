@@ -3,12 +3,14 @@ import {
   DatePickerIOS,
   ListView,
   Modal,
+  Platform,
   StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
+import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import fuzzy from 'fuzzy';
 import styles from '../styles/styles';
@@ -282,11 +284,13 @@ class CreateChallenge extends React.Component {
             <Modal
               animationType={'slide'}
               transparent={true}
-              visible={this.state.showDateModal}>
+              visible={this.state.showDateModal}
+              onRequestClose={this.toggleDateModal}>
               <View style={createStyles.datePickerView}>
                 <TouchableOpacity style={createStyles.btnConfirm} onPress={this.toggleDateModal}>
                   <Text style={createStyles.btnText}>Set Date</Text>
                 </TouchableOpacity>
+                {Platform.OS === 'ios' ?
                  <DatePickerIOS
                     date={this.state.selectedCompletionDate}
                     minimumDate={newDate}
@@ -295,6 +299,7 @@ class CreateChallenge extends React.Component {
                     onDateChange={(date) => this.handleSelectCompletionDate(date)}
                     style={createStyles.datePicker}
                   />
+                  : <DatePicker />}
               </View>
           </Modal>
           </View>
