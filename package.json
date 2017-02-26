@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "postversion": "react-native-version",
     "lint": "eslint ./src",
     "test": "jest",
     "test:cover": "npm run test -- --coverage",
@@ -20,6 +21,7 @@
     "react-native-fabric": "^0.4.1",
     "react-native-safari-view": "^2.0.0",
     "react-native-vector-icons": "^4.0.0",
+    "react-native-version": "^2.3.0",
     "react-navigation": "^1.0.0-beta.5",
     "react-redux": "^5.0.2",
     "react-test-renderer": "^15.3.2",
