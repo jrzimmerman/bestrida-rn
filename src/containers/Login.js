@@ -6,7 +6,8 @@ import {
   Text,
   TouchableOpacity,
   StatusBar,
-  StyleSheet
+  StyleSheet,
+  WebView
 } from 'react-native';
 import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
@@ -41,7 +42,9 @@ export class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    this.stravaOauth = this.stravaOauth.bind(this);
+    this.state = {
+      showWebView: false
+    };
     this.handleOpenURL = this.handleOpenURL.bind(this);
   }
 
@@ -49,13 +52,22 @@ export class Login extends React.Component {
     if (this.props.loggedIn) {
       this.props.navigation.navigate('ChallengeFeed');
     }
+    Linking.addEventListener('url', this.handleOpenURL);
+  }
+
+  componentWillUnMount() {
+    Linking.removeEventListener('url', this.handleOpenURL);
   }
 
    handleOpenURL(event) {
-    if (event.url) {
-      const url = event.url;
+    console.log('event: ', event);
+    const url = event.url;
+    if (event.url && url.match('oauth_token=(.*)&userId') && url.match('&userId=(.*)')) {
+      console.log('url: ', url);
       const token = url.match('oauth_token=(.*)&userId')[1];
+      console.log('token: ', token);
       const userId = url.match('&userId=(.*)')[1];
+      console.log('userId: ', userId);
       if (Platform.OS === 'ios') {
         SafariView.dismiss();
       }
@@ -64,32 +76,50 @@ export class Login extends React.Component {
   }
 
   stravaOauth() {
+    console.log('stravaOauth');
     const url = [
       'https://www.strava.com/oauth/authorize',
       '?response_type=code',
       `&client_id=${9169}`,
       '&redirect_uri=http://www.bestridaapp.com/auth/strava/callback'
     ].join('');
+    Linking.addEventListener('url', this.handleOpenURL);
     if (Platform.OS === 'ios') {
       SafariView.show({
-        url
+        url: url
       });
     } else {
-      Linking.openURL(url);
+      this.setState({
+        showWebView: true
+      });
     }
-    Linking.addEventListener('url', this.handleOpenURL);
   }
 
   render() {
-    return (
-      <Image style={styles.backgroundImage} source={background}>
-        <StatusBar barStyle="default" />
-        <Text style={styles.text}>Welcome to Bestrida</Text>
-        <TouchableOpacity onPress={this.stravaOauth}>
-          <Image style={styles.loginButton}source={loginButton} />
-        </TouchableOpacity>
-      </Image>
-    );
+    const { showWebView } = this.state;
+    const url = [
+      'https://www.strava.com/oauth/authorize',
+      '?response_type=code',
+      `&client_id=${9169}`,
+      '&redirect_uri=http://www.bestridaapp.com/auth/strava/callback'
+    ].join('');
+    let view;
+    if (showWebView) {
+      view = (
+        <WebView source={{uri: url}} javaScriptEnabled domStorageEnabled />
+      );
+    } else {
+      view = (
+        <Image style={styles.backgroundImage} source={background}>
+          <StatusBar barStyle="default" />
+          <Text style={styles.text}>Welcome to Bestrida</Text>
+          <TouchableOpacity onPress={this.stravaOauth.bind(this)}>
+            <Image style={styles.loginButton}source={loginButton} />
+          </TouchableOpacity>
+        </Image>
+      );
+    }
+    return view;
   }
 }
 

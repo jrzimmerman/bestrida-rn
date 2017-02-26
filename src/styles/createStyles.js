@@ -16,7 +16,7 @@ if (PixelRatio.get() < 3) {
       justifyContent: 'space-around'
     },
     createButtonView: {
-      flex: 0.225,
+      flex: 0.1,
       alignSelf: 'stretch'
     },
     selectorInputView: {
@@ -96,7 +96,7 @@ if (PixelRatio.get() < 3) {
       justifyContent: 'space-around'
     },
     createButtonView: {
-      flex: 0.175,
+      flex: 0.1,
       alignSelf: 'stretch'
     },
     selectorInputView: {

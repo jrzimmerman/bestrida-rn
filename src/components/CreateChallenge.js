@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import fuzzy from 'fuzzy';
@@ -115,7 +116,8 @@ class CreateChallenge extends React.Component {
   }
 
   handleSelectCompletionDate(date) {
-    this.setState({ selectedCompletionDate: date });
+    let d = moment(date);
+    this.setState({ selectedCompletionDate: d });
   }
 
   handleSumbit() {
@@ -143,7 +145,7 @@ class CreateChallenge extends React.Component {
         selectedSegment: null,
         selectedOpponentText: '',
         selectedSegmentText: '',
-        selectedCompletionDate: new Date(),
+        selectedCompletionDate: moment(),
         showOpponentList: true,
         showSegmentList: true,
         createChallengeError: null,
@@ -272,13 +274,14 @@ class CreateChallenge extends React.Component {
             </View>
           }
 
+          {Platform.OS === 'ios' ?
           <View style={createStyles.selectorButtonView}>
             <Text style={styles.text}>Completion Date</Text>
             <View>
               <TouchableOpacity
                 style={createStyles.selectorButton}
                 onPress={this.toggleDateModal}>
-                <Text style={styles.text}>{this.state.selectedCompletionDate.toDateString()}</Text>
+                <Text style={styles.text}>{new Date(this.state.selectedCompletionDate).toDateString()}</Text>
               </TouchableOpacity>
             </View>
             <Modal
@@ -290,19 +293,59 @@ class CreateChallenge extends React.Component {
                 <TouchableOpacity style={createStyles.btnConfirm} onPress={this.toggleDateModal}>
                   <Text style={createStyles.btnText}>Set Date</Text>
                 </TouchableOpacity>
-                {Platform.OS === 'ios' ?
                  <DatePickerIOS
-                    date={this.state.selectedCompletionDate}
+                    date={new Date(this.state.selectedCompletionDate)}
                     minimumDate={newDate}
                     mode={'date'}
                     timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
                     onDateChange={(date) => this.handleSelectCompletionDate(date)}
                     style={createStyles.datePicker}
                   />
-                  : <DatePicker />}
               </View>
           </Modal>
           </View>
+          :
+          <View style={createStyles.selectorButtonView}>
+            <Text style={styles.text}>Completion Date</Text>
+            <View style={{flexDirection: 'row', flex: 1, margin:10, alignItems: 'center', justifyContent: 'center'}}>
+              <DatePicker
+                customStyles={{
+                  dateTouch: {
+                    flexDirection: 'row', flex: 1,
+                  },
+                  dateTouchBody: {
+                    flexDirection: 'row',
+                    flex: 1,
+                    height: 42,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  },
+                  dateInput: {
+                    height: 42,
+                    borderWidth: 1,
+                    backgroundColor: '#383838',
+                    borderColor: '#CCC',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  },
+                  dateText: {
+                    fontSize: 14,
+                    color: '#CCC',
+                  }
+                }}
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row', flex: 1,
+                }}
+                date={moment(this.state.selectedCompletionDate).format()}
+                mode="date"
+                minDate={moment(newDate).format('YYYY-MM-DD')}
+                onDateChange={(date) => this.handleSelectCompletionDate(date)}
+              />
+            </View>
+          </View>
+        }
 
         </View>
         <View style={createStyles.createButtonView}>
