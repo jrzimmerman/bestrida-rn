@@ -7,22 +7,18 @@ const ActiveChallengesTab = StackNavigator({
     screen: ActiveChallenges,
     navigationOptions: {
       title: 'Active Challenges',
-      header: {
-        tintColor: '#CCC',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#CCC',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   },
   ActiveChallengeDetail: {
     screen: ActiveChallengeDetail,
     navigationOptions: {
-      header: {
-        tintColor: '#ef473a',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#ef473a',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   }

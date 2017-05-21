@@ -7,22 +7,18 @@ const CompletedChallengesTab = StackNavigator({
     screen: CompletedChallenges,
     navigationOptions: {
       title: 'Completed Challenges',
-      header: {
-        tintColor: '#CCC',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#CCC',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   },
   CompletedChallengeDetail: {
     screen: CompletedChallengeDetail,
     navigationOptions: {
-      header: {
-        tintColor: '#ef473a',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#ef473a',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   }

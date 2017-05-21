@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ChallengeFeedTab from './ChallengeFeedTab';
@@ -90,6 +91,13 @@ export const Layout = () => {
   });
 
   return <TabNav />;
+}
+
+const { bool, string } = PropTypes;
+
+Layout.propTypes = {
+  focused: bool,
+  tintColor: string
 }
 
 export default Layout;

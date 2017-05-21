@@ -6,11 +6,9 @@ const SettingsTab = StackNavigator({
     screen: Settings,
     navigationOptions: {
       title: 'Settings',
-      header: {
-        tintColor: '#CCC',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#CCC',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   }

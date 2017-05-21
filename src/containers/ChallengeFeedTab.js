@@ -7,22 +7,18 @@ const ChallengeFeedTab = StackNavigator({
     screen: ChallengeFeed,
     navigationOptions: {
       title: 'Challenge Feed',
-      header: {
-        tintColor: '#CCC',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#CCC',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   },
   PendingChallengeDetail: {
     screen: PendingChallengeDetail,
     navigationOptions: {
-      header: {
-        tintColor: '#ef473a',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#ef473a',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   }

@@ -6,11 +6,9 @@ const CreateChallengeTab = StackNavigator({
     screen: CreateChallenge,
     navigationOptions: {
       title: 'Create Challenge',
-      header: {
-        tintColor: '#CCC',
-        style: {
-          backgroundColor: "#2B2B2B"
-        }
+      headerTintColor: '#CCC',
+      headerStyle: {
+        backgroundColor: "#2B2B2B"
       }
     }
   }
