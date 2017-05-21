@@ -10,10 +10,30 @@ exports[`renders ActiveChallenges component 1`] = `
     }
   }
 >
-  <View>
-    <RCTScrollView>
-      <View />
-    </RCTScrollView>
-  </View>
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 0,
+      }
+    }
+    enableEmptySections={true}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    style={
+      Object {
+        "alignSelf": "stretch",
+        "marginTop": 5,
+      }
+    }
+  >
+    <RCTRefreshControl />
+    <View />
+  </RCTScrollView>
 </View>
 `;

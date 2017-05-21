@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   PixelRatio,
   StatusBar,
@@ -52,7 +53,7 @@ export class Settings extends React.Component {
   }
 }
 
-const { bool, func, object } = React.PropTypes;
+const { bool, func, object } = PropTypes;
 
 Settings.propTypes = {
   dispatch: func,

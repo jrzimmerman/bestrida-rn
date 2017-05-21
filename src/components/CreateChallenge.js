@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   DatePickerIOS,
   ListView,
@@ -358,7 +359,7 @@ class CreateChallenge extends React.Component {
   }
 }
 
-const { func, object, number } = React.PropTypes;
+const { func, object, number } = PropTypes;
 
 CreateChallenge.propTypes = {
   dispatch: func,

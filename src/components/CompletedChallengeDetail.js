@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   StatusBar,
@@ -131,7 +132,7 @@ export const CompletedChallengeDetail = (props) => {
 };
 
 
-const { number, object } = React.PropTypes;
+const { number, object } = PropTypes;
 
 CompletedChallengeDetail.propTypes = {
   userId: number,

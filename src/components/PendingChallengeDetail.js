@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   StatusBar,
@@ -113,7 +114,7 @@ export class PendingChallengeDetail extends React.Component {
   }
 }
 
-const { func, number, object } = React.PropTypes;
+const { func, number, object } = PropTypes;
 
 PendingChallengeDetail.propTypes = {
   dispatch: func,

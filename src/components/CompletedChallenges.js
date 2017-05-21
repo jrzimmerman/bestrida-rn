@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Image,
   ListView,
@@ -102,7 +103,7 @@ export class CompletedChallenges extends React.Component {
   }
 }
 
-const { array, bool, func, object, shape, number } = React.PropTypes;
+const { array, bool, func, object, shape, number } = PropTypes;
 
 CompletedChallenges.propTypes = {
   dispatch: func,

@@ -77,11 +77,36 @@ exports[`renders ChallengeFeed component 1`] = `
       }
     }
   >
-    <View>
-      <RCTScrollView>
-        <View />
-      </RCTScrollView>
-    </View>
+    <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentInset={
+        Object {
+          "bottom": 55,
+        }
+      }
+      dataSource={
+        ListViewDataSource {
+          "items": 0,
+        }
+      }
+      enableEmptySections={true}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          refreshing={false}
+        />
+      }
+      renderRow={[Function]}
+      renderScrollComponent={[Function]}
+      style={
+        Object {
+          "alignSelf": "stretch",
+        }
+      }
+    >
+      <RCTRefreshControl />
+      <View />
+    </RCTScrollView>
   </View>
 </View>
 `;

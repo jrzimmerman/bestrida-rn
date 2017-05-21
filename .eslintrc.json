@@ -30,7 +30,6 @@
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/react",
-    "plugin:jsx-a11y/recommended"
+    "plugin:import/react"
   ]
 }

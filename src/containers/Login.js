@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Image,
   Linking,
@@ -123,7 +124,7 @@ export class Login extends React.Component {
   }
 }
 
-const { bool, func, object } = React.PropTypes;
+const { bool, func, object } = PropTypes;
 
 Login.propTypes = {
   dispatch: func,

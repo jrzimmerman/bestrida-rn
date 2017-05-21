@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   StatusBar,
@@ -93,7 +94,7 @@ export class ActiveChallengeDetail extends React.Component {
   }
 }
 
-const { func, object, number } = React.PropTypes;
+const { func, object, number } = PropTypes;
 
 ActiveChallengeDetail.propTypes = {
   challenge: object,
