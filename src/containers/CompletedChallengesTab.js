@@ -1,10 +1,10 @@
 import { StackNavigator } from 'react-navigation';
-import CompletedChallenges from '../components/CompletedChallenges';
-import CompletedChallengeDetail from '../components/CompletedChallengeDetail';
+import ConnectedCompletedChallenges from '../components/CompletedChallenges';
+import ConnectedCompletedChallengeDetail from '../components/CompletedChallengeDetail';
 
 const CompletedChallengesTab = StackNavigator({
   CompletedChallenges: {
-    screen: CompletedChallenges,
+    screen: ConnectedCompletedChallenges,
     navigationOptions: {
       title: 'Completed Challenges',
       headerTintColor: '#CCC',
@@ -14,7 +14,7 @@ const CompletedChallengesTab = StackNavigator({
     }
   },
   CompletedChallengeDetail: {
-    screen: CompletedChallengeDetail,
+    screen: ConnectedCompletedChallengeDetail,
     navigationOptions: {
       headerTintColor: '#ef473a',
       headerStyle: {

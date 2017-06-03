@@ -28,7 +28,7 @@ export class CompletedChallenges extends React.Component {
     this.handleRefresh = this.handleRefresh.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(challengeActions.completedChallenges(this.props.userId));
     this.setState({
       dataSource: ds.cloneWithRows(this.props.completed.challenges)

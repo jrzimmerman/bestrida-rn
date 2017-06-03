@@ -29,7 +29,7 @@ export class ActiveChallenges extends React.Component {
     this.handleDismiss = this.handleDismiss.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(challengeActions.activeChallenges(this.props.userId));
     this.setState({
       dataSource: ds.cloneWithRows(this.props.active.challenges)

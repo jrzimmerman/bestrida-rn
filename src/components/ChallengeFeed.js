@@ -33,7 +33,7 @@ export class ChallengeFeed extends React.Component {
     this.handleDecline = this.handleDecline.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
     this.setState({
       dataSource: ds.cloneWithRows(this.props.pending.challenges)

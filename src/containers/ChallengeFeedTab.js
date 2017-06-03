@@ -1,10 +1,10 @@
 import { StackNavigator } from 'react-navigation';
-import ChallengeFeed from '../components/ChallengeFeed';
-import PendingChallengeDetail from '../components/PendingChallengeDetail';
+import ConnectedChallengeFeed from '../components/ChallengeFeed';
+import ConnectedPendingChallengeDetail from '../components/PendingChallengeDetail';
 
 const ChallengeFeedTab = StackNavigator({
   ChallengeFeed: {
-    screen: ChallengeFeed,
+    screen: ConnectedChallengeFeed,
     navigationOptions: {
       title: 'Challenge Feed',
       headerTintColor: '#CCC',
@@ -14,7 +14,7 @@ const ChallengeFeedTab = StackNavigator({
     }
   },
   PendingChallengeDetail: {
-    screen: PendingChallengeDetail,
+    screen: ConnectedPendingChallengeDetail,
     navigationOptions: {
       headerTintColor: '#ef473a',
       headerStyle: {

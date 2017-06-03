@@ -1,9 +1,9 @@
 import { StackNavigator } from 'react-navigation';
-import CreateChallenge from '../components/CreateChallenge';
+import ConnectedCreateChallenge from '../components/CreateChallenge';
 
 const CreateChallengeTab = StackNavigator({
   CreateChallenge: {
-    screen: CreateChallenge,
+    screen: ConnectedCreateChallenge,
     navigationOptions: {
       title: 'Create Challenge',
       headerTintColor: '#CCC',

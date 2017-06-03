@@ -1,9 +1,9 @@
 import { StackNavigator } from 'react-navigation';
-import Settings from '../components/Settings';
+import ConnectedSettings from '../components/Settings';
 
 const SettingsTab = StackNavigator({
   Settings: {
-    screen: Settings,
+    screen: ConnectedSettings,
     navigationOptions: {
       title: 'Settings',
       headerTintColor: '#CCC',

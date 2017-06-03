@@ -1,10 +1,10 @@
 import { StackNavigator } from 'react-navigation';
-import ActiveChallenges from '../components/ActiveChallenges';
-import ActiveChallengeDetail from '../components/ActiveChallengeDetail';
+import ConnectedActiveChallenges from '../components/ActiveChallenges';
+import ConnectedActiveChallengeDetail from '../components/ActiveChallengeDetail';
 
 const ActiveChallengesTab = StackNavigator({
   ActiveChallenges: {
-    screen: ActiveChallenges,
+    screen: ConnectedActiveChallenges,
     navigationOptions: {
       title: 'Active Challenges',
       headerTintColor: '#CCC',
@@ -14,7 +14,7 @@ const ActiveChallengesTab = StackNavigator({
     }
   },
   ActiveChallengeDetail: {
-    screen: ActiveChallengeDetail,
+    screen: ConnectedActiveChallengeDetail,
     navigationOptions: {
       headerTintColor: '#ef473a',
       headerStyle: {

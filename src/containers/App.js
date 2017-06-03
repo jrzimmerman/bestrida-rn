@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Login from './Login';
-import Layout from './Layout';
+import ConnectedLogin from './Login';
+import ConnectedLayout from './Layout';
 
 class App extends React.Component {
   render() {
     const { loggedIn } = this.props;
-    return loggedIn ? <Layout /> : <Login />;
+    return loggedIn ? <ConnectedLayout /> : <ConnectedLogin />;
   }
 }
 

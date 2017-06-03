@@ -24,7 +24,7 @@ const opponentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== 
 const segmentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
 const newDate = new Date();
 
-class CreateChallenge extends React.Component {
+export class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
