@@ -18,7 +18,7 @@
     "jest-react-native": "^18.0.0",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
-    "react": "^16.0.0-alpha.6",
+    "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0",
     "react-native-datepicker": "^1.5.1",
     "react-native-fabric": "^0.4.1",
