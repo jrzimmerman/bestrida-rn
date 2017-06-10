@@ -21,6 +21,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {
@@ -63,6 +64,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -79,6 +81,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -107,6 +110,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -123,6 +127,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -151,6 +156,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -167,6 +173,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -195,6 +202,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -211,6 +219,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -239,6 +248,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -255,6 +265,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -283,6 +294,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -299,6 +311,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -327,6 +340,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -343,6 +357,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -371,6 +386,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -387,6 +403,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -425,6 +442,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
         accessible={true}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -452,6 +470,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Object {
@@ -471,6 +490,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
         accessible={true}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -498,6 +518,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Object {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConnectedLogin from './Login';
 import ConnectedLayout from './Layout';
@@ -10,7 +11,7 @@ class App extends React.Component {
   }
 }
 
-const { bool } = React.PropTypes;
+const { bool } = PropTypes;
 
 App.propTypes = {
   loggedIn: bool
