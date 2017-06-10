@@ -36,9 +36,9 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-native/all",
-    "plugin:import/errors",
-    "plugin:import/warnings",
+    "plugin:import/recommended",
     "plugin:import/react",
+    "plugin:import/react-native",
     "plugin:jsx-a11y/recommended"
   ]
 }
