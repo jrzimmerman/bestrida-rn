@@ -14,7 +14,6 @@ import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
 import * as userActions from '../actions/user';
 
-
 const background = require('../images/LoginBackground.png');
 const loginButton = require('../images/btn_strava_connectwith_orange.png');
 
@@ -60,15 +59,15 @@ export class Login extends React.Component {
     Linking.removeEventListener('url', this.handleOpenURL);
   }
 
-   handleOpenURL(event) {
-    console.log('event: ', event);
+  handleOpenURL(event) {
     const url = event.url;
-    if (event.url && url.match('oauth_token=(.*)&userId') && url.match('&userId=(.*)')) {
-      console.log('url: ', url);
+    if (
+      event.url &&
+      url.match('oauth_token=(.*)&userId') &&
+      url.match('&userId=(.*)')
+    ) {
       const token = url.match('oauth_token=(.*)&userId')[1];
-      console.log('token: ', token);
       const userId = url.match('&userId=(.*)')[1];
-      console.log('userId: ', userId);
       if (Platform.OS === 'ios') {
         SafariView.dismiss();
       }
@@ -107,7 +106,7 @@ export class Login extends React.Component {
     let view;
     if (showWebView) {
       view = (
-        <WebView source={{uri: url}} javaScriptEnabled domStorageEnabled />
+        <WebView source={{ uri: url }} javaScriptEnabled domStorageEnabled />
       );
     } else {
       view = (
@@ -115,7 +114,7 @@ export class Login extends React.Component {
           <StatusBar barStyle="default" />
           <Text style={styles.text}>Welcome to Bestrida</Text>
           <TouchableOpacity onPress={this.stravaOauth.bind(this)}>
-            <Image style={styles.loginButton}source={loginButton} />
+            <Image style={styles.loginButton} source={loginButton} />
           </TouchableOpacity>
         </Image>
       );
@@ -132,7 +131,7 @@ Login.propTypes = {
   loggedIn: bool
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loggedIn: state.user.loggedIn
 });
 

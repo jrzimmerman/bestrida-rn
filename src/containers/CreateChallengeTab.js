@@ -8,11 +8,10 @@ const CreateChallengeTab = StackNavigator({
       title: 'Create Challenge',
       headerTintColor: '#CCC',
       headerStyle: {
-        backgroundColor: "#2B2B2B"
+        backgroundColor: '#2B2B2B'
       }
     }
   }
 });
-
 
 export default CreateChallengeTab;

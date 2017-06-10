@@ -7,7 +7,7 @@ import renderer from 'react-test-renderer';
 
 test('renders ActiveChallengeDetail component', () => {
   const challenge = {
-    segmentName: "Test Segment"
+    segmentName: 'Test Segment'
   };
   const navigation = {
     state: {
@@ -15,11 +15,9 @@ test('renders ActiveChallengeDetail component', () => {
         challenge
       }
     }
-  }
-  const tree = renderer.create(
-    <ActiveChallengeDetail
-      navigation={navigation}
-    />
-  ).toJSON();
+  };
+  const tree = renderer
+    .create(<ActiveChallengeDetail navigation={navigation} />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

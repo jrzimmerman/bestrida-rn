@@ -11,11 +11,8 @@ test('renders ChallengeFeed component', () => {
     challenges: [],
     error: null
   };
-  const tree = renderer.create(
-    <ChallengeFeed
-      pending={pending}
-      dispatch={fn => fn}
-    />
-  ).toJSON();
+  const tree = renderer
+    .create(<ChallengeFeed pending={pending} dispatch={fn => fn} />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

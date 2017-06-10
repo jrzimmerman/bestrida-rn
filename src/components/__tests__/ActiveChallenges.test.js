@@ -17,12 +17,14 @@ test('renders ActiveChallenges component', () => {
       error: null
     }
   };
-  const tree = renderer.create(
-    <ActiveChallenges
-      active={active}
-      challenges={challenges}
-      dispatch={fn => fn}
-    />
-  ).toJSON();
+  const tree = renderer
+    .create(
+      <ActiveChallenges
+        active={active}
+        challenges={challenges}
+        dispatch={fn => fn}
+      />
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

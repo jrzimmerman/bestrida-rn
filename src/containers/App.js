@@ -17,7 +17,7 @@ App.propTypes = {
   loggedIn: bool
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loggedIn: state.user.auth.loggedIn
 });
 

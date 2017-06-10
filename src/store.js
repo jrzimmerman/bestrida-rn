@@ -5,10 +5,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const store = createStore(
-  rootReducer, compose(
-    applyMiddleware(thunk),
-    autoRehydrate()
-  )
+  rootReducer,
+  compose(applyMiddleware(thunk), autoRehydrate())
 );
 
 persistStore(store, { storage: AsyncStorage });

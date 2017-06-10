@@ -11,11 +11,8 @@ test('renders CompletedChallenges component', () => {
     challenges: [],
     error: null
   };
-  const tree = renderer.create(
-    <CompletedChallenges
-      completed={completed}
-      dispatch={fn => fn}
-    />
-  ).toJSON();
+  const tree = renderer
+    .create(<CompletedChallenges completed={completed} dispatch={fn => fn} />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import * as challengeActions from '../actions/challenges';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
 export class CompletedChallenges extends React.Component {
@@ -29,7 +29,9 @@ export class CompletedChallenges extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(challengeActions.completedChallenges(this.props.userId));
+    this.props.dispatch(
+      challengeActions.completedChallenges(this.props.userId)
+    );
     this.setState({
       dataSource: ds.cloneWithRows(this.props.completed.challenges)
     });
@@ -43,10 +45,10 @@ export class CompletedChallenges extends React.Component {
 
   handlePress(challenge) {
     const { navigation, userId } = this.props;
-    navigation.navigate(
-      'CompletedChallengeDetail',
-      { challenge: challenge, userId: userId }
-    );
+    navigation.navigate('CompletedChallengeDetail', {
+      challenge: challenge,
+      userId: userId
+    });
   }
 
   handleRefresh() {
@@ -73,30 +75,45 @@ export class CompletedChallenges extends React.Component {
               onRefresh={this.handleRefresh}
             />
           }
-          renderRow={(rowData) => (
-            <TouchableOpacity onPress={() => this.handlePress(rowData)} style={styles.row}>
+          renderRow={rowData =>
+            <TouchableOpacity
+              onPress={() => this.handlePress(rowData)}
+              style={styles.row}
+            >
               <View style={styles.challengeImageView}>
                 <Image
                   style={styles.challengeImage}
                   source={
-                    rowData.opponentPhoto === 'stravaProfilePic' ?
-                    stravaProfilePic : rowData.opponentPhoto
+                    rowData.opponentPhoto === 'stravaProfilePic'
+                      ? stravaProfilePic
+                      : rowData.opponentPhoto
                   }
                 />
               </View>
               <View style={styles.challengeDetail}>
-                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                <Text
+                  style={styles.challengeText}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                >
                   Opponent: {rowData.opponentName}
                 </Text>
-                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                <Text
+                  style={styles.challengeText}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                >
                   Segment: {rowData.segmentName}
                 </Text>
-                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                <Text
+                  style={styles.challengeText}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                >
                   {rowData.completedStatus}
                 </Text>
               </View>
-            </TouchableOpacity>
-          )}
+            </TouchableOpacity>}
         />
       </View>
     );
@@ -116,7 +133,7 @@ CompletedChallenges.propTypes = {
   })
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   userId: state.user.auth.userId,
   completed: state.challenges.completed
 });

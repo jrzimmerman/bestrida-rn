@@ -20,15 +20,19 @@ import createStyles from '../styles/createStyles';
 import * as challengeActions from '../actions/challenges';
 import * as userActions from '../actions/user';
 
-const opponentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
-const segmentDS = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
+const opponentDS = new ListView.DataSource({
+  rowHasChanged: (r1, r2) => r1 !== r2
+});
+const segmentDS = new ListView.DataSource({
+  rowHasChanged: (r1, r2) => r1 !== r2
+});
 const newDate = new Date();
 
 export class CreateChallenge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timeZoneOffsetInHours: ((-1) * newDate.getTimezoneOffset()) / 60,
+      timeZoneOffsetInHours: -1 * newDate.getTimezoneOffset() / 60,
       selectedOpponentText: '',
       selectedOpponent: null,
       selectedSegmentText: '',
@@ -44,7 +48,9 @@ export class CreateChallenge extends React.Component {
 
     this.handleOpponentPress = this.handleOpponentPress.bind(this);
     this.handleSegmentPress = this.handleSegmentPress.bind(this);
-    this.handleSelectCompletionDate = this.handleSelectCompletionDate.bind(this);
+    this.handleSelectCompletionDate = this.handleSelectCompletionDate.bind(
+      this
+    );
     this.handleChangeOpponentText = this.handleChangeOpponentText.bind(this);
     this.handleChangeSegmentText = this.handleChangeSegmentText.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
@@ -79,9 +85,10 @@ export class CreateChallenge extends React.Component {
   }
 
   handleChangeOpponentText(text) {
-    const results = fuzzy.filter(text, this.props.user.friends,
-      { extract: (item) => item.fullName });
-    const matches = results.map((item) => item.original);
+    const results = fuzzy.filter(text, this.props.user.friends, {
+      extract: item => item.fullName
+    });
+    const matches = results.map(item => item.original);
     this.setState({
       selectedOpponentText: text,
       opponentDataSource: opponentDS.cloneWithRows(matches),
@@ -90,9 +97,10 @@ export class CreateChallenge extends React.Component {
   }
 
   handleChangeSegmentText(text) {
-    const results = fuzzy.filter(text, this.props.user.segments,
-      { extract: (item) => item.name });
-    const matches = results.map((item) => item.original);
+    const results = fuzzy.filter(text, this.props.user.segments, {
+      extract: item => item.name
+    });
+    const matches = results.map(item => item.original);
     this.setState({
       selectedSegmentText: text,
       segmentDataSource: segmentDS.cloneWithRows(matches),
@@ -123,22 +131,38 @@ export class CreateChallenge extends React.Component {
 
   handleSumbit() {
     const { dispatch, userId, user } = this.props;
-    const { selectedOpponent, selectedSegment, selectedCompletionDate } = this.state;
+    const {
+      selectedOpponent,
+      selectedSegment,
+      selectedCompletionDate
+    } = this.state;
     if (!selectedOpponent || !selectedSegment || !selectedCompletionDate) {
       if (!selectedCompletionDate) {
-        this.setState({ createChallengeError: 'Please select a completion date' });
+        this.setState({
+          createChallengeError: 'Please select a completion date'
+        });
       } else if (!selectedOpponent && !selectedSegment) {
-        this.setState({ createChallengeError: 'Please select both an opponent and segment' });
+        this.setState({
+          createChallengeError: 'Please select both an opponent and segment'
+        });
       } else if (!selectedOpponent) {
         this.setState({ createChallengeError: 'Please select an opponent' });
       } else if (!selectedSegment) {
         this.setState({ createChallengeError: 'Please select a segment' });
       } else {
-        this.setState({ createChallengeError: 'Please select an opponent and segment' });
+        this.setState({
+          createChallengeError: 'Please select an opponent and segment'
+        });
       }
     } else {
-      dispatch(challengeActions.createChallenge(user, selectedOpponent,
-        selectedSegment, selectedCompletionDate));
+      dispatch(
+        challengeActions.createChallenge(
+          user,
+          selectedOpponent,
+          selectedSegment,
+          selectedCompletionDate
+        )
+      );
       dispatch(challengeActions.pendingChallenges(userId));
       this.props.navigation.navigate('ChallengeFeed');
       this.setState({
@@ -191,7 +215,10 @@ export class CreateChallenge extends React.Component {
     if (this.state.createChallengeError) {
       errorView = (
         <View style={styles.errorView}>
-          <TouchableOpacity onPress={this.handleDismiss} style={styles.createErrorButton}>
+          <TouchableOpacity
+            onPress={this.handleDismiss}
+            style={styles.createErrorButton}
+          >
             <Text style={styles.errorTitle}>
               Error Completing Challenge
             </Text>
@@ -211,146 +238,177 @@ export class CreateChallenge extends React.Component {
         <StatusBar barStyle="light-content" />
         {errorView}
         <View style={createStyles.createDetailView}>
-          { this.state.showOpponentList ?
-            <View style={createStyles.selectorInputView}>
-              <Text style={styles.text}>Opponent</Text>
-              <TextInput
-                value={this.state.selectedOpponentText}
-                style={createStyles.selectorInput}
-                onChangeText={(text) => this.handleChangeOpponentText(text)}
-                placeholder={'Select Opponent'}
-                placeholderTextColor={'#CCC'} />
-              <ListView
-                autoCorrect={false}
-                automaticallyAdjustContentInsets={false}
-                enableEmptySections={true}
-                dataSource={this.state.opponentDataSource}
-                renderRow={(rowData) => (
-                  <TouchableOpacity
-                    onPress={() => this.handleOpponentPress(rowData)}
-                    style={createStyles.row}>
+          {this.state.showOpponentList
+            ? <View style={createStyles.selectorInputView}>
+                <Text style={styles.text}>Opponent</Text>
+                <TextInput
+                  value={this.state.selectedOpponentText}
+                  style={createStyles.selectorInput}
+                  onChangeText={text => this.handleChangeOpponentText(text)}
+                  placeholder={'Select Opponent'}
+                  placeholderTextColor={'#CCC'}
+                />
+                <ListView
+                  autoCorrect={false}
+                  automaticallyAdjustContentInsets={false}
+                  enableEmptySections={true}
+                  dataSource={this.state.opponentDataSource}
+                  renderRow={rowData =>
+                    <TouchableOpacity
+                      onPress={() => this.handleOpponentPress(rowData)}
+                      style={createStyles.row}
+                    >
                       <Text style={styles.text}>{rowData.fullName}</Text>
-                  </TouchableOpacity>
-                )} />
-            </View> :
-            <View style={createStyles.selectorInputView}>
-              <Text style={styles.text}>Opponent</Text>
-              <TouchableOpacity
-                style={createStyles.selectorButton}
-                onPress={this.toggleSelectedOpponent}>
-                <Text style={styles.text}>{this.state.selectedOpponent.fullName}</Text>
-              </TouchableOpacity>
-            </View>
-          }
-
-          { this.state.showSegmentList ?
-            <View style={createStyles.selectorInputView}>
-              <Text style={styles.text}>Segment</Text>
-              <TextInput
-                autoCorrect={false}
-                value={this.state.selectedSegmentText}
-                style={createStyles.selectorInput}
-                onChangeText={(text) => this.handleChangeSegmentText(text)}
-                placeholder={'Select Segment'}
-                placeholderTextColor={'#CCC'} />
-              <ListView
-                automaticallyAdjustContentInsets={false}
-                enableEmptySections={true}
-                dataSource={this.state.segmentDataSource}
-                renderRow={(rowData) => (
-                  <TouchableOpacity
-                    onPress={() => this.handleSegmentPress(rowData)}
-                    style={createStyles.row}>
-                    <Text style={styles.text}>{rowData.name}</Text>
-                  </TouchableOpacity>
-                )} />
-            </View> :
-            <View style={createStyles.selectorInputView}>
-              <Text style={styles.text}>Segment</Text>
-              <TouchableOpacity
-                style={createStyles.selectorButton}
-                onPress={this.toggleSelectedSegment}>
-                <Text style={styles.text}>{this.state.selectedSegment.name}</Text>
-              </TouchableOpacity>
-            </View>
-          }
-
-          {Platform.OS === 'ios' ?
-          <View style={createStyles.selectorButtonView}>
-            <Text style={styles.text}>Completion Date</Text>
-            <View>
-              <TouchableOpacity
-                style={createStyles.selectorButton}
-                onPress={this.toggleDateModal}>
-                <Text style={styles.text}>{new Date(this.state.selectedCompletionDate).toDateString()}</Text>
-              </TouchableOpacity>
-            </View>
-            <Modal
-              animationType={'slide'}
-              transparent={true}
-              visible={this.state.showDateModal}
-              onRequestClose={this.toggleDateModal}>
-              <View style={createStyles.datePickerView}>
-                <TouchableOpacity style={createStyles.btnConfirm} onPress={this.toggleDateModal}>
-                  <Text style={createStyles.btnText}>Set Date</Text>
-                </TouchableOpacity>
-                 <DatePickerIOS
-                    date={new Date(this.state.selectedCompletionDate)}
-                    minimumDate={newDate}
-                    mode={'date'}
-                    timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
-                    onDateChange={(date) => this.handleSelectCompletionDate(date)}
-                    style={createStyles.datePicker}
-                  />
+                    </TouchableOpacity>}
+                />
               </View>
-          </Modal>
-          </View>
-          :
-          <View style={createStyles.selectorButtonView}>
-            <Text style={styles.text}>Completion Date</Text>
-            <View style={{flexDirection: 'row', flex: 1, margin:10, alignItems: 'center', justifyContent: 'center'}}>
-              <DatePicker
-                customStyles={{
-                  dateTouch: {
-                    flexDirection: 'row', flex: 1,
-                  },
-                  dateTouchBody: {
+            : <View style={createStyles.selectorInputView}>
+                <Text style={styles.text}>Opponent</Text>
+                <TouchableOpacity
+                  style={createStyles.selectorButton}
+                  onPress={this.toggleSelectedOpponent}
+                >
+                  <Text style={styles.text}>
+                    {this.state.selectedOpponent.fullName}
+                  </Text>
+                </TouchableOpacity>
+              </View>}
+
+          {this.state.showSegmentList
+            ? <View style={createStyles.selectorInputView}>
+                <Text style={styles.text}>Segment</Text>
+                <TextInput
+                  autoCorrect={false}
+                  value={this.state.selectedSegmentText}
+                  style={createStyles.selectorInput}
+                  onChangeText={text => this.handleChangeSegmentText(text)}
+                  placeholder={'Select Segment'}
+                  placeholderTextColor={'#CCC'}
+                />
+                <ListView
+                  automaticallyAdjustContentInsets={false}
+                  enableEmptySections={true}
+                  dataSource={this.state.segmentDataSource}
+                  renderRow={rowData =>
+                    <TouchableOpacity
+                      onPress={() => this.handleSegmentPress(rowData)}
+                      style={createStyles.row}
+                    >
+                      <Text style={styles.text}>{rowData.name}</Text>
+                    </TouchableOpacity>}
+                />
+              </View>
+            : <View style={createStyles.selectorInputView}>
+                <Text style={styles.text}>Segment</Text>
+                <TouchableOpacity
+                  style={createStyles.selectorButton}
+                  onPress={this.toggleSelectedSegment}
+                >
+                  <Text style={styles.text}>
+                    {this.state.selectedSegment.name}
+                  </Text>
+                </TouchableOpacity>
+              </View>}
+
+          {Platform.OS === 'ios'
+            ? <View style={createStyles.selectorButtonView}>
+                <Text style={styles.text}>Completion Date</Text>
+                <View>
+                  <TouchableOpacity
+                    style={createStyles.selectorButton}
+                    onPress={this.toggleDateModal}
+                  >
+                    <Text style={styles.text}>
+                      {new Date(
+                        this.state.selectedCompletionDate
+                      ).toDateString()}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <Modal
+                  animationType={'slide'}
+                  transparent={true}
+                  visible={this.state.showDateModal}
+                  onRequestClose={this.toggleDateModal}
+                >
+                  <View style={createStyles.datePickerView}>
+                    <TouchableOpacity
+                      style={createStyles.btnConfirm}
+                      onPress={this.toggleDateModal}
+                    >
+                      <Text style={createStyles.btnText}>Set Date</Text>
+                    </TouchableOpacity>
+                    <DatePickerIOS
+                      date={new Date(this.state.selectedCompletionDate)}
+                      minimumDate={newDate}
+                      mode={'date'}
+                      timeZoneOffsetInMinutes={
+                        this.state.timeZoneOffsetInHours * 60
+                      }
+                      onDateChange={date =>
+                        this.handleSelectCompletionDate(date)}
+                      style={createStyles.datePicker}
+                    />
+                  </View>
+                </Modal>
+              </View>
+            : <View style={createStyles.selectorButtonView}>
+                <Text style={styles.text}>Completion Date</Text>
+                <View
+                  style={{
                     flexDirection: 'row',
                     flex: 1,
-                    height: 42,
+                    margin: 10,
                     alignItems: 'center',
                     justifyContent: 'center'
-                  },
-                  dateInput: {
-                    height: 42,
-                    borderWidth: 1,
-                    backgroundColor: '#383838',
-                    borderColor: '#CCC',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  },
-                  dateText: {
-                    fontSize: 14,
-                    color: '#CCC',
-                  }
-                }}
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'row', flex: 1,
-                }}
-                date={moment(this.state.selectedCompletionDate).format()}
-                mode="date"
-                minDate={moment(newDate).format('YYYY-MM-DD')}
-                onDateChange={(date) => this.handleSelectCompletionDate(date)}
-              />
-            </View>
-          </View>
-        }
+                  }}
+                >
+                  <DatePicker
+                    customStyles={{
+                      dateTouch: {
+                        flexDirection: 'row',
+                        flex: 1
+                      },
+                      dateTouchBody: {
+                        flexDirection: 'row',
+                        flex: 1,
+                        height: 42,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      },
+                      dateInput: {
+                        height: 42,
+                        borderWidth: 1,
+                        backgroundColor: '#383838',
+                        borderColor: '#CCC',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      },
+                      dateText: {
+                        fontSize: 14,
+                        color: '#CCC'
+                      }
+                    }}
+                    style={{
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexDirection: 'row',
+                      flex: 1
+                    }}
+                    date={moment(this.state.selectedCompletionDate).format()}
+                    mode="date"
+                    minDate={moment(newDate).format('YYYY-MM-DD')}
+                    onDateChange={date => this.handleSelectCompletionDate(date)}
+                  />
+                </View>
+              </View>}
 
         </View>
         <View style={createStyles.createButtonView}>
-          <TouchableOpacity style={styles.button} onPress={() => this.handleSumbit()}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.handleSumbit()}
+          >
             <Text style={styles.buttonText}>Create Challenge</Text>
           </TouchableOpacity>
         </View>
@@ -368,7 +426,7 @@ CreateChallenge.propTypes = {
   navigation: object
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   userId: state.user.auth.userId,
   user: state.user.user
 });

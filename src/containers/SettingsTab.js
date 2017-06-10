@@ -8,11 +8,10 @@ const SettingsTab = StackNavigator({
       title: 'Settings',
       headerTintColor: '#CCC',
       headerStyle: {
-        backgroundColor: "#2B2B2B"
+        backgroundColor: '#2B2B2B'
       }
     }
   }
 });
-
 
 export default SettingsTab;

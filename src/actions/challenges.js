@@ -4,7 +4,7 @@ import { Answers } from 'react-native-fabric';
 const API_URL = 'http://www.bestridaapp.com/api/';
 
 function determineOpponent(userId, challenges) {
-  const determineOpponentChallenges = challenges.map((challenge) => {
+  const determineOpponentChallenges = challenges.map(challenge => {
     // determine opponent name
     let opponentName;
     let opponentPhoto;
@@ -16,14 +16,20 @@ function determineOpponent(userId, challenges) {
     // determine opponent photo
     if (Number(userId) === challenge.challengeeId) {
       // set user photo to challengerPhoto
-      if (!challenge.challengerPhoto || challenge.challengerPhoto === 'avatar/athlete/large.png') {
+      if (
+        !challenge.challengerPhoto ||
+        challenge.challengerPhoto === 'avatar/athlete/large.png'
+      ) {
         opponentPhoto = 'stravaProfilePic';
       } else {
         opponentPhoto = { uri: challenge.challengerPhoto };
       }
     } else if (Number(userId) === challenge.challengerId) {
       // set user photo to challengeePhoto
-      if (!challenge.challengeePhoto || challenge.challengeePhoto === 'avatar/athlete/large.png') {
+      if (
+        !challenge.challengeePhoto ||
+        challenge.challengeePhoto === 'avatar/athlete/large.png'
+      ) {
         opponentPhoto = 'stravaProfilePic';
       } else {
         opponentPhoto = { uri: challenge.challengeePhoto };
@@ -37,7 +43,7 @@ function determineOpponent(userId, challenges) {
 }
 
 function completionStatus(userId, challenges) {
-  const completedStatusChallenges = challenges.map((challenge) => {
+  const completedStatusChallenges = challenges.map(challenge => {
     let completedStatus;
     if (challenge.challengeeCompleted && challenge.challengerCompleted) {
       if (Number(userId) === challenge.winnerId) {
@@ -57,7 +63,7 @@ function completionStatus(userId, challenges) {
 }
 
 export function pendingChallenges(userId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: constants.PENDING_CHALLENGES_LOADING,
       payload: true
@@ -67,31 +73,31 @@ export function pendingChallenges(userId) {
         Accept: 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(challenges => determineOpponent(userId, challenges))
-    .then(opponentChallenges => {
-      dispatch({
-        type: constants.PENDING_CHALLENGES_SUCCESS,
-        payload: {
-          loading: false,
-          challenges: opponentChallenges
-        }
+      .then(response => response.json())
+      .then(challenges => determineOpponent(userId, challenges))
+      .then(opponentChallenges => {
+        dispatch({
+          type: constants.PENDING_CHALLENGES_SUCCESS,
+          payload: {
+            loading: false,
+            challenges: opponentChallenges
+          }
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: constants.PENDING_CHALLENGES_FAILURE,
+          payload: {
+            loading: false,
+            error
+          }
+        });
       });
-    })
-    .catch(error => {
-      dispatch({
-        type: constants.PENDING_CHALLENGES_FAILURE,
-        payload: {
-          loading: false,
-          error
-        }
-      });
-    });
   };
 }
 
 export function activeChallenges(userId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: constants.ACTIVE_CHALLENGES_LOADING,
       payload: true
@@ -101,31 +107,31 @@ export function activeChallenges(userId) {
         Accept: 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(challenges => determineOpponent(userId, challenges))
-    .then(opponentChallenges => {
-      dispatch({
-        type: constants.ACTIVE_CHALLENGES_SUCCESS,
-        payload: {
-          loading: false,
-          challenges: opponentChallenges
-        }
+      .then(response => response.json())
+      .then(challenges => determineOpponent(userId, challenges))
+      .then(opponentChallenges => {
+        dispatch({
+          type: constants.ACTIVE_CHALLENGES_SUCCESS,
+          payload: {
+            loading: false,
+            challenges: opponentChallenges
+          }
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: constants.ACTIVE_CHALLENGES_FAILURE,
+          payload: {
+            loading: false,
+            error
+          }
+        });
       });
-    })
-    .catch(error => {
-      dispatch({
-        type: constants.ACTIVE_CHALLENGES_FAILURE,
-        payload: {
-          loading: false,
-          error
-        }
-      });
-    });
   };
 }
 
 export function completedChallenges(userId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: constants.COMPLETED_CHALLENGES_LOADING,
       payload: true
@@ -135,32 +141,32 @@ export function completedChallenges(userId) {
         Accept: 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(challenges => determineOpponent(userId, challenges))
-    .then(opponentChallenges => completionStatus(userId, opponentChallenges))
-    .then(completedStatusChallenges => {
-      dispatch({
-        type: constants.COMPLETED_CHALLENGES_SUCCESS,
-        payload: {
-          loading: false,
-          challenges: completedStatusChallenges
-        }
+      .then(response => response.json())
+      .then(challenges => determineOpponent(userId, challenges))
+      .then(opponentChallenges => completionStatus(userId, opponentChallenges))
+      .then(completedStatusChallenges => {
+        dispatch({
+          type: constants.COMPLETED_CHALLENGES_SUCCESS,
+          payload: {
+            loading: false,
+            challenges: completedStatusChallenges
+          }
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: constants.COMPLETED_CHALLENGES_FAILURE,
+          payload: {
+            loading: false,
+            error
+          }
+        });
       });
-    })
-    .catch(error => {
-      dispatch({
-        type: constants.COMPLETED_CHALLENGES_FAILURE,
-        payload: {
-          loading: false,
-          error
-        }
-      });
-    });
   };
 }
 
 export function acceptChallenge(challengeId, userId) {
-  return (dispatch) => {
+  return dispatch => {
     fetch(`${API_URL}challenges/accept`, {
       method: 'POST',
       body: JSON.stringify({
@@ -171,32 +177,32 @@ export function acceptChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch({
-        type: constants.ACCEPT_CHALLENGE_SUCCESS,
-        payload: {
-          response: responseJson
-        }
+      .then(response => response.json())
+      .then(responseJson => {
+        dispatch({
+          type: constants.ACCEPT_CHALLENGE_SUCCESS,
+          payload: {
+            response: responseJson
+          }
+        });
+        Answers.logCustom('Accept Challenge: Success', { challengeId, userId });
+      })
+      .then(dispatch(activeChallenges(userId)))
+      // navigate back to active challenges
+      .catch(error => {
+        dispatch({
+          type: constants.ACCEPT_CHALLENGE_FAILURE,
+          payload: {
+            error
+          }
+        });
+        Answers.logCustom('Accept Challenge: Failure', { challengeId, userId });
       });
-      Answers.logCustom('Accept Challenge: Success', {challengeId, userId});
-    })
-    .then(dispatch(activeChallenges(userId)))
-    // navigate back to active challenges
-    .catch(error => {
-      dispatch({
-        type: constants.ACCEPT_CHALLENGE_FAILURE,
-        payload: {
-          error
-        }
-      });
-      Answers.logCustom('Accept Challenge: Failure', {challengeId, userId});
-    });
   };
 }
 
 export function declineChallenge(challengeId, userId) {
-  return (dispatch) => {
+  return dispatch => {
     fetch(`${API_URL}challenges/decline`, {
       method: 'POST',
       body: JSON.stringify({
@@ -207,31 +213,37 @@ export function declineChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch({
-        type: constants.DECLINE_CHALLENGE_SUCCESS,
-        payload: {
-          response: responseJson
-        }
+      .then(response => response.json())
+      .then(responseJson => {
+        dispatch({
+          type: constants.DECLINE_CHALLENGE_SUCCESS,
+          payload: {
+            response: responseJson
+          }
+        });
+        Answers.logCustom('Decline Challenge: Success', {
+          challengeId,
+          userId
+        });
+      })
+      .then(dispatch(pendingChallenges(userId)))
+      .catch(error => {
+        dispatch({
+          type: constants.DECLINE_CHALLENGE_FAILURE,
+          payload: {
+            error
+          }
+        });
+        Answers.logCustom('Decline Challenge: Failure', {
+          challengeId,
+          userId
+        });
       });
-      Answers.logCustom('Decline Challenge: Success', {challengeId, userId});
-    })
-    .then(dispatch(pendingChallenges(userId)))
-    .catch(error => {
-      dispatch({
-        type: constants.DECLINE_CHALLENGE_FAILURE,
-        payload: {
-          error
-        }
-      });
-      Answers.logCustom('Decline Challenge: Failure', {challengeId, userId});
-    });
   };
 }
 
 export function completeChallenge(challengeId, userId) {
-  return (dispatch) => {
+  return dispatch => {
     fetch(`${API_URL}challenges/complete`, {
       method: 'POST',
       body: JSON.stringify({
@@ -243,49 +255,55 @@ export function completeChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(responseJson => {
-      try {
-        if (responseJson.error) {
-          throw new Error(responseJson.error);
-        }
-        dispatch({
-          type: constants.COMPLETE_CHALLENGE_SUCCESS,
-          payload: {
-            response: responseJson
+      .then(response => response.json())
+      .then(responseJson => {
+        try {
+          if (responseJson.error) {
+            throw new Error(responseJson.error);
           }
-        });
-        Answers.logCustom('Complete Challenge: Success', {challengeId, userId});
-      } catch (error) {
+          dispatch({
+            type: constants.COMPLETE_CHALLENGE_SUCCESS,
+            payload: {
+              response: responseJson
+            }
+          });
+          Answers.logCustom('Complete Challenge: Success', {
+            challengeId,
+            userId
+          });
+        } catch (error) {
+          dispatch({
+            type: constants.COMPLETE_CHALLENGE_FAILURE,
+            payload: {
+              error
+            }
+          });
+          Answers.logCustom('Complete Challenge: Failure', {
+            challengeId,
+            userId
+          });
+        }
+      })
+      .then(dispatch(completedChallenges(userId)))
+      .catch(error => {
         dispatch({
           type: constants.COMPLETE_CHALLENGE_FAILURE,
           payload: {
             error
           }
         });
-        Answers.logCustom('Complete Challenge: Failure', {challengeId, userId});
-      }
-    })
-    .then(dispatch(completedChallenges(userId)))
-    .catch(error => {
-      dispatch({
-        type: constants.COMPLETE_CHALLENGE_FAILURE,
-        payload: {
-          error
-        }
       });
-    });
   };
 }
 
 export function clearCompleteError() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({ type: constants.CLEAR_COMPLETE_ERROR });
   };
 }
 
 export function createChallenge(user, challengee, segment, completionDate) {
-  return (dispatch) => {
+  return dispatch => {
     fetch(`${API_URL}challenges/create`, {
       method: 'POST',
       body: JSON.stringify({
@@ -304,24 +322,34 @@ export function createChallenge(user, challengee, segment, completionDate) {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(responseJson => {
-      dispatch({
-        type: constants.CREATE_CHALLENGE_SUCCESS,
-        payload: {
-          response: responseJson
-        }
+      .then(response => response.json())
+      .then(responseJson => {
+        dispatch({
+          type: constants.CREATE_CHALLENGE_SUCCESS,
+          payload: {
+            response: responseJson
+          }
+        });
+        Answers.logCustom('Create Challenge: Success', {
+          user,
+          challengee,
+          segment,
+          completionDate
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: constants.CREATE_CHALLENGE_FAILURE,
+          payload: {
+            error
+          }
+        });
+        Answers.logCustom('Create Challenge: Failure', {
+          user,
+          challengee,
+          segment,
+          completionDate
+        });
       });
-      Answers.logCustom('Create Challenge: Success', {user, challengee, segment, completionDate});
-    })
-    .catch(error => {
-      dispatch({
-        type: constants.CREATE_CHALLENGE_FAILURE,
-        payload: {
-          error
-        }
-      });
-      Answers.logCustom('Create Challenge: Failure', {user, challengee, segment, completionDate});
-    });
   };
 }

@@ -16,7 +16,7 @@ import * as challengeActions from '../actions/challenges';
 
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => (r1 !== r2) });
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 export class ChallengeFeed extends React.Component {
   constructor(props) {
@@ -47,10 +47,9 @@ export class ChallengeFeed extends React.Component {
   }
 
   handlePress(challenge) {
-    this.props.navigation.navigate(
-      'PendingChallengeDetail',
-      { challenge: challenge }
-    );
+    this.props.navigation.navigate('PendingChallengeDetail', {
+      challenge: challenge
+    });
   }
 
   handleCreate() {
@@ -89,7 +88,10 @@ export class ChallengeFeed extends React.Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={feedStyles.create}>
-          <TouchableOpacity onPress={this.handleCreate} style={feedStyles.button}>
+          <TouchableOpacity
+            onPress={this.handleCreate}
+            style={feedStyles.button}
+          >
             <Text style={styles.buttonText}>Create Challenge</Text>
           </TouchableOpacity>
         </View>
@@ -106,42 +108,67 @@ export class ChallengeFeed extends React.Component {
                 onRefresh={this.handleRefresh}
               />
             }
-            renderRow={(rowData) => (
-              <TouchableOpacity onPress={() => this.handlePress(rowData)} style={styles.row}>
+            renderRow={rowData =>
+              <TouchableOpacity
+                onPress={() => this.handlePress(rowData)}
+                style={styles.row}
+              >
                 <View style={styles.challengeImageView}>
                   <Image
                     style={styles.challengeImage}
-                    source={rowData.opponentPhoto === 'stravaProfilePic' ?
-                      stravaProfilePic : rowData.opponentPhoto }
+                    source={
+                      rowData.opponentPhoto === 'stravaProfilePic'
+                        ? stravaProfilePic
+                        : rowData.opponentPhoto
+                    }
                   />
                 </View>
                 <View style={styles.challengeDetail}>
-                  <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  <Text
+                    style={styles.challengeText}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                  >
                     Opponent: {rowData.opponentName}
                   </Text>
-                  <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  <Text
+                    style={styles.challengeText}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                  >
                     Segment: {rowData.segmentName}
                   </Text>
-                  <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                  <Text
+                    style={styles.challengeText}
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                  >
                     Complete By: {new Date(rowData.expires).toDateString()}
                   </Text>
-                  { rowData.challengeeId === this.props.userId ?
-                    <View style={feedStyles.challengeOptions}>
-                      <TouchableOpacity
-                        onPress={() => this.handleDecline(rowData._id, this.props.userId)}
-                        style={feedStyles.challengeOptionsDecline}>
-                        <Text style={feedStyles.challengeOptionsDeclineText}>Decline</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.handleAccept(rowData._id, this.props.userId)}
-                        style={feedStyles.challengeOptionsAccept}>
-                        <Text style={feedStyles.challengeOptionsAcceptText}>Accept</Text>
-                      </TouchableOpacity>
-                    </View>
-                    : null }
+                  {rowData.challengeeId === this.props.userId
+                    ? <View style={feedStyles.challengeOptions}>
+                        <TouchableOpacity
+                          onPress={() =>
+                            this.handleDecline(rowData._id, this.props.userId)}
+                          style={feedStyles.challengeOptionsDecline}
+                        >
+                          <Text style={feedStyles.challengeOptionsDeclineText}>
+                            Decline
+                          </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() =>
+                            this.handleAccept(rowData._id, this.props.userId)}
+                          style={feedStyles.challengeOptionsAccept}
+                        >
+                          <Text style={feedStyles.challengeOptionsAcceptText}>
+                            Accept
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    : null}
                 </View>
-              </TouchableOpacity>
-            )}
+              </TouchableOpacity>}
           />
         </View>
       </View>
@@ -162,7 +189,7 @@ ChallengeFeed.propTypes = {
   })
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   userId: state.user.auth.userId,
   pending: state.challenges.pending
 });

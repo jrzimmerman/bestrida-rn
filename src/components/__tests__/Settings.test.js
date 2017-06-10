@@ -6,10 +6,6 @@ import { Settings } from '../Settings';
 import renderer from 'react-test-renderer';
 
 test('renders Settings component', () => {
-  const tree = renderer.create(
-    <Settings
-      dispatch={fn => fn}
-    />
-  ).toJSON();
+  const tree = renderer.create(<Settings dispatch={fn => fn} />).toJSON();
   expect(tree).toMatchSnapshot();
 });

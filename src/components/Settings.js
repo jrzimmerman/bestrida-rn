@@ -45,7 +45,10 @@ export class Settings extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <TouchableOpacity style={settingStyles.button} onPress={this.handleLogout}>
+        <TouchableOpacity
+          style={settingStyles.button}
+          onPress={this.handleLogout}
+        >
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
       </View>
@@ -61,7 +64,7 @@ Settings.propTypes = {
   navigation: object
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loggedIn: state.user.auth.loggedIn
 });
 

@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  StatusBar,
-  Text
-} from 'react-native';
+import { View, StatusBar, Text } from 'react-native';
 import styles from '../styles/styles';
 import completedStyles from '../styles/completedStyles';
 
@@ -33,18 +29,19 @@ function secondsToTime(secs) {
   return resultTime;
 }
 
-export const CompletedChallengeDetail = (props) => {
+export const CompletedChallengeDetail = props => {
   const { userId, challenge } = props.navigation.state.params;
   let completedDetail;
 
-  if (challenge.completedStatus === 'Challenge is still calculating.' ||
-    challenge.completedStatus === 'Waiting for opponent.') {
+  if (
+    challenge.completedStatus === 'Challenge is still calculating.' ||
+    challenge.completedStatus === 'Waiting for opponent.'
+  ) {
     completedDetail = (
       <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-        <Text
-          style={completedStyles.completedTitleText}>
-          { challenge.completedStatus }
+        <StatusBar barStyle="light-content" />
+        <Text style={completedStyles.completedTitleText}>
+          {challenge.completedStatus}
         </Text>
       </View>
     );
@@ -53,23 +50,24 @@ export const CompletedChallengeDetail = (props) => {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={completedStyles.completedTitleView}>
-          <Text
-            style={completedStyles.completedTitleText}>
-            { Number(userId) === challenge.winnerId ? 'You Won!' : 'You Lost!' }
+          <Text style={completedStyles.completedTitleText}>
+            {Number(userId) === challenge.winnerId ? 'You Won!' : 'You Lost!'}
           </Text>
-          <Text
-            style={completedStyles.completedSubTitleText}>
+          <Text style={completedStyles.completedSubTitleText}>
             {challenge.segmentName}
           </Text>
-          <Text
-            style={completedStyles.completedSubTitleText}>
-            { `${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles` }
+          <Text style={completedStyles.completedSubTitleText}>
+            {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles`}
           </Text>
         </View>
         <View style={[styles.challengeDetailView, { marginBottom: 75 }]}>
           <View style={styles.detailRowView}>
-            <Text style={completedStyles.completedDetailTitle}>{challenge.challengerName}</Text>
-            <Text style={completedStyles.completedDetailTitle}>{challenge.challengeeName}</Text>
+            <Text style={completedStyles.completedDetailTitle}>
+              {challenge.challengerName}
+            </Text>
+            <Text style={completedStyles.completedDetailTitle}>
+              {challenge.challengeeName}
+            </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={completedStyles.completedDetailText}>
@@ -82,44 +80,64 @@ export const CompletedChallengeDetail = (props) => {
           </View>
           <View style={styles.detailRowView}>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengerAvgHeartrate === 0 ? null : challenge.challengerAvgHeartrate}
+              {challenge.challengerAvgHeartrate === 0
+                ? null
+                : challenge.challengerAvgHeartrate}
             </Text>
-            <Text style={completedStyles.completedDetailTitle}>Average Heart Rate</Text>
+            <Text style={completedStyles.completedDetailTitle}>
+              Average Heart Rate
+            </Text>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengeeAvgHeartrate === 0 ? null : challenge.challengeeAvgHeartrate}
+              {challenge.challengeeAvgHeartrate === 0
+                ? null
+                : challenge.challengeeAvgHeartrate}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengerMaxHeartRate === 0 ? null : challenge.challengerMaxHeartRate}
+              {challenge.challengerMaxHeartRate === 0
+                ? null
+                : challenge.challengerMaxHeartRate}
             </Text>
             <Text style={completedStyles.completedDetailTitle}>
               Max Heart Rate
             </Text>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengeeMaxHeartRate === 0 ? null : challenge.challengeeMaxHeartRate}
+              {challenge.challengeeMaxHeartRate === 0
+                ? null
+                : challenge.challengeeMaxHeartRate}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengerAvgCadence === 0 ? null : challenge.challengerAvgCadence}
+              {challenge.challengerAvgCadence === 0
+                ? null
+                : challenge.challengerAvgCadence}
             </Text>
             <Text style={completedStyles.completedDetailTitle}>Cadence</Text>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengeeAvgCadence === 0 ? null : challenge.challengeeAvgCadence}
+              {challenge.challengeeAvgCadence === 0
+                ? null
+                : challenge.challengeeAvgCadence}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengerAvgWatts === 0 ? null : challenge.challengerAvgWatts}
+              {challenge.challengerAvgWatts === 0
+                ? null
+                : challenge.challengerAvgWatts}
             </Text>
             <Text style={completedStyles.completedDetailTitle}>Watts</Text>
             <Text style={completedStyles.completedDetailText}>
-              {challenge.challengeeAvgWatts === 0 ? null : challenge.challengeeAvgWatts}
+              {challenge.challengeeAvgWatts === 0
+                ? null
+                : challenge.challengeeAvgWatts}
             </Text>
           </View>
           <View style={styles.detailRowView}>
-            <Text style={completedStyles.completedDetailTitle}>Completed On</Text>
+            <Text style={completedStyles.completedDetailTitle}>
+              Completed On
+            </Text>
             <Text style={completedStyles.completedDetailText}>
               {new Date(challenge.completed).toDateString()}
             </Text>
@@ -130,7 +148,6 @@ export const CompletedChallengeDetail = (props) => {
   }
   return completedDetail;
 };
-
 
 const { number, object } = PropTypes;
 

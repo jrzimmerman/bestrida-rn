@@ -34,7 +34,7 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'stretch',
       margin: 10,
       borderWidth: 1,
-      borderColor: '#CCC',
+      borderColor: '#CCC'
     },
     selectorInput: {
       height: 35,
@@ -114,7 +114,7 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'stretch',
       margin: 10,
       borderWidth: 1,
-      borderColor: '#CCC',
+      borderColor: '#CCC'
     },
     selectorInput: {
       height: 44,

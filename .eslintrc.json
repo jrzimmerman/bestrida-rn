@@ -23,7 +23,13 @@
     "react-native/no-color-literals": 1
   },
 
-  "plugins": ["react", "react-native", "import", "jsx-a11y"],
+  "plugins": [
+    "react",
+    "react-native",
+    "import",
+    "jsx-a11y",
+    "prettier"
+  ],
 
   "extends": [
     "eslint:recommended",

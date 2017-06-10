@@ -30,7 +30,8 @@ export class ActiveChallenges extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(challengeActions.activeChallenges(this.props.userId));
+    const { dispatch, userId } = this.props;
+    dispatch(challengeActions.activeChallenges(userId));
     this.setState({
       dataSource: ds.cloneWithRows(this.props.active.challenges)
     });
@@ -43,9 +44,9 @@ export class ActiveChallenges extends React.Component {
   }
 
   handlePress(challenge) {
-    this.props.navigation.navigate('ActiveChallengeDetail',
-      { challenge: challenge }
-    );
+    this.props.navigation.navigate('ActiveChallengeDetail', {
+      challenge: challenge
+    });
   }
 
   handleRefresh() {
@@ -66,7 +67,10 @@ export class ActiveChallenges extends React.Component {
     if (this.props.challenges.complete.error) {
       errorView = (
         <View style={styles.errorView}>
-          <TouchableOpacity onPress={this.handleDismiss} style={styles.errorButton}>
+          <TouchableOpacity
+            onPress={this.handleDismiss}
+            style={styles.errorButton}
+          >
             <Text style={styles.errorTitle}>
               Error Completing Challenge
             </Text>
@@ -84,7 +88,7 @@ export class ActiveChallenges extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        { errorView }
+        {errorView}
         <ListView
           enableEmptySections={true}
           style={styles.list}
@@ -95,28 +99,45 @@ export class ActiveChallenges extends React.Component {
               onRefresh={this.handleRefresh}
             />
           }
-          renderRow={(rowData) => (
-            <TouchableOpacity onPress={() => this.handlePress(rowData)} style={styles.row}>
+          renderRow={rowData =>
+            <TouchableOpacity
+              onPress={() => this.handlePress(rowData)}
+              style={styles.row}
+            >
               <View style={styles.challengeImageView}>
                 <Image
                   style={styles.challengeImage}
-                  source={rowData.opponentPhoto === 'stravaProfilePic' ?
-                  stravaProfilePic : rowData.opponentPhoto }
+                  source={
+                    rowData.opponentPhoto === 'stravaProfilePic'
+                      ? stravaProfilePic
+                      : rowData.opponentPhoto
+                  }
                 />
               </View>
               <View style={styles.challengeDetail}>
-                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                <Text
+                  style={styles.challengeText}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                >
                   Opponent: {rowData.opponentName}
                 </Text>
-                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                <Text
+                  style={styles.challengeText}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                >
                   Segment: {rowData.segmentName}
                 </Text>
-                <Text style={styles.challengeText} numberOfLines={1} ellipsizeMode={'tail'}>
+                <Text
+                  style={styles.challengeText}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                >
                   Complete By: {new Date(rowData.expires).toDateString()}
                 </Text>
               </View>
-            </TouchableOpacity>
-          )}
+            </TouchableOpacity>}
         />
       </View>
     );
@@ -137,7 +158,7 @@ ActiveChallenges.propTypes = {
   challenges: object
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   userId: state.user.auth.userId,
   active: state.challenges.active,
   challenges: state.challenges

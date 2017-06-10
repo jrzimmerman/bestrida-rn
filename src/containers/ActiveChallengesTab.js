@@ -9,7 +9,7 @@ const ActiveChallengesTab = StackNavigator({
       title: 'Active Challenges',
       headerTintColor: '#CCC',
       headerStyle: {
-        backgroundColor: "#2B2B2B"
+        backgroundColor: '#2B2B2B'
       }
     }
   },
@@ -18,11 +18,10 @@ const ActiveChallengesTab = StackNavigator({
     navigationOptions: {
       headerTintColor: '#ef473a',
       headerStyle: {
-        backgroundColor: "#2B2B2B"
+        backgroundColor: '#2B2B2B'
       }
     }
   }
 });
-
 
 export default ActiveChallengesTab;

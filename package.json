@@ -8,6 +8,7 @@
     "postversion": "react-native-version",
     "bump-build": "react-native-version --increment-build",
     "lint": "eslint ./src",
+    "format": "prettier --single-quote --list-different --write 'src/**/*.js'",
     "test": "jest",
     "test:cover": "npm run test -- --coverage",
     "test:update": "npm run test -- --updateSnapshot"
@@ -39,8 +40,10 @@
     "eslint": "^3.19.0",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.0.1",
-    "eslint-plugin-react-native": "^2.3.2"
+    "eslint-plugin-react-native": "^2.3.2",
+    "prettier": "^1.4.4"
   },
   "jest": {
     "preset": "jest-react-native"
