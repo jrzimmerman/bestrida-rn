@@ -8,7 +8,7 @@
     "postversion": "react-native-version",
     "bump-build": "react-native-version --increment-build",
     "lint": "eslint ./src",
-    "format": "prettier --single-quote --list-different --write 'src/**/*.js'",
+    "format": "prettier --single-quote --write 'src/**/*.js'",
     "test": "jest",
     "test:cover": "npm run test -- --coverage",
     "test:update": "npm run test -- --updateSnapshot"
