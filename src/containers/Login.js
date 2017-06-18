@@ -17,6 +17,8 @@ import * as userActions from '../actions/user';
 const background = require('../images/LoginBackground.png');
 const loginButton = require('../images/btn_strava_connectwith_orange.png');
 
+const transparent = 'transparent';
+const white = 'white';
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
@@ -24,12 +26,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: null,
     height: null,
-    backgroundColor: 'transparent',
+    backgroundColor: transparent,
     resizeMode: 'stretch'
   },
   text: {
     paddingBottom: 20,
-    color: 'white',
+    color: white,
     fontSize: 26,
     fontWeight: 'bold'
   },
