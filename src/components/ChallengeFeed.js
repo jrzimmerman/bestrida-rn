@@ -99,7 +99,9 @@ export class ChallengeFeed extends React.Component {
           <ListView
             contentInset={{ bottom: 55 }}
             automaticallyAdjustContentInsets={false}
+            initialRows={10}
             enableEmptySections={true}
+            removeClippedSubviews={false}
             style={feedStyles.list}
             dataSource={this.state.dataSource}
             refreshControl={

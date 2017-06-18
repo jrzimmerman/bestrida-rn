@@ -90,7 +90,9 @@ export class ActiveChallenges extends React.Component {
         <StatusBar barStyle="light-content" />
         {errorView}
         <ListView
+          initialRows={5}
           enableEmptySections={true}
+          removeClippedSubviews={false}
           style={styles.list}
           dataSource={this.state.dataSource}
           refreshControl={

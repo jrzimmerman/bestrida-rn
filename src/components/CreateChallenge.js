@@ -53,7 +53,7 @@ export class CreateChallenge extends React.Component {
     );
     this.handleChangeOpponentText = this.handleChangeOpponentText.bind(this);
     this.handleChangeSegmentText = this.handleChangeSegmentText.bind(this);
-    this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleDateModal = this.toggleDateModal.bind(this);
     this.toggleSelectedOpponent = this.toggleSelectedOpponent.bind(this);
     this.toggleSelectedSegment = this.toggleSelectedSegment.bind(this);
@@ -129,7 +129,7 @@ export class CreateChallenge extends React.Component {
     this.setState({ selectedCompletionDate: d });
   }
 
-  handleSumbit() {
+  handleSubmit() {
     const { dispatch, userId, user } = this.props;
     const {
       selectedOpponent,
@@ -250,8 +250,10 @@ export class CreateChallenge extends React.Component {
                 />
                 <ListView
                   autoCorrect={false}
-                  automaticallyAdjustContentInsets={false}
+                  initialRows={10}
                   enableEmptySections={true}
+                  removeClippedSubviews={false}
+                  automaticallyAdjustContentInsets={false}
                   dataSource={this.state.opponentDataSource}
                   renderRow={rowData =>
                     <TouchableOpacity
@@ -287,7 +289,9 @@ export class CreateChallenge extends React.Component {
                 />
                 <ListView
                   automaticallyAdjustContentInsets={false}
+                  initialRows={10}
                   enableEmptySections={true}
+                  removeClippedSubviews={false}
                   dataSource={this.state.segmentDataSource}
                   renderRow={rowData =>
                     <TouchableOpacity
@@ -407,7 +411,7 @@ export class CreateChallenge extends React.Component {
         <View style={createStyles.createButtonView}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.handleSumbit()}
+            onPress={() => this.handleSubmit()}
           >
             <Text style={styles.buttonText}>Create Challenge</Text>
           </TouchableOpacity>

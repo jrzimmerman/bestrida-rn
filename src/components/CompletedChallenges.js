@@ -66,7 +66,9 @@ export class CompletedChallenges extends React.Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <ListView
+          initialRows={10}
           enableEmptySections={true}
+          removeClippedSubviews={false}
           style={styles.list}
           dataSource={this.state.dataSource}
           refreshControl={
