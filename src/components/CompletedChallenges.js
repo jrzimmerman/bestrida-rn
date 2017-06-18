@@ -41,11 +41,10 @@ export class CompletedChallenges extends React.Component {
   }
 
   handleRefresh() {
-    const { dispatch, completed, userId } = this.props;
+    const { dispatch, userId } = this.props;
     this.setState({ refreshing: true });
     dispatch(challengeActions.completedChallenges(userId));
     this.setState({
-      dataSource: ds.cloneWithRows(completed.challenges),
       refreshing: false
     });
   }
