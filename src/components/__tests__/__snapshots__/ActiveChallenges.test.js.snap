@@ -17,12 +17,14 @@ exports[`renders ActiveChallenges component 1`] = `
       }
     }
     enableEmptySections={true}
+    initialRows={5}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
         refreshing={false}
       />
     }
+    removeClippedSubviews={false}
     renderRow={[Function]}
     renderScrollComponent={[Function]}
     style={
