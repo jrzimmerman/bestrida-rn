@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Image,
-  ListView,
+  FlatList,
   RefreshControl,
   StatusBar,
   Text,
@@ -16,14 +16,11 @@ import * as challengeActions from '../actions/challenges';
 
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
 export class ChallengeFeed extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.pending.challenges),
       refreshing: false
     };
     this.handleCreate = this.handleCreate.bind(this);
@@ -35,15 +32,6 @@ export class ChallengeFeed extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
-    this.setState({
-      dataSource: ds.cloneWithRows(this.props.pending.challenges)
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: ds.cloneWithRows(nextProps.pending.challenges)
-    });
   }
 
   handlePress(challenge) {
@@ -60,7 +48,6 @@ export class ChallengeFeed extends React.Component {
     this.props.dispatch(challengeActions.acceptChallenge(challengeId, userId));
     this.props.navigation.navigate('ActiveChallenges');
     this.setState({
-      dataSource: ds.cloneWithRows(this.props.pending.challenges),
       refreshing: false
     });
   }
@@ -69,7 +56,6 @@ export class ChallengeFeed extends React.Component {
     this.props.dispatch(challengeActions.declineChallenge(challengeId, userId));
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
     this.setState({
-      dataSource: ds.cloneWithRows(this.props.pending.challenges),
       refreshing: false
     });
   }
@@ -78,7 +64,6 @@ export class ChallengeFeed extends React.Component {
     this.setState({ refreshing: true });
     this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
     this.setState({
-      dataSource: ds.cloneWithRows(this.props.pending.challenges),
       refreshing: false
     });
   }
@@ -96,32 +81,29 @@ export class ChallengeFeed extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={feedStyles.feed}>
-          <ListView
-            contentInset={{ bottom: 55 }}
-            automaticallyAdjustContentInsets={false}
-            initialRows={10}
-            enableEmptySections={true}
-            removeClippedSubviews={false}
+          <FlatList
             style={feedStyles.list}
-            dataSource={this.state.dataSource}
+            keyExtractor={item => item._id}
+            data={this.props.pending.challenges}
             refreshControl={
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.handleRefresh}
               />
             }
-            renderRow={rowData =>
+            renderItem={({ item }) =>
               <TouchableOpacity
-                onPress={() => this.handlePress(rowData)}
+                key={item._id}
+                onPress={() => this.handlePress(item)}
                 style={styles.row}
               >
                 <View style={styles.challengeImageView}>
                   <Image
                     style={styles.challengeImage}
                     source={
-                      rowData.opponentPhoto === 'stravaProfilePic'
+                      item.opponentPhoto === 'stravaProfilePic'
                         ? stravaProfilePic
-                        : rowData.opponentPhoto
+                        : item.opponentPhoto
                     }
                   />
                 </View>
@@ -131,27 +113,27 @@ export class ChallengeFeed extends React.Component {
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                   >
-                    Opponent: {rowData.opponentName}
+                    Opponent: {item.opponentName}
                   </Text>
                   <Text
                     style={styles.challengeText}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                   >
-                    Segment: {rowData.segmentName}
+                    Segment: {item.segmentName}
                   </Text>
                   <Text
                     style={styles.challengeText}
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                   >
-                    Complete By: {new Date(rowData.expires).toDateString()}
+                    Complete By: {new Date(item.expires).toDateString()}
                   </Text>
-                  {rowData.challengeeId === this.props.userId
+                  {item.challengeeId === this.props.userId
                     ? <View style={feedStyles.challengeOptions}>
                         <TouchableOpacity
                           onPress={() =>
-                            this.handleDecline(rowData._id, this.props.userId)}
+                            this.handleDecline(item._id, this.props.userId)}
                           style={feedStyles.challengeOptionsDecline}
                         >
                           <Text style={feedStyles.challengeOptionsDeclineText}>
@@ -160,7 +142,7 @@ export class ChallengeFeed extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                           onPress={() =>
-                            this.handleAccept(rowData._id, this.props.userId)}
+                            this.handleAccept(item._id, this.props.userId)}
                           style={feedStyles.challengeOptionsAccept}
                         >
                           <Text style={feedStyles.challengeOptionsAcceptText}>

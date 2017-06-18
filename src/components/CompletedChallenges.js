@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Image,
-  ListView,
+  FlatList,
   RefreshControl,
   StatusBar,
   Text,
@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import * as challengeActions from '../actions/challenges';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
 export class CompletedChallenges extends React.Component {
@@ -21,7 +20,6 @@ export class CompletedChallenges extends React.Component {
     super(props);
 
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.completed.challenges),
       refreshing: false
     };
     this.handlePress = this.handlePress.bind(this);
@@ -32,15 +30,6 @@ export class CompletedChallenges extends React.Component {
     this.props.dispatch(
       challengeActions.completedChallenges(this.props.userId)
     );
-    this.setState({
-      dataSource: ds.cloneWithRows(this.props.completed.challenges)
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: ds.cloneWithRows(nextProps.completed.challenges)
-    });
   }
 
   handlePress(challenge) {
@@ -65,30 +54,28 @@ export class CompletedChallenges extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <ListView
-          initialRows={10}
-          enableEmptySections={true}
-          removeClippedSubviews={false}
+        <FlatList
           style={styles.list}
-          dataSource={this.state.dataSource}
+          keyExtractor={item => item._id}
+          data={this.props.completed.challenges}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
               onRefresh={this.handleRefresh}
             />
           }
-          renderRow={rowData =>
+          renderItem={({ item }) =>
             <TouchableOpacity
-              onPress={() => this.handlePress(rowData)}
+              onPress={() => this.handlePress(item)}
               style={styles.row}
             >
               <View style={styles.challengeImageView}>
                 <Image
                   style={styles.challengeImage}
                   source={
-                    rowData.opponentPhoto === 'stravaProfilePic'
+                    item.opponentPhoto === 'stravaProfilePic'
                       ? stravaProfilePic
-                      : rowData.opponentPhoto
+                      : item.opponentPhoto
                   }
                 />
               </View>
@@ -98,21 +85,21 @@ export class CompletedChallenges extends React.Component {
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  Opponent: {rowData.opponentName}
+                  Opponent: {item.opponentName}
                 </Text>
                 <Text
                   style={styles.challengeText}
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  Segment: {rowData.segmentName}
+                  Segment: {item.segmentName}
                 </Text>
                 <Text
                   style={styles.challengeText}
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  {rowData.completedStatus}
+                  {item.completedStatus}
                 </Text>
               </View>
             </TouchableOpacity>}

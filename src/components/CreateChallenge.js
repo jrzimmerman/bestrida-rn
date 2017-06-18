@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   DatePickerIOS,
-  ListView,
+  FlatList,
   Modal,
   Platform,
   StatusBar,
@@ -20,12 +20,6 @@ import createStyles from '../styles/createStyles';
 import * as challengeActions from '../actions/challenges';
 import * as userActions from '../actions/user';
 
-const opponentDS = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1 !== r2
-});
-const segmentDS = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1 !== r2
-});
 const newDate = new Date();
 
 export class CreateChallenge extends React.Component {
@@ -39,11 +33,11 @@ export class CreateChallenge extends React.Component {
       selectedSegment: null,
       selectedCompletionDate: newDate,
       showDateModal: false,
-      segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
-      opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends),
       showOpponentList: true,
       showSegmentList: true,
-      createChallengeError: null
+      createChallengeError: null,
+      opponents: this.props.user.friends,
+      segments: this.props.user.segments
     };
 
     this.handleOpponentPress = this.handleOpponentPress.bind(this);
@@ -63,8 +57,8 @@ export class CreateChallenge extends React.Component {
   componentWillMount() {
     this.props.dispatch(userActions.getUser(this.props.userId));
     this.setState({
-      segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
-      opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
+      segments: this.props.user.segments,
+      opponents: this.props.user.friends
     });
   }
 
@@ -72,15 +66,15 @@ export class CreateChallenge extends React.Component {
     this.props.dispatch(userActions.getUserSegments(this.props.userId));
     this.props.dispatch(userActions.getUserFriends(this.props.userId));
     this.setState({
-      segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
-      opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
+      segments: this.props.user.segments,
+      opponents: this.props.user.friends
     });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      segmentDataSource: segmentDS.cloneWithRows(nextProps.user.segments),
-      opponentDataSource: opponentDS.cloneWithRows(nextProps.user.friends)
+      segments: nextProps.user.segments,
+      opponents: nextProps.user.friends
     });
   }
 
@@ -91,7 +85,7 @@ export class CreateChallenge extends React.Component {
     const matches = results.map(item => item.original);
     this.setState({
       selectedOpponentText: text,
-      opponentDataSource: opponentDS.cloneWithRows(matches),
+      opponents: matches,
       createChallengeError: null
     });
   }
@@ -103,7 +97,7 @@ export class CreateChallenge extends React.Component {
     const matches = results.map(item => item.original);
     this.setState({
       selectedSegmentText: text,
-      segmentDataSource: segmentDS.cloneWithRows(matches),
+      segments: matches,
       createChallengeError: null
     });
   }
@@ -125,7 +119,7 @@ export class CreateChallenge extends React.Component {
   }
 
   handleSelectCompletionDate(date) {
-    let d = moment(date);
+    const d = moment(date);
     this.setState({ selectedCompletionDate: d });
   }
 
@@ -174,8 +168,8 @@ export class CreateChallenge extends React.Component {
         showOpponentList: true,
         showSegmentList: true,
         createChallengeError: null,
-        segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments),
-        opponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
+        segments: this.props.user.segments,
+        opponents: this.props.user.friends
       });
     }
   }
@@ -189,7 +183,7 @@ export class CreateChallenge extends React.Component {
       this.setState({
         selectedOpponent: null,
         selectedOpponentText: '',
-        pponentDataSource: opponentDS.cloneWithRows(this.props.user.friends)
+        opponents: this.props.user.friends
       });
     }
     this.setState({ showOpponentList: !this.state.showOpponentList });
@@ -200,7 +194,7 @@ export class CreateChallenge extends React.Component {
       this.setState({
         selectedSegment: null,
         selectedSegmentText: '',
-        segmentDataSource: segmentDS.cloneWithRows(this.props.user.segments)
+        segments: this.props.user.segments
       });
     }
     this.setState({ showSegmentList: !this.state.showSegmentList });
@@ -248,19 +242,17 @@ export class CreateChallenge extends React.Component {
                   placeholder={'Select Opponent'}
                   placeholderTextColor={'#CCC'}
                 />
-                <ListView
+                <FlatList
                   autoCorrect={false}
-                  initialRows={10}
-                  enableEmptySections={true}
-                  removeClippedSubviews={false}
-                  automaticallyAdjustContentInsets={false}
-                  dataSource={this.state.opponentDataSource}
-                  renderRow={rowData =>
+                  keyExtractor={item => item.id}
+                  data={this.state.opponents}
+                  renderItem={({ item }) =>
                     <TouchableOpacity
-                      onPress={() => this.handleOpponentPress(rowData)}
+                      key={item.id}
+                      onPress={() => this.handleOpponentPress(item)}
                       style={createStyles.row}
                     >
-                      <Text style={styles.text}>{rowData.fullName}</Text>
+                      <Text style={styles.text}>{item.fullName}</Text>
                     </TouchableOpacity>}
                 />
               </View>
@@ -287,18 +279,16 @@ export class CreateChallenge extends React.Component {
                   placeholder={'Select Segment'}
                   placeholderTextColor={'#CCC'}
                 />
-                <ListView
-                  automaticallyAdjustContentInsets={false}
-                  initialRows={10}
-                  enableEmptySections={true}
-                  removeClippedSubviews={false}
-                  dataSource={this.state.segmentDataSource}
-                  renderRow={rowData =>
+                <FlatList
+                  keyExtractor={item => item._id}
+                  data={this.state.segments}
+                  renderItem={({ item }) =>
                     <TouchableOpacity
-                      onPress={() => this.handleSegmentPress(rowData)}
+                      key={item._id}
+                      onPress={() => this.handleSegmentPress(item)}
                       style={createStyles.row}
                     >
-                      <Text style={styles.text}>{rowData.name}</Text>
+                      <Text style={styles.text}>{item.name}</Text>
                     </TouchableOpacity>}
                 />
               </View>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Image,
-  ListView,
+  FlatList,
   RefreshControl,
   StatusBar,
   Text,
@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import * as challengeActions from '../actions/challenges';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const stravaProfilePic = require('../images/strava_profile_pic.png');
 
 export class ActiveChallenges extends React.Component {
@@ -21,7 +20,6 @@ export class ActiveChallenges extends React.Component {
     super(props);
 
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.active.challenges),
       refreshing: false
     };
     this.handlePress = this.handlePress.bind(this);
@@ -32,15 +30,6 @@ export class ActiveChallenges extends React.Component {
   componentDidMount() {
     const { dispatch, userId } = this.props;
     dispatch(challengeActions.activeChallenges(userId));
-    this.setState({
-      dataSource: ds.cloneWithRows(this.props.active.challenges)
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: ds.cloneWithRows(nextProps.active.challenges)
-    });
   }
 
   handlePress(challenge) {
@@ -53,7 +42,6 @@ export class ActiveChallenges extends React.Component {
     this.setState({ refreshing: true });
     this.props.dispatch(challengeActions.activeChallenges(this.props.userId));
     this.setState({
-      dataSource: ds.cloneWithRows(this.props.active.challenges),
       refreshing: false
     });
   }
@@ -89,30 +77,29 @@ export class ActiveChallenges extends React.Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         {errorView}
-        <ListView
-          initialRows={5}
-          enableEmptySections={true}
-          removeClippedSubviews={false}
+        <FlatList
           style={styles.list}
-          dataSource={this.state.dataSource}
+          data={this.props.active.challenges}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
               onRefresh={this.handleRefresh}
             />
           }
-          renderRow={rowData =>
+          keyExtractor={item => item._id}
+          renderItem={({ item }) =>
             <TouchableOpacity
-              onPress={() => this.handlePress(rowData)}
+              key={item._id}
+              onPress={() => this.handlePress(item)}
               style={styles.row}
             >
               <View style={styles.challengeImageView}>
                 <Image
                   style={styles.challengeImage}
                   source={
-                    rowData.opponentPhoto === 'stravaProfilePic'
+                    item.opponentPhoto === 'stravaProfilePic'
                       ? stravaProfilePic
-                      : rowData.opponentPhoto
+                      : item.opponentPhoto
                   }
                 />
               </View>
@@ -122,21 +109,21 @@ export class ActiveChallenges extends React.Component {
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  Opponent: {rowData.opponentName}
+                  Opponent: {item.opponentName}
                 </Text>
                 <Text
                   style={styles.challengeText}
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  Segment: {rowData.segmentName}
+                  Segment: {item.segmentName}
                 </Text>
                 <Text
                   style={styles.challengeText}
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  Complete By: {new Date(rowData.expires).toDateString()}
+                  Complete By: {new Date(item.expires).toDateString()}
                 </Text>
               </View>
             </TouchableOpacity>}
