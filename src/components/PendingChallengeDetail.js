@@ -73,9 +73,7 @@ export class PendingChallengeDetail extends React.Component {
             onPress={() => this.handleAccept(challenge._id, userId)}
             style={pendingStyles.challengeOptionsAccept}
           >
-            <Text style={pendingStyles.challengeOptionsAcceptText}>
-              Accept
-            </Text>
+            <Text style={pendingStyles.challengeOptionsAcceptText}>Accept</Text>
           </TouchableOpacity>
         </View>
       );
@@ -94,7 +92,9 @@ export class PendingChallengeDetail extends React.Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={styles.challengeTitleView}>
-          <Text style={styles.challengeTitleText}>{challenge.segmentName}</Text>
+          <Text style={styles.challengeTitleText}>
+            {challenge.segmentName}
+          </Text>
         </View>
         <View style={styles.challengeDetailView}>
           <View style={styles.detailRowView}>

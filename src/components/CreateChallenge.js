@@ -213,15 +213,11 @@ export class CreateChallenge extends React.Component {
             onPress={this.handleDismiss}
             style={styles.createErrorButton}
           >
-            <Text style={styles.errorTitle}>
-              Error Completing Challenge
-            </Text>
+            <Text style={styles.errorTitle}>Error Completing Challenge</Text>
             <Text style={styles.errorText}>
               {this.state.createChallengeError}
             </Text>
-            <Text style={styles.errorText}>
-              Tap to dismiss
-            </Text>
+            <Text style={styles.errorText}>Tap to dismiss</Text>
           </TouchableOpacity>
         </View>
       );
@@ -252,7 +248,9 @@ export class CreateChallenge extends React.Component {
                       onPress={() => this.handleOpponentPress(item)}
                       style={createStyles.row}
                     >
-                      <Text style={styles.text}>{item.fullName}</Text>
+                      <Text style={styles.text}>
+                        {item.fullName}
+                      </Text>
                     </TouchableOpacity>}
                 />
               </View>
@@ -288,7 +286,9 @@ export class CreateChallenge extends React.Component {
                       onPress={() => this.handleSegmentPress(item)}
                       style={createStyles.row}
                     >
-                      <Text style={styles.text}>{item.name}</Text>
+                      <Text style={styles.text}>
+                        {item.name}
+                      </Text>
                     </TouchableOpacity>}
                 />
               </View>
@@ -396,7 +396,6 @@ export class CreateChallenge extends React.Component {
                   />
                 </View>
               </View>}
-
         </View>
         <View style={createStyles.createButtonView}>
           <TouchableOpacity

@@ -14,7 +14,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
     style={
       Object {
         "alignSelf": "stretch",
-        "flex": 0.2,
+        "flex": 0.1,
       }
     }
   >
@@ -31,7 +31,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
           "fontSize": 18,
           "fontWeight": "bold",
           "justifyContent": "space-around",
-          "paddingTop": 80,
+          "paddingTop": 20,
         }
       }
     >
@@ -43,7 +43,7 @@ exports[`renders PendingChallengeDetail component 1`] = `
       Object {
         "alignSelf": "stretch",
         "backgroundColor": "#383838",
-        "flex": 0.6,
+        "flex": 0.375,
         "marginHorizontal": 20,
         "marginVertical": 10,
       }
@@ -422,116 +422,9 @@ exports[`renders PendingChallengeDetail component 1`] = `
     style={
       Object {
         "alignSelf": "stretch",
-        "flex": 0.2,
+        "flex": 0.1,
       }
     }
-  >
-    <View
-      style={
-        Object {
-          "alignSelf": "stretch",
-          "flex": 1,
-          "flexDirection": "row",
-        }
-      }
-    >
-      <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignSelf": "stretch",
-            "backgroundColor": "transparent",
-            "borderColor": "#ef473a",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "flex": 0.5,
-            "height": 40,
-            "margin": 10,
-            "opacity": 1,
-            "padding": 10,
-          }
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "alignSelf": "center",
-              "color": "#ef473a",
-              "justifyContent": "center",
-            }
-          }
-        >
-          Decline
-        </Text>
-      </View>
-      <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignSelf": "stretch",
-            "backgroundColor": "transparent",
-            "borderColor": "#33cd5f",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "flex": 0.5,
-            "height": 40,
-            "margin": 10,
-            "opacity": 1,
-            "padding": 10,
-          }
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "alignSelf": "center",
-              "color": "#33cd5f",
-              "justifyContent": "center",
-            }
-          }
-        >
-          Accept
-        </Text>
-      </View>
-    </View>
-  </View>
+  />
 </View>
 `;

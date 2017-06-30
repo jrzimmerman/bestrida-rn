@@ -56,7 +56,9 @@ export class ActiveChallengeDetail extends React.Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={styles.challengeTitleView}>
-          <Text style={styles.challengeTitleText}>{challenge.segmentName}</Text>
+          <Text style={styles.challengeTitleText}>
+            {challenge.segmentName}
+          </Text>
         </View>
         <View style={styles.challengeDetailView}>
           <View style={styles.detailRowView}>
@@ -104,9 +106,7 @@ export class ActiveChallengeDetail extends React.Component {
             </Text>
           </View>
           <View style={styles.detailRowView}>
-            <Text style={styles.challengeDetailTitle}>
-              Elevation Gain
-            </Text>
+            <Text style={styles.challengeDetailTitle}>Elevation Gain</Text>
             <Text style={styles.challengeDetailText}>
               {`${challenge.segmentElevationGain} meters`}
             </Text>

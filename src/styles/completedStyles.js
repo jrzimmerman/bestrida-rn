@@ -4,7 +4,7 @@ let styles;
 if (PixelRatio.get() < 3) {
   styles = StyleSheet.create({
     completedTitleView: {
-      flex: 0.3,
+      flex: 0.15,
       alignSelf: 'stretch',
       justifyContent: 'space-around'
     },

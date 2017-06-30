@@ -8,6 +8,8 @@ class SegmentMap extends Component {
     const { map, height, width } = this.props;
     let segmentPolyline;
 
+    // buffer around the segment polyline
+    const BUFFER = 0.05;
     const ASPECT_RATIO = width / height;
     let LATITUDE_DELTA = 0.0085;
     let LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
@@ -24,16 +26,16 @@ class SegmentMap extends Component {
         longitude: Number(coord[1])
       }));
       const beginCoord = coords[0];
-      // const endCoord = coords[coords.length - 1];
-      // const centerLat = endCoord.latitude + beginCoord.latitude / 2;
-      // const centerLong = endCoord.longitude + beginCoord.longitude / 2;
-      // LATITUDE_DELTA =
-      //   Math.max(endCoord.latitude, beginCoord.latitude) -
-      //   Math.min(endCoord.latitude, beginCoord.latitude);
-      LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+      const endCoord = coords[coords.length - 1];
+      const centerLat = (endCoord.latitude + beginCoord.latitude) / 2;
+      const centerLong = (endCoord.longitude + beginCoord.longitude) / 2;
+      LATITUDE_DELTA =
+        Math.max(endCoord.latitude, beginCoord.latitude) -
+        Math.min(endCoord.latitude, beginCoord.latitude);
+      LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO + BUFFER;
       region = {
-        latitude: beginCoord.latitude,
-        longitude: beginCoord.longitude,
+        latitude: centerLat,
+        longitude: centerLong,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA
       };
