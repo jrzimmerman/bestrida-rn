@@ -1,16 +1,29 @@
 import React from 'react';
+import { Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { View, StatusBar, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import SegmentMap from './SegmentMap';
 import styles from '../styles/styles';
 import pendingStyles from '../styles/pendingStyles';
 import * as challengeActions from '../actions/challenges';
+import * as segmentActions from '../actions/segments';
 
 export class PendingChallengeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.handleAccept = this.handleAccept.bind(this);
     this.handleDecline = this.handleDecline.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    const { challenge } = this.props.navigation.state.params;
+    dispatch(segmentActions.getSegment(challenge.segmentId));
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(segmentActions.clearSegment());
   }
 
   handleAccept(challengeId, userId) {
@@ -28,12 +41,60 @@ export class PendingChallengeDetail extends React.Component {
   }
 
   render() {
+    const { segments } = this.props;
     const { challenge, userId } = this.props.navigation.state.params;
+    const { height, width } = Dimensions.get('window');
+    let segmentMap;
+    if (segments && segments.segment && segments.segment.map) {
+      segmentMap = (
+        <View style={styles.challengeMapView}>
+          <SegmentMap
+            height={height * 0.275}
+            width={width * 0.9}
+            map={segments.segment.map}
+          />
+        </View>
+      );
+    }
+
+    let challengeFooter;
+    if (userId && challenge.challengeeId === userId) {
+      challengeFooter = (
+        <View style={pendingStyles.challengeOptions}>
+          <TouchableOpacity
+            onPress={() => this.handleDecline(challenge._id, userId)}
+            style={pendingStyles.challengeOptionsDecline}
+          >
+            <Text style={pendingStyles.challengeOptionsDeclineText}>
+              Decline
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.handleAccept(challenge._id, userId)}
+            style={pendingStyles.challengeOptionsAccept}
+          >
+            <Text style={pendingStyles.challengeOptionsAcceptText}>Accept</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else if (userId && challenge.challengerId === userId) {
+      challengeFooter = (
+        <TouchableOpacity
+          onPress={() => this.handleDecline(challenge._id, userId)}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Cancel Challenge</Text>
+        </TouchableOpacity>
+      );
+    }
+
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={styles.challengeTitleView}>
-          <Text style={styles.challengeTitleText}>{challenge.segmentName}</Text>
+          <Text style={styles.challengeTitleText}>
+            {challenge.segmentName}
+          </Text>
         </View>
         <View style={styles.challengeDetailView}>
           <View style={styles.detailRowView}>
@@ -88,49 +149,28 @@ export class PendingChallengeDetail extends React.Component {
             </Text>
           </View>
         </View>
+        {segmentMap}
         <View style={styles.challengeFooterView}>
-          {challenge.challengeeId === userId
-            ? <View style={pendingStyles.challengeOptions}>
-                <TouchableOpacity
-                  onPress={() => this.handleDecline(challenge._id, userId)}
-                  style={pendingStyles.challengeOptionsDecline}
-                >
-                  <Text style={pendingStyles.challengeOptionsDeclineText}>
-                    Decline
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.handleAccept(challenge._id, userId)}
-                  style={pendingStyles.challengeOptionsAccept}
-                >
-                  <Text style={pendingStyles.challengeOptionsAcceptText}>
-                    Accept
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            : <TouchableOpacity
-                onPress={() => this.handleDecline(challenge._id, userId)}
-                style={styles.button}
-              >
-                <Text style={styles.buttonText}>Cancel Challenge</Text>
-              </TouchableOpacity>}
+          {challengeFooter}
         </View>
       </View>
     );
   }
 }
 
-const { func, number, object } = PropTypes;
+const { func, number, shape } = PropTypes;
 
 PendingChallengeDetail.propTypes = {
   dispatch: func,
-  challenge: object,
+  challenge: shape({}),
   userId: number,
-  navigation: object
+  navigation: shape({}),
+  segments: shape({})
 };
 
 const mapStateToProps = state => ({
-  userId: state.user.auth.userId
+  userId: state.user.auth.userId,
+  segments: state.segments
 });
 
 export default connect(mapStateToProps)(PendingChallengeDetail);

@@ -1,0 +1,4 @@
+export const GET_SEGMENT = 'GET_SEGMENT';
+export const SEGMENT_LOADING = 'SEGMENT_LOADING';
+export const SEGMENT_ERROR = 'SEGMENT_ERROR';
+export const CLEAR_SEGMENT = 'CLEAR_SEGMENT';

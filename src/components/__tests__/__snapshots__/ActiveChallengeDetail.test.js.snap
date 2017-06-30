@@ -14,7 +14,7 @@ exports[`renders ActiveChallengeDetail component 1`] = `
     style={
       Object {
         "alignSelf": "stretch",
-        "flex": 0.2,
+        "flex": 0.1,
       }
     }
   >
@@ -31,7 +31,7 @@ exports[`renders ActiveChallengeDetail component 1`] = `
           "fontSize": 18,
           "fontWeight": "bold",
           "justifyContent": "space-around",
-          "paddingTop": 80,
+          "paddingTop": 20,
         }
       }
     >
@@ -43,7 +43,7 @@ exports[`renders ActiveChallengeDetail component 1`] = `
       Object {
         "alignSelf": "stretch",
         "backgroundColor": "#383838",
-        "flex": 0.6,
+        "flex": 0.375,
         "marginHorizontal": 20,
         "marginVertical": 10,
       }
@@ -420,7 +420,7 @@ exports[`renders ActiveChallengeDetail component 1`] = `
     style={
       Object {
         "alignSelf": "stretch",
-        "flex": 0.2,
+        "flex": 0.1,
       }
     }
   >

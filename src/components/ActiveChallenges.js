@@ -34,7 +34,8 @@ export class ActiveChallenges extends React.Component {
 
   handlePress(challenge) {
     this.props.navigation.navigate('ActiveChallengeDetail', {
-      challenge: challenge
+      challenge: challenge,
+      userId: this.props.userId
     });
   }
 
@@ -59,15 +60,9 @@ export class ActiveChallenges extends React.Component {
             onPress={this.handleDismiss}
             style={styles.errorButton}
           >
-            <Text style={styles.errorTitle}>
-              Error Completing Challenge
-            </Text>
-            <Text style={styles.errorText}>
-              Effort not found on Strava
-            </Text>
-            <Text style={styles.errorText}>
-              Tap to dismiss
-            </Text>
+            <Text style={styles.errorTitle}>Error Completing Challenge</Text>
+            <Text style={styles.errorText}>Effort not found on Strava</Text>
+            <Text style={styles.errorText}>Tap to dismiss</Text>
           </TouchableOpacity>
         </View>
       );

@@ -36,7 +36,8 @@ export class ChallengeFeed extends React.Component {
 
   handlePress(challenge) {
     this.props.navigation.navigate('PendingChallengeDetail', {
-      challenge: challenge
+      challenge: challenge,
+      userId: this.props.userId
     });
   }
 

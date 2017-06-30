@@ -159,6 +159,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-maps')
     compile project(':react-native-fabric')
     compile project(':react-native-vector-icons')
     // Crashlytics Kit
