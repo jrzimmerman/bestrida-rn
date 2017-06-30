@@ -1,14 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StatusBar, Text, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  Dimensions
+} from 'react-native';
 import { connect } from 'react-redux';
+import SegmentMap from './SegmentMap';
 import styles from '../styles/styles';
 import * as challengeActions from '../actions/challenges';
+import * as segmentActions from '../actions/segments';
 
 export class ActiveChallengeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.handleComplete = this.handleComplete.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    const { challenge } = this.props.navigation.state.params;
+    dispatch(segmentActions.getSegment(challenge.segmentId));
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(segmentActions.clearSegment());
   }
 
   handleComplete(challengeId, userId) {
@@ -19,7 +37,21 @@ export class ActiveChallengeDetail extends React.Component {
   }
 
   render() {
+    const { segments } = this.props;
     const { challenge, userId } = this.props.navigation.state.params;
+    const { height, width } = Dimensions.get('window');
+    let segmentMap;
+    if (segments && segments.segment && segments.segment.map) {
+      segmentMap = (
+        <View style={styles.challengeMapView}>
+          <SegmentMap
+            height={height * 0.275}
+            width={width * 0.9}
+            map={segments.segment.map}
+          />
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -80,6 +112,7 @@ export class ActiveChallengeDetail extends React.Component {
             </Text>
           </View>
         </View>
+        {segmentMap}
         <View style={styles.challengeFooterView}>
           <TouchableOpacity
             onPress={() => this.handleComplete(challenge._id, userId)}
@@ -93,17 +126,19 @@ export class ActiveChallengeDetail extends React.Component {
   }
 }
 
-const { func, object, number } = PropTypes;
+const { func, number, shape } = PropTypes;
 
 ActiveChallengeDetail.propTypes = {
-  challenge: object,
   dispatch: func,
-  navigation: object,
-  userId: number
+  challenge: shape({}),
+  userId: number,
+  navigation: shape({}),
+  segments: shape({})
 };
 
 const mapStateToProps = state => ({
-  userId: state.user.auth.userId
+  userId: state.user.auth.userId,
+  segments: state.segments
 });
 
 export default connect(mapStateToProps)(ActiveChallengeDetail);

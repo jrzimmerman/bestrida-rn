@@ -34,7 +34,8 @@ export class ActiveChallenges extends React.Component {
 
   handlePress(challenge) {
     this.props.navigation.navigate('ActiveChallengeDetail', {
-      challenge: challenge
+      challenge: challenge,
+      userId: this.props.userId
     });
   }
 

@@ -71,11 +71,11 @@ if (PixelRatio.get() < 3) {
       marginVertical: 4
     },
     challengeTitleView: {
-      flex: 0.2,
+      flex: 0.1,
       alignSelf: 'stretch'
     },
     challengeTitleText: {
-      paddingTop: 80,
+      paddingTop: 20,
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignSelf: 'center',
@@ -84,7 +84,7 @@ if (PixelRatio.get() < 3) {
       fontSize: 18
     },
     challengeDetailView: {
-      flex: 0.6,
+      flex: 0.375,
       alignSelf: 'stretch',
       backgroundColor: '#383838',
       marginHorizontal: 20,
@@ -103,8 +103,13 @@ if (PixelRatio.get() < 3) {
       color: '#CCC',
       fontSize: 12
     },
+    challengeMapView: {
+      flex: 0.325,
+      alignSelf: 'stretch',
+      marginHorizontal: 20
+    },
     challengeFooterView: {
-      flex: 0.2,
+      flex: 0.1,
       alignSelf: 'stretch'
     },
     detailRowView: {
@@ -222,7 +227,7 @@ if (PixelRatio.get() < 3) {
       marginVertical: 4
     },
     challengeTitleView: {
-      flex: 0.2,
+      flex: 0.1,
       alignSelf: 'stretch'
     },
     challengeTitleText: {
@@ -235,7 +240,7 @@ if (PixelRatio.get() < 3) {
       fontSize: 22
     },
     challengeDetailView: {
-      flex: 0.6,
+      flex: 0.375,
       alignSelf: 'stretch',
       backgroundColor: '#383838',
       marginHorizontal: 20,
@@ -255,8 +260,13 @@ if (PixelRatio.get() < 3) {
       color: '#CCC',
       fontSize: 16
     },
+    challengeMapView: {
+      flex: 0.325,
+      alignSelf: 'stretch',
+      marginHorizontal: 20
+    },
     challengeFooterView: {
-      flex: 0.2,
+      flex: 0.1,
       alignSelf: 'stretch'
     },
     detailRowView: {
