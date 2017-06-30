@@ -17,3 +17,4 @@ https://facebook.github.io/react-native/docs/signed-apk-android.html
 `cd android && ./gradlew assembleRelease`
 The generated APK can be found under android/app/build/outputs/apk/app-release.apk, and is ready to be distributed.
 Test release with: `react-native run-android --variant=release`
+Deploy release to: https://play.google.com/apps/publish

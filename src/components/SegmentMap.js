@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import MapView from 'react-native-maps';
 import { decode } from '@mapbox/polyline';
@@ -6,8 +7,6 @@ import { decode } from '@mapbox/polyline';
 class SegmentMap extends Component {
   render() {
     const { map, height, width } = this.props;
-    let segmentPolyline;
-
     // buffer around the segment polyline
     const BUFFER = 0.05;
     const ASPECT_RATIO = width / height;
@@ -19,6 +18,7 @@ class SegmentMap extends Component {
       latitudeDelta: LATITUDE_DELTA,
       longitudeDelta: LONGITUDE_DELTA
     };
+    let segmentPolyline;
     if (map && map.polyline) {
       const decoded = decode(map.polyline);
       const coords = decoded.map(coord => ({
@@ -42,7 +42,7 @@ class SegmentMap extends Component {
       segmentPolyline = (
         <MapView.Polyline
           coordinates={coords}
-          strokeWidth={5}
+          strokeWidth={3}
           strokeColor="#ef473a"
         />
       );
@@ -51,6 +51,7 @@ class SegmentMap extends Component {
     return (
       <MapView
         style={{
+          ...StyleSheet.absoluteFillObject,
           width: width,
           height: height
         }}

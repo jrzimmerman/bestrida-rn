@@ -106,7 +106,8 @@ if (PixelRatio.get() < 3) {
     challengeMapView: {
       flex: 0.325,
       alignSelf: 'stretch',
-      marginHorizontal: 20
+      marginHorizontal: 20,
+      alignItems: 'center'
     },
     challengeFooterView: {
       flex: 0.1,
@@ -261,9 +262,12 @@ if (PixelRatio.get() < 3) {
       fontSize: 16
     },
     challengeMapView: {
+      ...StyleSheet.absoluteFillObject,
       flex: 0.325,
       alignSelf: 'stretch',
-      marginHorizontal: 20
+      marginHorizontal: 20,
+      justifyContent: 'flex-end',
+      alignItems: 'center'
     },
     challengeFooterView: {
       flex: 0.1,
