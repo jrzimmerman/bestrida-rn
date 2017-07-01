@@ -1,7 +1,6 @@
 import * as constants from '../constants/challenges';
 import { Answers } from 'react-native-fabric';
-
-const API_URL = 'http://www.bestridaapp.com/api/';
+import { API_URL } from '../constants/app';
 
 function determineOpponent(userId, challenges) {
   const determineOpponentChallenges = challenges.map(challenge => {
@@ -68,7 +67,7 @@ export function pendingChallenges(userId) {
       type: constants.PENDING_CHALLENGES_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}challenges/pending/${userId}`, {
+    return fetch(`${API_URL}api/challenges/pending/${userId}`, {
       headers: {
         Accept: 'application/json'
       }
@@ -102,7 +101,7 @@ export function activeChallenges(userId) {
       type: constants.ACTIVE_CHALLENGES_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}challenges/active/${userId}`, {
+    return fetch(`${API_URL}api/challenges/active/${userId}`, {
       headers: {
         Accept: 'application/json'
       }
@@ -136,7 +135,7 @@ export function completedChallenges(userId) {
       type: constants.COMPLETED_CHALLENGES_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}challenges/completed/${userId}`, {
+    return fetch(`${API_URL}api/challenges/completed/${userId}`, {
       headers: {
         Accept: 'application/json'
       }
@@ -167,7 +166,7 @@ export function completedChallenges(userId) {
 
 export function acceptChallenge(challengeId, userId) {
   return dispatch => {
-    fetch(`${API_URL}challenges/accept`, {
+    fetch(`${API_URL}api/challenges/accept`, {
       method: 'POST',
       body: JSON.stringify({
         id: challengeId
@@ -203,7 +202,7 @@ export function acceptChallenge(challengeId, userId) {
 
 export function declineChallenge(challengeId, userId) {
   return dispatch => {
-    fetch(`${API_URL}challenges/decline`, {
+    fetch(`${API_URL}api/challenges/decline`, {
       method: 'POST',
       body: JSON.stringify({
         id: challengeId
@@ -244,7 +243,7 @@ export function declineChallenge(challengeId, userId) {
 
 export function completeChallenge(challengeId, userId) {
   return dispatch => {
-    fetch(`${API_URL}challenges/complete`, {
+    fetch(`${API_URL}api/challenges/complete`, {
       method: 'POST',
       body: JSON.stringify({
         id: challengeId,
@@ -304,7 +303,7 @@ export function clearCompleteError() {
 
 export function createChallenge(user, challengee, segment, completionDate) {
   return dispatch => {
-    fetch(`${API_URL}challenges/create`, {
+    fetch(`${API_URL}api/challenges/create`, {
       method: 'POST',
       body: JSON.stringify({
         segmentId: segment._id,

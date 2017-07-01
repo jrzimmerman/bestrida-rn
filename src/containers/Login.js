@@ -13,6 +13,7 @@ import {
 import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
 import * as userActions from '../actions/user';
+import { API_URL } from '../constants/app';
 
 const background = require('../images/LoginBackground.png');
 const loginButton = require('../images/btn_strava_connectwith_orange.png');
@@ -83,7 +84,7 @@ export class Login extends React.Component {
       'https://www.strava.com/oauth/authorize',
       '?response_type=code',
       `&client_id=${9169}`,
-      '&redirect_uri=http://www.bestridaapp.com/auth/strava/callback'
+      `&redirect_uri=${API_URL}auth/strava/callback`
     ].join('');
     Linking.addEventListener('url', this.handleOpenURL);
     if (Platform.OS === 'ios') {

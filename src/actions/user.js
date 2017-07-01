@@ -1,7 +1,6 @@
 import * as constants from '../constants/user';
 import { Crashlytics } from 'react-native-fabric';
-
-const API_URL = 'http://www.bestridaapp.com/api/';
+import { API_URL } from '../constants/app';
 
 export function userLogin(token, userId) {
   return dispatch => {
@@ -35,7 +34,7 @@ export function getUser(userId) {
       type: constants.GET_USER_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}users/${userId}`, {
+    return fetch(`${API_URL}api/users/${userId}`, {
       headers: {
         Accept: 'application/json'
       }
@@ -68,7 +67,7 @@ export function getUserSegments(userId) {
       type: constants.GET_USER_SEGMENTS_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}users/${userId}/segments`, {
+    return fetch(`${API_URL}api/users/${userId}/segments`, {
       headers: {
         Accept: 'application/json'
       }
@@ -95,7 +94,7 @@ export function getUserFriends(userId) {
       type: constants.GET_USER_FRIENDS_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}users/${userId}/friends`, {
+    return fetch(`${API_URL}api/users/${userId}/friends`, {
       headers: {
         Accept: 'application/json'
       }

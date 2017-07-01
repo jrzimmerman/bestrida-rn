@@ -126,7 +126,6 @@ if (PixelRatio.get() < 3) {
       backgroundColor: '#ef473a'
     },
     errorButton: {
-      marginTop: 80,
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',
@@ -137,7 +136,6 @@ if (PixelRatio.get() < 3) {
       height: 45
     },
     createErrorButton: {
-      marginTop: 20,
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',
@@ -286,7 +284,6 @@ if (PixelRatio.get() < 3) {
       backgroundColor: '#ef473a'
     },
     errorButton: {
-      marginTop: 80,
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',
@@ -297,7 +294,6 @@ if (PixelRatio.get() < 3) {
       height: 45
     },
     createErrorButton: {
-      marginTop: 20,
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',

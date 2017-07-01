@@ -1,6 +1,5 @@
 import * as constants from '../constants/segments';
-
-const API_URL = 'http://www.bestridaapp.com/api/';
+import { API_URL } from '../constants/app';
 
 export function getSegment(segmentId) {
   return dispatch => {
@@ -8,7 +7,7 @@ export function getSegment(segmentId) {
       type: constants.SEGMENT_LOADING
     });
 
-    return fetch(`${API_URL}segments/${segmentId}`, {
+    return fetch(`${API_URL}api/segments/${segmentId}`, {
       headers: {
         Accept: 'application/json'
       }
