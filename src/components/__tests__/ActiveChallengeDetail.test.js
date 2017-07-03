@@ -11,7 +11,9 @@ const mockStore = configureMockStore(middlewares);
 
 test('renders ActiveChallengeDetail component', () => {
   const challenge = {
-    segmentName: 'Test Segment'
+    segment: {
+      name: 'Test Segment'
+    }
   };
   const navigation = {
     state: {

@@ -11,7 +11,23 @@ const mockStore = configureMockStore(middlewares);
 
 test('renders CompletedChallengeDetail component', () => {
   const challenge = {
-    segmentName: 'Test Segment'
+    id: '57be4f7ef7fb96130084f0b2',
+    segment: {
+      id: 12924664,
+      name: 'Test Segment'
+    },
+    challenger: {
+      id: 8302445,
+      name: 'Test Challenger',
+      completed: true,
+      time: 139
+    },
+    challengee: {
+      id: 1027935,
+      name: 'Test Challengee',
+      completed: true,
+      time: 115
+    }
   };
   const navigation = {
     state: {

@@ -111,7 +111,9 @@ exports[`renders CompletedChallengeDetail component 1`] = `
             "fontWeight": "bold",
           }
         }
-      />
+      >
+        Test Challenger
+      </Text>
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -126,7 +128,9 @@ exports[`renders CompletedChallengeDetail component 1`] = `
             "fontWeight": "bold",
           }
         }
-      />
+      >
+        Test Challengee
+      </Text>
     </View>
     <View
       style={
@@ -154,7 +158,7 @@ exports[`renders CompletedChallengeDetail component 1`] = `
           }
         }
       >
-        
+        00:02:19
       </Text>
       <Text
         accessible={true}
@@ -187,7 +191,7 @@ exports[`renders CompletedChallengeDetail component 1`] = `
           }
         }
       >
-        
+        00:01:55
       </Text>
     </View>
     <View
