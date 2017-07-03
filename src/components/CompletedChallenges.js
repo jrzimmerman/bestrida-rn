@@ -55,7 +55,7 @@ export class CompletedChallenges extends React.Component {
         <StatusBar barStyle="light-content" />
         <FlatList
           style={styles.list}
-          keyExtractor={item => item._id}
+          keyExtractor={item => item.id}
           data={this.props.completed.challenges}
           refreshControl={
             <RefreshControl
@@ -65,6 +65,7 @@ export class CompletedChallenges extends React.Component {
           }
           renderItem={({ item }) =>
             <TouchableOpacity
+              key={item.id}
               onPress={() => this.handlePress(item)}
               style={styles.row}
             >
@@ -91,7 +92,7 @@ export class CompletedChallenges extends React.Component {
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  Segment: {item.segmentName}
+                  Segment: {item.segment.name}
                 </Text>
                 <Text
                   style={styles.challengeText}

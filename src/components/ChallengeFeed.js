@@ -48,6 +48,7 @@ export class ChallengeFeed extends React.Component {
   handleAccept(challengeId, userId) {
     this.props.dispatch(challengeActions.acceptChallenge(challengeId, userId));
     this.props.navigation.navigate('ActiveChallenges');
+    this.props.dispatch(challengeActions.pendingChallenges(this.props.userId));
     this.setState({
       refreshing: false
     });
@@ -84,7 +85,7 @@ export class ChallengeFeed extends React.Component {
         <View style={feedStyles.feed}>
           <FlatList
             style={feedStyles.list}
-            keyExtractor={item => item._id}
+            keyExtractor={item => item.id}
             data={this.props.pending.challenges}
             refreshControl={
               <RefreshControl
@@ -94,7 +95,7 @@ export class ChallengeFeed extends React.Component {
             }
             renderItem={({ item }) =>
               <TouchableOpacity
-                key={item._id}
+                key={item.id}
                 onPress={() => this.handlePress(item)}
                 style={styles.row}
               >
@@ -121,7 +122,7 @@ export class ChallengeFeed extends React.Component {
                     numberOfLines={1}
                     ellipsizeMode={'tail'}
                   >
-                    Segment: {item.segmentName}
+                    Segment: {item.segment.name}
                   </Text>
                   <Text
                     style={styles.challengeText}
@@ -130,11 +131,11 @@ export class ChallengeFeed extends React.Component {
                   >
                     Complete By: {new Date(item.expires).toDateString()}
                   </Text>
-                  {item.challengeeId === this.props.userId
+                  {item.challengee.id === this.props.userId
                     ? <View style={feedStyles.challengeOptions}>
                         <TouchableOpacity
                           onPress={() =>
-                            this.handleDecline(item._id, this.props.userId)}
+                            this.handleDecline(item.id, this.props.userId)}
                           style={feedStyles.challengeOptionsDecline}
                         >
                           <Text style={feedStyles.challengeOptionsDeclineText}>
@@ -143,7 +144,7 @@ export class ChallengeFeed extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                           onPress={() =>
-                            this.handleAccept(item._id, this.props.userId)}
+                            this.handleAccept(item.id, this.props.userId)}
                           style={feedStyles.challengeOptionsAccept}
                         >
                           <Text style={feedStyles.challengeOptionsAcceptText}>

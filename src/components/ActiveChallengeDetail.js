@@ -22,7 +22,7 @@ export class ActiveChallengeDetail extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     const { challenge } = this.props.navigation.state.params;
-    dispatch(segmentActions.getSegment(challenge.segmentId));
+    dispatch(segmentActions.getSegment(challenge.segment.id));
   }
 
   componentWillUnmount() {
@@ -57,7 +57,7 @@ export class ActiveChallengeDetail extends React.Component {
         <StatusBar barStyle="light-content" />
         <View style={styles.challengeTitleView}>
           <Text style={styles.challengeTitleText}>
-            {challenge.segmentName}
+            {challenge.segment.name}
           </Text>
         </View>
         <View style={styles.challengeDetailView}>
@@ -76,46 +76,46 @@ export class ActiveChallengeDetail extends React.Component {
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Distance</Text>
             <Text style={styles.challengeDetailText}>
-              {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles`}
+              {`${(challenge.segment.distance / 1609.34).toFixed(2)} Miles`}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Location</Text>
             <Text style={styles.challengeDetailText}>
-              {`${challenge.segmentCity
-                ? `${challenge.segmentCity},`
-                : ''} ${challenge.segmentState}`}
+              {`${challenge.segment.city
+                ? `${challenge.segment.city},`
+                : ''} ${challenge.segment.state}`}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Activity Type</Text>
             <Text style={styles.challengeDetailText}>
-              {challenge.segmentActivityType}
+              {challenge.segment.activityType}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Average Grade</Text>
             <Text style={styles.challengeDetailText}>
-              {`${challenge.segmentAverageGrade} %`}
+              {`${challenge.segment.averageGrade} %`}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Climb Category</Text>
             <Text style={styles.challengeDetailText}>
-              {challenge.segmentClimbCategory || 'Not Available'}
+              {challenge.segment.climbCategory || 'Not Available'}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Elevation Gain</Text>
             <Text style={styles.challengeDetailText}>
-              {`${challenge.segmentElevationGain} meters`}
+              {`${challenge.segment.totalElevationGain} meters`}
             </Text>
           </View>
         </View>
         {segmentMap}
         <View style={styles.challengeFooterView}>
           <TouchableOpacity
-            onPress={() => this.handleComplete(challenge._id, userId)}
+            onPress={() => this.handleComplete(challenge.id, userId)}
             style={styles.button}
           >
             <Text style={styles.buttonText}>Complete Challenge</Text>

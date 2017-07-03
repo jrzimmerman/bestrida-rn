@@ -19,7 +19,7 @@ export class PendingChallengeDetail extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     const { challenge } = this.props.navigation.state.params;
-    dispatch(segmentActions.getSegment(challenge.segmentId));
+    dispatch(segmentActions.getSegment(challenge.segment.id));
   }
 
   componentWillUnmount() {
@@ -58,11 +58,11 @@ export class PendingChallengeDetail extends React.Component {
     }
 
     let challengeFooter;
-    if (userId && challenge.challengeeId === userId) {
+    if (userId && challenge.challengee.id === userId) {
       challengeFooter = (
         <View style={pendingStyles.challengeOptions}>
           <TouchableOpacity
-            onPress={() => this.handleDecline(challenge._id, userId)}
+            onPress={() => this.handleDecline(challenge.id, userId)}
             style={pendingStyles.challengeOptionsDecline}
           >
             <Text style={pendingStyles.challengeOptionsDeclineText}>
@@ -70,17 +70,17 @@ export class PendingChallengeDetail extends React.Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.handleAccept(challenge._id, userId)}
+            onPress={() => this.handleAccept(challenge.id, userId)}
             style={pendingStyles.challengeOptionsAccept}
           >
             <Text style={pendingStyles.challengeOptionsAcceptText}>Accept</Text>
           </TouchableOpacity>
         </View>
       );
-    } else if (userId && challenge.challengerId === userId) {
+    } else if (userId && challenge.challenger.id === userId) {
       challengeFooter = (
         <TouchableOpacity
-          onPress={() => this.handleDecline(challenge._id, userId)}
+          onPress={() => this.handleDecline(challenge.id, userId)}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Cancel Challenge</Text>
@@ -93,7 +93,7 @@ export class PendingChallengeDetail extends React.Component {
         <StatusBar barStyle="light-content" />
         <View style={styles.challengeTitleView}>
           <Text style={styles.challengeTitleText}>
-            {challenge.segmentName}
+            {challenge.segment.name}
           </Text>
         </View>
         <View style={styles.challengeDetailView}>
@@ -112,40 +112,39 @@ export class PendingChallengeDetail extends React.Component {
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Distance</Text>
             <Text style={styles.challengeDetailText}>
-              {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles` ||
+              {`${(challenge.segment.distance / 1609.34).toFixed(2)} Miles` ||
                 '0'}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Location</Text>
             <Text style={styles.challengeDetailText}>
-              {`${challenge.segmentCity
-                ? `${challenge.segmentCity},`
-                : ''} ${challenge.segmentState}`}
+              {`${challenge.segment.city
+                ? `${challenge.segment.city},`
+                : ''} ${challenge.segment.state}`}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Activity Type</Text>
             <Text style={styles.challengeDetailText}>
-              {challenge.segmentActivityType || 'Not Available'}
+              {challenge.segment.activityType || 'Not Available'}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Average Grade</Text>
-            <Text
-              style={styles.challengeDetailText}
-            >{`${challenge.segmentAverageGrade} %`}</Text>
+            <Text style={styles.challengeDetailText}>{`${challenge.segment
+              .averageGrade} %`}</Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Climb Category</Text>
             <Text style={styles.challengeDetailText}>
-              {challenge.segmentClimbCategory || 'Not Available'}
+              {challenge.segment.climbCategory || 'Not Available'}
             </Text>
           </View>
           <View style={styles.detailRowView}>
             <Text style={styles.challengeDetailTitle}>Elevation Gain</Text>
             <Text style={styles.challengeDetailText}>
-              {`${challenge.segmentElevationGain} meters`}
+              {`${challenge.segment.totalElevationGain} meters`}
             </Text>
           </View>
         </View>

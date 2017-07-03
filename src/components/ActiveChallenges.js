@@ -81,10 +81,10 @@ export class ActiveChallenges extends React.Component {
               onRefresh={this.handleRefresh}
             />
           }
-          keyExtractor={item => item._id}
+          keyExtractor={item => item.id}
           renderItem={({ item }) =>
             <TouchableOpacity
-              key={item._id}
+              key={item.id}
               onPress={() => this.handlePress(item)}
               style={styles.row}
             >
@@ -111,7 +111,7 @@ export class ActiveChallenges extends React.Component {
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                 >
-                  Segment: {item.segmentName}
+                  Segment: {item.segment.name}
                 </Text>
                 <Text
                   style={styles.challengeText}

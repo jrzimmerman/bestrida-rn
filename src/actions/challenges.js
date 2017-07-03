@@ -7,31 +7,31 @@ function determineOpponent(userId, challenges) {
     // determine opponent name
     let opponentName;
     let opponentPhoto;
-    if (Number(userId) === challenge.challengeeId) {
-      opponentName = challenge.challengerName;
-    } else if (Number(userId) === challenge.challengerId) {
-      opponentName = challenge.challengeeName;
+    if (Number(userId) === challenge.challengee.id) {
+      opponentName = challenge.challenger.name;
+    } else if (Number(userId) === challenge.challenger.id) {
+      opponentName = challenge.challengee.name;
     }
     // determine opponent photo
-    if (Number(userId) === challenge.challengeeId) {
+    if (Number(userId) === challenge.challengee.id) {
       // set user photo to challengerPhoto
       if (
-        !challenge.challengerPhoto ||
-        challenge.challengerPhoto === 'avatar/athlete/large.png'
+        !challenge.challenger.photo ||
+        challenge.challenger.photo === 'avatar/athlete/large.png'
       ) {
         opponentPhoto = 'stravaProfilePic';
       } else {
-        opponentPhoto = { uri: challenge.challengerPhoto };
+        opponentPhoto = { uri: challenge.challenger.photo };
       }
-    } else if (Number(userId) === challenge.challengerId) {
+    } else if (Number(userId) === challenge.challenger.id) {
       // set user photo to challengeePhoto
       if (
-        !challenge.challengeePhoto ||
-        challenge.challengeePhoto === 'avatar/athlete/large.png'
+        !challenge.challengee.photo ||
+        challenge.challengee.photo === 'avatar/athlete/large.png'
       ) {
         opponentPhoto = 'stravaProfilePic';
       } else {
-        opponentPhoto = { uri: challenge.challengeePhoto };
+        opponentPhoto = { uri: challenge.challengee.photo };
       }
     }
 
@@ -44,13 +44,13 @@ function determineOpponent(userId, challenges) {
 function completionStatus(userId, challenges) {
   const completedStatusChallenges = challenges.map(challenge => {
     let completedStatus;
-    if (challenge.challengeeCompleted && challenge.challengerCompleted) {
+    if (challenge.challengee.completed && challenge.challenger.completed) {
       if (Number(userId) === challenge.winnerId) {
         completedStatus = 'You won this challenge!';
       } else if (Number(userId) === challenge.loserId) {
         completedStatus = 'You lost this challenge.';
       } else {
-        completedStatus = 'Challenge is still calculating.';
+        completedStatus = 'Determining Winner, check back soon!';
       }
     } else {
       completedStatus = 'Waiting for opponent.';
@@ -167,7 +167,7 @@ export function completedChallenges(userId) {
 export function acceptChallenge(challengeId, userId) {
   return dispatch => {
     fetch(`${API_URL}api/challenges/accept`, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify({
         id: challengeId
       }),
@@ -203,7 +203,7 @@ export function acceptChallenge(challengeId, userId) {
 export function declineChallenge(challengeId, userId) {
   return dispatch => {
     fetch(`${API_URL}api/challenges/decline`, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify({
         id: challengeId
       }),
@@ -307,13 +307,8 @@ export function createChallenge(user, challengee, segment, completionDate) {
       method: 'POST',
       body: JSON.stringify({
         segmentId: segment._id,
-        segmentName: segment.name,
         challengerId: user._id,
-        challengerName: user.fullName,
-        challengerPhoto: user.photo,
         challengeeId: challengee.id,
-        challengeeName: challengee.fullName,
-        challengeePhoto: challengee.photo,
         completionDate
       }),
       headers: {

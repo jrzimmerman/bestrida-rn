@@ -36,7 +36,7 @@ export class CompletedChallengeDetail extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     const { challenge } = this.props.navigation.state.params;
-    dispatch(segmentActions.getSegment(challenge.segmentId));
+    dispatch(segmentActions.getSegment(challenge.segment.id));
   }
 
   componentWillUnmount() {
@@ -85,84 +85,84 @@ export class CompletedChallengeDetail extends Component {
               {Number(userId) === challenge.winnerId ? 'You Won!' : 'You Lost!'}
             </Text>
             <Text style={completedStyles.completedSubTitleText}>
-              {challenge.segmentName}
+              {challenge.segment.name}
             </Text>
             <Text style={completedStyles.completedSubTitleText}>
-              {`${(challenge.segmentDistance / 1609.34).toFixed(2)} Miles`}
+              {`${(challenge.segment.distance / 1609.34).toFixed(2)} Miles`}
             </Text>
           </View>
           <View style={styles.challengeDetailView}>
             <View style={styles.detailRowView}>
               <Text style={completedStyles.completedDetailTitle}>
-                {challenge.challengerName}
+                {challenge.challenger.name}
               </Text>
               <Text style={completedStyles.completedDetailTitle}>
-                {challenge.challengeeName}
+                {challenge.challengee.name}
               </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={completedStyles.completedDetailText}>
-                {secondsToTime(challenge.challengerTime)}
+                {secondsToTime(challenge.challenger.time)}
               </Text>
               <Text style={completedStyles.completedDetailTitle}>Time</Text>
               <Text style={completedStyles.completedDetailText}>
-                {secondsToTime(challenge.challengeeTime)}
+                {secondsToTime(challenge.challengee.time)}
               </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={completedStyles.completedDetailText}>
-                {challenge.challengerAvgHeartrate === 0
+                {challenge.challenger.averageHeartRate === 0
                   ? null
-                  : challenge.challengerAvgHeartrate}
+                  : challenge.challenger.averageHeartRate}
               </Text>
               <Text style={completedStyles.completedDetailTitle}>
                 Average Heart Rate
               </Text>
               <Text style={completedStyles.completedDetailText}>
-                {challenge.challengeeAvgHeartrate === 0
+                {challenge.challengee.averageHeartRate === 0
                   ? null
-                  : challenge.challengeeAvgHeartrate}
+                  : challenge.challengee.averageHeartRate}
               </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={completedStyles.completedDetailText}>
-                {challenge.challengerMaxHeartRate === 0
+                {challenge.challenger.maxHeartRate === 0
                   ? null
-                  : challenge.challengerMaxHeartRate}
+                  : challenge.challenger.maxHeartRate}
               </Text>
               <Text style={completedStyles.completedDetailTitle}>
                 Max Heart Rate
               </Text>
               <Text style={completedStyles.completedDetailText}>
-                {challenge.challengeeMaxHeartRate === 0
+                {challenge.challengee.maxHeartRate === 0
                   ? null
-                  : challenge.challengeeMaxHeartRate}
+                  : challenge.challengee.maxHeartRate}
               </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={completedStyles.completedDetailText}>
-                {challenge.challengerAvgCadence === 0
+                {challenge.challenger.averageCadence === 0
                   ? null
-                  : challenge.challengerAvgCadence}
+                  : challenge.challenger.averageCadence}
               </Text>
               <Text style={completedStyles.completedDetailTitle}>Cadence</Text>
               <Text style={completedStyles.completedDetailText}>
-                {challenge.challengeeAvgCadence === 0
+                {challenge.challengee.averageCadence === 0
                   ? null
-                  : challenge.challengeeAvgCadence}
+                  : challenge.challengee.averageCadence}
               </Text>
             </View>
             <View style={styles.detailRowView}>
               <Text style={completedStyles.completedDetailText}>
-                {challenge.challengerAvgWatts === 0
+                {challenge.challenger.averageWatts === 0
                   ? null
-                  : challenge.challengerAvgWatts}
+                  : challenge.challenger.averageWatts}
               </Text>
               <Text style={completedStyles.completedDetailTitle}>Watts</Text>
               <Text style={completedStyles.completedDetailText}>
                 {challenge.challengeeAvgWatts === 0
                   ? null
-                  : challenge.challengeeAvgWatts}
+                  : challenge.challengee.averageWatts}
               </Text>
             </View>
             <View style={styles.detailRowView}>
