@@ -88,7 +88,7 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'stretch',
       backgroundColor: '#383838',
       marginHorizontal: 20,
-      marginBottom: 5
+      marginBottom: 10
     },
     challengeDetailTitle: {
       flexDirection: 'column',
