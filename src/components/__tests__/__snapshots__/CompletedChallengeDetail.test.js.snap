@@ -80,8 +80,8 @@ exports[`renders CompletedChallengeDetail component 1`] = `
         "alignSelf": "stretch",
         "backgroundColor": "#383838",
         "flex": 0.375,
+        "marginBottom": 10,
         "marginHorizontal": 20,
-        "marginVertical": 10,
       }
     }
   >
