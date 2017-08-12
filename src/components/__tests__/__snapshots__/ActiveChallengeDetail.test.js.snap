@@ -44,8 +44,8 @@ exports[`renders ActiveChallengeDetail component 1`] = `
         "alignSelf": "stretch",
         "backgroundColor": "#383838",
         "flex": 0.375,
+        "marginBottom": 10,
         "marginHorizontal": 20,
-        "marginVertical": 10,
       }
     }
   >
@@ -421,6 +421,7 @@ exports[`renders ActiveChallengeDetail component 1`] = `
       Object {
         "alignSelf": "stretch",
         "flex": 0.1,
+        "marginBottom": 10,
       }
     }
   >
@@ -429,6 +430,7 @@ exports[`renders ActiveChallengeDetail component 1`] = `
       accessibilityLabel={undefined}
       accessibilityTraits={undefined}
       accessible={true}
+      collapsable={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
       nativeID={undefined}

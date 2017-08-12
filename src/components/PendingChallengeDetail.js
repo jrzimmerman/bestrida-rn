@@ -1,7 +1,12 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
+import {
+  Dimensions,
+  View,
+  StatusBar,
+  Text,
+  TouchableOpacity
+} from 'react-native';
 import PropTypes from 'prop-types';
-import { View, StatusBar, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import SegmentMap from './SegmentMap';
 import styles from '../styles/styles';

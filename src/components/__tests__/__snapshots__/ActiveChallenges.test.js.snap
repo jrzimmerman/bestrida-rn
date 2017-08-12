@@ -35,7 +35,6 @@ exports[`renders ActiveChallenges component 1`] = `
       />
     }
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     style={
