@@ -55,19 +55,21 @@ export class CreateChallenge extends React.Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(userActions.getUser(this.props.userId));
+    const { dispatch, userId, user } = this.props;
+    dispatch(userActions.getUser(userId));
     this.setState({
-      segments: this.props.user.segments,
-      opponents: this.props.user.friends
+      segments: user.segments,
+      opponents: user.friends
     });
   }
 
   componentDidMount() {
-    this.props.dispatch(userActions.getUserSegments(this.props.userId));
-    this.props.dispatch(userActions.getUserFriends(this.props.userId));
+    const { dispatch, userId, user } = this.props;
+    dispatch(userActions.getUserSegmentsFromStrava(userId));
+    dispatch(userActions.getUserFriendsFromStrava(userId));
     this.setState({
-      segments: this.props.user.segments,
-      opponents: this.props.user.friends
+      segments: user.segments,
+      opponents: user.friends
     });
   }
 

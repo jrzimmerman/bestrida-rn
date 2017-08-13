@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Image,
+  ImageBackground,
   Linking,
   Platform,
   Text,
@@ -27,8 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: null,
     height: null,
-    backgroundColor: transparent,
-    resizeMode: 'stretch'
+    backgroundColor: transparent
   },
   text: {
     paddingBottom: 20,
@@ -79,7 +79,6 @@ export class Login extends React.Component {
   }
 
   stravaOauth() {
-    console.log('stravaOauth');
     const url = [
       'https://www.strava.com/oauth/authorize',
       '?response_type=code',
@@ -113,13 +112,13 @@ export class Login extends React.Component {
       );
     } else {
       view = (
-        <Image style={styles.backgroundImage} source={background}>
+        <ImageBackground style={styles.backgroundImage} source={background}>
           <StatusBar barStyle="default" />
           <Text style={styles.text}>Welcome to Bestrida</Text>
           <TouchableOpacity onPress={this.stravaOauth.bind(this)}>
             <Image style={styles.loginButton} source={loginButton} />
           </TouchableOpacity>
-        </Image>
+        </ImageBackground>
       );
     }
     return view;

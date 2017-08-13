@@ -112,6 +112,7 @@ if (PixelRatio.get() < 3) {
     challengeFooterView: {
       flex: 0.1,
       alignSelf: 'stretch',
+      marginTop: 5,
       marginBottom: 10
     },
     detailRowView: {
@@ -268,6 +269,7 @@ if (PixelRatio.get() < 3) {
     challengeFooterView: {
       flex: 0.1,
       alignSelf: 'stretch',
+      marginTop: 5,
       marginBottom: 10
     },
     detailRowView: {

@@ -67,6 +67,7 @@ export function pendingChallenges(userId) {
       type: constants.PENDING_CHALLENGES_LOADING,
       payload: true
     });
+    console.log('calling: ', `${API_URL}api/challenges/pending/${userId}`);
     return fetch(`${API_URL}api/challenges/pending/${userId}`, {
       headers: {
         Accept: 'application/json'
@@ -101,6 +102,7 @@ export function activeChallenges(userId) {
       type: constants.ACTIVE_CHALLENGES_LOADING,
       payload: true
     });
+    console.log('calling: ', `${API_URL}api/challenges/active/${userId}`);
     return fetch(`${API_URL}api/challenges/active/${userId}`, {
       headers: {
         Accept: 'application/json'
@@ -135,6 +137,7 @@ export function completedChallenges(userId) {
       type: constants.COMPLETED_CHALLENGES_LOADING,
       payload: true
     });
+    console.log('calling: ', `${API_URL}api/challenges/completed/${userId}`);
     return fetch(`${API_URL}api/challenges/completed/${userId}`, {
       headers: {
         Accept: 'application/json'
@@ -166,6 +169,7 @@ export function completedChallenges(userId) {
 
 export function acceptChallenge(challengeId, userId) {
   return dispatch => {
+    console.log('calling: ', `${API_URL}api/challenges/accept`);
     fetch(`${API_URL}api/challenges/accept`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -202,6 +206,7 @@ export function acceptChallenge(challengeId, userId) {
 
 export function declineChallenge(challengeId, userId) {
   return dispatch => {
+    console.log('calling: ', `${API_URL}api/challenges/decline`);
     fetch(`${API_URL}api/challenges/decline`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -243,6 +248,7 @@ export function declineChallenge(challengeId, userId) {
 
 export function completeChallenge(challengeId, userId) {
   return dispatch => {
+    console.log('calling: ', `${API_URL}api/challenges/complete`);
     fetch(`${API_URL}api/challenges/complete`, {
       method: 'POST',
       body: JSON.stringify({
@@ -303,6 +309,7 @@ export function clearCompleteError() {
 
 export function createChallenge(user, challengee, segment, completionDate) {
   return dispatch => {
+    console.log('calling: ', `${API_URL}api/challenges/create`);
     fetch(`${API_URL}api/challenges/create`, {
       method: 'POST',
       body: JSON.stringify({

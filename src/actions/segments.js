@@ -6,7 +6,7 @@ export function getSegment(segmentId) {
     dispatch({
       type: constants.SEGMENT_LOADING
     });
-
+    console.log('calling: ', `${API_URL}api/segments/${segmentId}`);
     return fetch(`${API_URL}api/segments/${segmentId}`, {
       headers: {
         Accept: 'application/json'

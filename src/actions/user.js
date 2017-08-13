@@ -29,6 +29,7 @@ export function userLogout() {
 }
 
 export function getUser(userId) {
+  console.log('calling: ', `${API_URL}api/users/${userId}`);
   return dispatch => {
     dispatch({
       type: constants.GET_USER_LOADING,
@@ -61,13 +62,14 @@ export function getUser(userId) {
   };
 }
 
-export function getUserSegments(userId) {
+export function getUserSegmentsFromStrava(userId) {
+  console.log('calling: ', `${API_URL}api/athletes/${userId}/segments`);
   return dispatch => {
     dispatch({
       type: constants.GET_USER_SEGMENTS_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}api/users/${userId}/segments`, {
+    return fetch(`${API_URL}api/athletes/${userId}/segments`, {
       headers: {
         Accept: 'application/json'
       }
@@ -78,23 +80,26 @@ export function getUserSegments(userId) {
           type: constants.GET_USER_SEGMENTS_SUCCESS,
           payload: responseJson
         });
+        getUser(userId);
       })
       .catch(error => {
         dispatch({
           type: constants.GET_USER_SEGMENTS_FAILURE,
           payload: error
         });
+        getUser(userId);
       });
   };
 }
 
-export function getUserFriends(userId) {
+export function getUserFriendsFromStrava(userId) {
+  console.log('calling: ', `${API_URL}api/athletes/${userId}/friends`);
   return dispatch => {
     dispatch({
       type: constants.GET_USER_FRIENDS_LOADING,
       payload: true
     });
-    return fetch(`${API_URL}api/users/${userId}/friends`, {
+    return fetch(`${API_URL}api/athletes/${userId}/friends`, {
       headers: {
         Accept: 'application/json'
       }
@@ -105,12 +110,14 @@ export function getUserFriends(userId) {
           type: constants.GET_USER_FRIENDS_SUCCESS,
           payload: responseJson
         });
+        getUser(userId);
       })
       .catch(error => {
         dispatch({
           type: constants.GET_USER_FRIENDS_FAILURE,
           payload: error
         });
+        getUser(userId);
       });
   };
 }
