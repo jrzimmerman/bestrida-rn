@@ -68,7 +68,10 @@ export function pendingChallenges(userId) {
       type: constants.PENDING_CHALLENGES_LOADING,
       payload: true
     });
-    console.log('calling: ', `${API_URL}api/users/${userId}/challenges/pending`);
+    console.log(
+      'calling: ',
+      `${API_URL}api/users/${userId}/challenges/pending`
+    );
     return fetch(`${API_URL}api/users/${userId}/challenges/pending`, {
       headers: {
         Accept: 'application/json'
