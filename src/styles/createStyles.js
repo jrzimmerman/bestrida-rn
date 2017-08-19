@@ -20,11 +20,11 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'stretch'
     },
     selectorInputView: {
-      flex: 0.4,
+      flex: 0.45,
       paddingVertical: 5
     },
     selectorButtonView: {
-      flex: 0.2,
+      flex: 0.15,
       paddingVertical: 5
     },
     selectorButton: {

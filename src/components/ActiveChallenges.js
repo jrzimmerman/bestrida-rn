@@ -58,11 +58,11 @@ export class ActiveChallenges extends React.Component {
         <View style={styles.errorView}>
           <TouchableOpacity
             onPress={this.handleDismiss}
-            style={styles.errorButton}
+            style={styles.bannerButton}
           >
-            <Text style={styles.errorTitle}>Error Completing Challenge</Text>
-            <Text style={styles.errorText}>Effort not found on Strava</Text>
-            <Text style={styles.errorText}>Tap to dismiss</Text>
+            <Text style={styles.bannerTitle}>Error Completing Challenge</Text>
+            <Text style={styles.bannerText}>Effort not found on Strava</Text>
+            <Text style={styles.bannerText}>Tap to dismiss</Text>
           </TouchableOpacity>
         </View>
       );

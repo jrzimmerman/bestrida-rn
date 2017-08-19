@@ -122,7 +122,9 @@ export class CreateChallenge extends React.Component {
 
   handleSelectCompletionDate(date) {
     const d = moment(date);
-    this.setState({ selectedCompletionDate: d });
+    this.setState({
+      selectedCompletionDate: d
+    });
   }
 
   handleSubmit() {
@@ -142,9 +144,13 @@ export class CreateChallenge extends React.Component {
           createChallengeError: 'Please select both an opponent and segment'
         });
       } else if (!selectedOpponent) {
-        this.setState({ createChallengeError: 'Please select an opponent' });
+        this.setState({
+          createChallengeError: 'Please select an opponent'
+        });
       } else if (!selectedSegment) {
-        this.setState({ createChallengeError: 'Please select a segment' });
+        this.setState({
+          createChallengeError: 'Please select a segment'
+        });
       } else {
         this.setState({
           createChallengeError: 'Please select an opponent and segment'
@@ -177,7 +183,9 @@ export class CreateChallenge extends React.Component {
   }
 
   toggleDateModal() {
-    this.setState({ showDateModal: !this.state.showDateModal });
+    this.setState({
+      showDateModal: !this.state.showDateModal
+    });
   }
 
   toggleSelectedOpponent() {
@@ -188,7 +196,9 @@ export class CreateChallenge extends React.Component {
         opponents: this.props.user.friends
       });
     }
-    this.setState({ showOpponentList: !this.state.showOpponentList });
+    this.setState({
+      showOpponentList: !this.state.showOpponentList
+    });
   }
 
   toggleSelectedSegment() {
@@ -213,13 +223,13 @@ export class CreateChallenge extends React.Component {
         <View style={styles.errorView}>
           <TouchableOpacity
             onPress={this.handleDismiss}
-            style={styles.createErrorButton}
+            style={styles.createBannerButton}
           >
-            <Text style={styles.errorTitle}>Error Completing Challenge</Text>
-            <Text style={styles.errorText}>
+            <Text style={styles.bannerTitle}>Error Completing Challenge</Text>
+            <Text style={styles.bannerText}>
               {this.state.createChallengeError}
             </Text>
-            <Text style={styles.errorText}>Tap to dismiss</Text>
+            <Text style={styles.bannerText}>Tap to dismiss</Text>
           </TouchableOpacity>
         </View>
       );
@@ -280,11 +290,11 @@ export class CreateChallenge extends React.Component {
                   placeholderTextColor={'#CCC'}
                 />
                 <FlatList
-                  keyExtractor={item => item._id}
+                  keyExtractor={item => item.id}
                   data={this.state.segments}
                   renderItem={({ item }) =>
                     <TouchableOpacity
-                      key={item._id}
+                      key={item.id}
                       onPress={() => this.handleSegmentPress(item)}
                       style={createStyles.row}
                     >

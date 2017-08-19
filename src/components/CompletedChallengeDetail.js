@@ -46,6 +46,7 @@ export class CompletedChallengeDetail extends Component {
   render() {
     const { segments } = this.props;
     const { challenge, userId } = this.props.navigation.state.params;
+    console.log('challenge: ', challenge);
     const { height, width } = Dimensions.get('window');
     let segmentMap;
     if (segments && segments.segment && segments.segment.map) {

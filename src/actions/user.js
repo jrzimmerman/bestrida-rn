@@ -28,6 +28,14 @@ export function userLogout() {
   };
 }
 
+export function userDismiss() {
+  return dispatch => {
+    dispatch({
+      type: constants.USER_RELOAD
+    });
+  };
+}
+
 export function getUser(userId) {
   console.log('calling: ', `${API_URL}api/users/${userId}`);
   return dispatch => {

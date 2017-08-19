@@ -60,6 +60,59 @@ exports[`renders Settings component 1`] = `
         }
       }
     >
+      Reload Data
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    collapsable={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignSelf": "stretch",
+        "backgroundColor": "transparent",
+        "borderColor": "#ef473a",
+        "borderRadius": 4,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 40,
+        "justifyContent": "space-around",
+        "margin": 10,
+        "marginTop": 20,
+        "opacity": 1,
+        "paddingHorizontal": 8,
+        "paddingVertical": 6,
+      }
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#ef473a",
+          "flexDirection": "row",
+          "fontSize": 14,
+        }
+      }
+    >
       Logout
     </Text>
   </View>

@@ -8,6 +8,7 @@ const initialState = {
   },
   userLoading: false,
   userError: null,
+  userReloaded: false,
   userSegmentsLoading: false,
   userSegmentsError: null,
   userFriendsLoading: false,
@@ -25,24 +26,33 @@ export default (state = initialState, action) => {
         ...state,
         auth: action.payload
       };
+    case constants.USER_RELOAD:
+      return {
+        ...state,
+        userReloaded: false,
+        userError: null
+      };
     case constants.GET_USER_LOADING:
       return {
         ...state,
         userLoading: action.payload,
-        userError: null
+        userError: null,
+        userReloaded: false
       };
     case constants.GET_USER_SUCCESS:
       return {
         ...state,
         userLoading: false,
         user: action.payload,
-        userError: null
+        userError: null,
+        userReloaded: true
       };
     case constants.GET_USER_FAILURE:
       return {
         ...state,
         userLoading: false,
-        userError: action.payload
+        userError: action.payload,
+        userReloaded: false
       };
     case constants.GET_USER_SEGMENTS_LOADING:
       return {

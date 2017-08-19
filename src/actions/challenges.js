@@ -1,5 +1,6 @@
-import * as constants from '../constants/challenges';
 import { Answers } from 'react-native-fabric';
+import moment from 'moment';
+import * as constants from '../constants/challenges';
 import { API_URL } from '../constants/app';
 
 function determineOpponent(userId, challenges) {
@@ -67,8 +68,8 @@ export function pendingChallenges(userId) {
       type: constants.PENDING_CHALLENGES_LOADING,
       payload: true
     });
-    console.log('calling: ', `${API_URL}api/challenges/pending/${userId}`);
-    return fetch(`${API_URL}api/challenges/pending/${userId}`, {
+    console.log('calling: ', `${API_URL}api/users/${userId}/challenges/pending`);
+    return fetch(`${API_URL}api/users/${userId}/challenges/pending`, {
       headers: {
         Accept: 'application/json'
       }
@@ -102,8 +103,8 @@ export function activeChallenges(userId) {
       type: constants.ACTIVE_CHALLENGES_LOADING,
       payload: true
     });
-    console.log('calling: ', `${API_URL}api/challenges/active/${userId}`);
-    return fetch(`${API_URL}api/challenges/active/${userId}`, {
+    console.log('calling: ', `${API_URL}api/users/${userId}/challenges/active`);
+    return fetch(`${API_URL}api/users/${userId}/challenges/active`, {
       headers: {
         Accept: 'application/json'
       }
@@ -137,8 +138,11 @@ export function completedChallenges(userId) {
       type: constants.COMPLETED_CHALLENGES_LOADING,
       payload: true
     });
-    console.log('calling: ', `${API_URL}api/challenges/completed/${userId}`);
-    return fetch(`${API_URL}api/challenges/completed/${userId}`, {
+    console.log(
+      'calling: ',
+      `${API_URL}api/users/${userId}/challenges/completed`
+    );
+    return fetch(`${API_URL}api/users/${userId}/challenges/completed`, {
       headers: {
         Accept: 'application/json'
       }
@@ -310,13 +314,17 @@ export function clearCompleteError() {
 export function createChallenge(user, challengee, segment, completionDate) {
   return dispatch => {
     console.log('calling: ', `${API_URL}api/challenges/create`);
+    console.log('segmentId: ', segment.id);
+    console.log('challengerId: ', user.id);
+    console.log('challengeeId: ', challengee.id);
+    console.log('completionDate: ', `${moment(completionDate).unix()}`);
     fetch(`${API_URL}api/challenges/create`, {
       method: 'POST',
       body: JSON.stringify({
-        segmentId: segment._id,
-        challengerId: user._id,
+        segmentId: segment.id,
+        challengerId: user.id,
         challengeeId: challengee.id,
-        completionDate
+        completionDate: `${moment(completionDate).unix()}`
       }),
       headers: {
         Accept: 'application/json',
@@ -331,6 +339,7 @@ export function createChallenge(user, challengee, segment, completionDate) {
             response: responseJson
           }
         });
+        console.log('created challenge successfully');
         Answers.logCustom('Create Challenge: Success', {
           user,
           challengee,
@@ -345,6 +354,7 @@ export function createChallenge(user, challengee, segment, completionDate) {
             error
           }
         });
+        console.log('failed to created challenge');
         Answers.logCustom('Create Challenge: Failure', {
           user,
           challengee,

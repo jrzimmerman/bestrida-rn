@@ -13,6 +13,8 @@ import styles from '../styles/styles';
 import * as userActions from '../actions/user';
 
 const buttonHeight = PixelRatio.get() < 3 ? 40 : 45;
+const transparent = 'transparent';
+const buttonBorder = '#ef473a';
 const settingStyles = StyleSheet.create({
   button: {
     marginTop: 20,
@@ -24,9 +26,9 @@ const settingStyles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 4,
     height: buttonHeight,
-    backgroundColor: 'transparent',
+    backgroundColor: transparent,
     borderWidth: 1,
-    borderColor: '#ef473a'
+    borderColor: buttonBorder
   }
 });
 
@@ -34,6 +36,8 @@ export class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleDataReload = this.handleDataReload.bind(this);
+    this.handleDismiss = this.handleDismiss.bind(this);
   }
 
   handleLogout() {
@@ -41,10 +45,56 @@ export class Settings extends React.Component {
     this.props.navigation.navigate('ChallengeFeed');
   }
 
+  handleDataReload() {
+    this.props.dispatch(userActions.getUser(this.props.userId));
+  }
+
+  handleDismiss() {
+    this.props.dispatch(userActions.userDismiss());
+  }
+
   render() {
+    let reloadView;
+    if (this.props.userError) {
+      reloadView = (
+        <View style={styles.errorView}>
+          <TouchableOpacity
+            onPress={this.handleDismiss}
+            style={styles.bannerButton}
+          >
+            <Text style={styles.bannerTitle}>Error Reloading Data</Text>
+            <Text style={styles.bannerText}>
+              Unable to reload data from Strava
+            </Text>
+            <Text style={styles.bannerText}>Tap to dismiss</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else if (this.props.userReloaded) {
+      reloadView = (
+        <View style={styles.successView}>
+          <TouchableOpacity
+            onPress={this.handleDismiss}
+            style={styles.bannerButton}
+          >
+            <Text style={styles.bannerTitle}>Successfully Reloaded Data</Text>
+            <Text style={styles.bannerText}>Reloaded data from Strava</Text>
+            <Text style={styles.bannerText}>Tap to dismiss</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
+        {reloadView}
+        <TouchableOpacity
+          style={settingStyles.button}
+          onPress={this.handleDataReload}
+        >
+          <Text style={styles.buttonText}>Reload Data</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={settingStyles.button}
           onPress={this.handleLogout}
@@ -56,16 +106,22 @@ export class Settings extends React.Component {
   }
 }
 
-const { bool, func, object } = PropTypes;
+const { bool, func, object, number } = PropTypes;
 
 Settings.propTypes = {
   dispatch: func,
   loggedIn: bool,
-  navigation: object
+  navigation: object,
+  userId: number,
+  userReloaded: bool,
+  userError: object
 };
 
 const mapStateToProps = state => ({
-  loggedIn: state.user.auth.loggedIn
+  userId: state.user.auth.userId,
+  loggedIn: state.user.auth.loggedIn,
+  userReloaded: state.user.userReloaded,
+  userError: state.user.userError
 });
 
 export default connect(mapStateToProps)(Settings);

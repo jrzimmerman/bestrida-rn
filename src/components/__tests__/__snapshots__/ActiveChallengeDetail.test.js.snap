@@ -422,7 +422,7 @@ exports[`renders ActiveChallengeDetail component 1`] = `
         "alignSelf": "stretch",
         "flex": 0.1,
         "marginBottom": 10,
-        "marginTop": 5,
+        "marginTop": 10,
       }
     }
   >

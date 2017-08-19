@@ -112,7 +112,7 @@ if (PixelRatio.get() < 3) {
     challengeFooterView: {
       flex: 0.1,
       alignSelf: 'stretch',
-      marginTop: 5,
+      marginTop: 10,
       marginBottom: 10
     },
     detailRowView: {
@@ -127,7 +127,11 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'stretch',
       backgroundColor: '#ef473a'
     },
-    errorButton: {
+    successView: {
+      alignSelf: 'stretch',
+      backgroundColor: '#33cd5f'
+    },
+    bannerButton: {
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',
@@ -137,7 +141,7 @@ if (PixelRatio.get() < 3) {
       borderRadius: 4,
       height: 45
     },
-    createErrorButton: {
+    createBannerButton: {
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',
@@ -147,13 +151,13 @@ if (PixelRatio.get() < 3) {
       borderRadius: 4,
       height: 45
     },
-    errorTitle: {
+    bannerTitle: {
       color: 'white',
       alignSelf: 'center',
       fontSize: 14,
       fontWeight: 'bold'
     },
-    errorText: {
+    bannerText: {
       fontSize: 12,
       color: 'white',
       alignSelf: 'center'
@@ -194,7 +198,7 @@ if (PixelRatio.get() < 3) {
       paddingVertical: 6,
       paddingHorizontal: 8,
       borderRadius: 4,
-      height: 45,
+      height: 40,
       backgroundColor: 'transparent',
       borderWidth: 1,
       borderColor: '#ef473a'
@@ -269,7 +273,7 @@ if (PixelRatio.get() < 3) {
     challengeFooterView: {
       flex: 0.1,
       alignSelf: 'stretch',
-      marginTop: 5,
+      marginTop: 10,
       marginBottom: 10
     },
     detailRowView: {
@@ -284,7 +288,11 @@ if (PixelRatio.get() < 3) {
       alignSelf: 'stretch',
       backgroundColor: '#ef473a'
     },
-    errorButton: {
+    successView: {
+      alignSelf: 'stretch',
+      backgroundColor: '#33cd5f'
+    },
+    bannerButton: {
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',
@@ -294,7 +302,7 @@ if (PixelRatio.get() < 3) {
       borderRadius: 4,
       height: 45
     },
-    createErrorButton: {
+    createBannerButton: {
       alignSelf: 'stretch',
       alignItems: 'center',
       justifyContent: 'center',
@@ -304,13 +312,13 @@ if (PixelRatio.get() < 3) {
       borderRadius: 4,
       height: 45
     },
-    errorTitle: {
+    bannerTitle: {
       color: 'white',
       alignSelf: 'center',
       fontSize: 16,
       fontWeight: 'bold'
     },
-    errorText: {
+    bannerText: {
       color: 'white',
       alignSelf: 'center'
     }
