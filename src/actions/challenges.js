@@ -77,7 +77,13 @@ export function pendingChallenges(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(challenges => determineOpponent(userId, challenges))
       .then(opponentChallenges => {
         dispatch({
@@ -112,7 +118,13 @@ export function activeChallenges(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(challenges => determineOpponent(userId, challenges))
       .then(opponentChallenges => {
         dispatch({
@@ -150,7 +162,13 @@ export function completedChallenges(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(challenges => determineOpponent(userId, challenges))
       .then(opponentChallenges => completionStatus(userId, opponentChallenges))
       .then(completedStatusChallenges => {
@@ -187,7 +205,13 @@ export function acceptChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(responseJson => {
         dispatch({
           type: constants.ACCEPT_CHALLENGE_SUCCESS,
@@ -224,7 +248,13 @@ export function declineChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(responseJson => {
         dispatch({
           type: constants.DECLINE_CHALLENGE_SUCCESS,
@@ -267,7 +297,13 @@ export function completeChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(responseJson => {
         try {
           if (responseJson.error) {
@@ -320,21 +356,27 @@ export function createChallenge(user, challengee, segment, completionDate) {
     console.log('segmentId: ', segment.id);
     console.log('challengerId: ', user.id);
     console.log('challengeeId: ', challengee.id);
-    console.log('completionDate: ', `${moment(completionDate).unix()}`);
+    console.log('completionDate: ', moment(completionDate).unix());
     fetch(`${API_URL}api/challenges/create`, {
       method: 'POST',
       body: JSON.stringify({
         segmentId: segment.id,
         challengerId: user.id,
         challengeeId: challengee.id,
-        completionDate: `${moment(completionDate).unix()}`
+        completionDate: moment(completionDate).unix()
       }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(responseJson => {
         dispatch({
           type: constants.CREATE_CHALLENGE_SUCCESS,
@@ -343,6 +385,7 @@ export function createChallenge(user, challengee, segment, completionDate) {
           }
         });
         console.log('created challenge successfully');
+        console.log('responseJson:', responseJson);
         Answers.logCustom('Create Challenge: Success', {
           user,
           challengee,

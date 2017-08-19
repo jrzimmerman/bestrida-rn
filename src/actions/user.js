@@ -48,7 +48,13 @@ export function getUser(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(responseJson => {
         dispatch({
           type: constants.GET_USER_SUCCESS,
@@ -82,7 +88,13 @@ export function getUserSegmentsFromStrava(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(responseJson => {
         dispatch({
           type: constants.GET_USER_SEGMENTS_SUCCESS,
@@ -112,7 +124,13 @@ export function getUserFriendsFromStrava(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          throw new Error(response.json());
+        }
+      })
       .then(responseJson => {
         dispatch({
           type: constants.GET_USER_FRIENDS_SUCCESS,
