@@ -12,13 +12,7 @@ export function getSegment(segmentId) {
         Accept: 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(data => {
         dispatch({
           type: constants.GET_SEGMENT,

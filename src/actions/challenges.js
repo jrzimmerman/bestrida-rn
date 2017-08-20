@@ -77,13 +77,7 @@ export function pendingChallenges(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(challenges => determineOpponent(userId, challenges))
       .then(opponentChallenges => {
         dispatch({
@@ -118,13 +112,7 @@ export function activeChallenges(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(challenges => determineOpponent(userId, challenges))
       .then(opponentChallenges => {
         dispatch({
@@ -162,13 +150,7 @@ export function completedChallenges(userId) {
         Accept: 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(challenges => determineOpponent(userId, challenges))
       .then(opponentChallenges => completionStatus(userId, opponentChallenges))
       .then(completedStatusChallenges => {
@@ -205,13 +187,7 @@ export function acceptChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(responseJson => {
         dispatch({
           type: constants.ACCEPT_CHALLENGE_SUCCESS,
@@ -220,8 +196,8 @@ export function acceptChallenge(challengeId, userId) {
           }
         });
         Answers.logCustom('Accept Challenge: Success', { challengeId, userId });
+        dispatch(activeChallenges(userId));
       })
-      .then(dispatch(activeChallenges(userId)))
       // navigate back to active challenges
       .catch(error => {
         dispatch({
@@ -248,13 +224,7 @@ export function declineChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(responseJson => {
         dispatch({
           type: constants.DECLINE_CHALLENGE_SUCCESS,
@@ -266,8 +236,8 @@ export function declineChallenge(challengeId, userId) {
           challengeId,
           userId
         });
+        dispatch(pendingChallenges(userId));
       })
-      .then(dispatch(pendingChallenges(userId)))
       .catch(error => {
         dispatch({
           type: constants.DECLINE_CHALLENGE_FAILURE,
@@ -297,13 +267,7 @@ export function completeChallenge(challengeId, userId) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(responseJson => {
         try {
           if (responseJson.error) {
@@ -331,8 +295,8 @@ export function completeChallenge(challengeId, userId) {
             userId
           });
         }
+        dispatch(completedChallenges(userId));
       })
-      .then(dispatch(completedChallenges(userId)))
       .catch(error => {
         dispatch({
           type: constants.COMPLETE_CHALLENGE_FAILURE,
@@ -370,28 +334,41 @@ export function createChallenge(user, challengee, segment, completionDate) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          return response.json();
-        } else {
-          throw new Error(response.json());
-        }
-      })
+      .then(response => response.json())
       .then(responseJson => {
-        dispatch({
-          type: constants.CREATE_CHALLENGE_SUCCESS,
-          payload: {
-            response: responseJson
+        try {
+          if (responseJson.error) {
+            throw new Error(responseJson.error);
           }
-        });
-        console.log('created challenge successfully');
-        console.log('responseJson:', responseJson);
-        Answers.logCustom('Create Challenge: Success', {
-          user,
-          challengee,
-          segment,
-          completionDate
-        });
+          dispatch({
+            type: constants.CREATE_CHALLENGE_SUCCESS,
+            payload: {
+              response: responseJson
+            }
+          });
+          console.log('created challenge successfully');
+          Answers.logCustom('Create Challenge: Success', {
+            user,
+            challengee,
+            segment,
+            completionDate
+          });
+        } catch (error) {
+          dispatch({
+            type: constants.CREATE_CHALLENGE_FAILURE,
+            payload: {
+              error
+            }
+          });
+          console.log('failed to created challenge');
+          Answers.logCustom('Create Challenge: Failure', {
+            user,
+            challengee,
+            segment,
+            completionDate
+          });
+        }
+        dispatch(pendingChallenges(user.id));
       })
       .catch(error => {
         dispatch({
@@ -399,13 +376,6 @@ export function createChallenge(user, challengee, segment, completionDate) {
           payload: {
             error
           }
-        });
-        console.log('failed to created challenge');
-        Answers.logCustom('Create Challenge: Failure', {
-          user,
-          challengee,
-          segment,
-          completionDate
         });
       });
   };
