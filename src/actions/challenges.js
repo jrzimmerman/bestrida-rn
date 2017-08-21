@@ -256,11 +256,13 @@ export function declineChallenge(challengeId, userId) {
 export function completeChallenge(challengeId, userId) {
   return dispatch => {
     console.log('calling: ', `${API_URL}api/challenges/complete`);
+    console.log('challengeId: ', challengeId);
+    console.log('userId: ', userId);
     fetch(`${API_URL}api/challenges/complete`, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify({
         id: challengeId,
-        userId
+        userId: userId
       }),
       headers: {
         Accept: 'application/json',
@@ -269,8 +271,10 @@ export function completeChallenge(challengeId, userId) {
     })
       .then(response => response.json())
       .then(responseJson => {
+        console.log('responseJson:', responseJson);
         try {
           if (responseJson.error) {
+            console.log('error: ', responseJson.error);
             throw new Error(responseJson.error);
           }
           dispatch({
@@ -279,6 +283,7 @@ export function completeChallenge(challengeId, userId) {
               response: responseJson
             }
           });
+          console.log('challenge completed successfully');
           Answers.logCustom('Complete Challenge: Success', {
             challengeId,
             userId
@@ -290,7 +295,8 @@ export function completeChallenge(challengeId, userId) {
               error
             }
           });
-          Answers.logCustom('Complete Challenge: Failure', {
+          console.log('error trying to complete challenge');
+          Answers.logCustom('Complete Challenge: Error', {
             challengeId,
             userId
           });
@@ -298,11 +304,16 @@ export function completeChallenge(challengeId, userId) {
         dispatch(completedChallenges(userId));
       })
       .catch(error => {
+        console.log('failed to complete challenge in catch');
         dispatch({
           type: constants.COMPLETE_CHALLENGE_FAILURE,
           payload: {
             error
           }
+        });
+        Answers.logCustom('Complete Challenge: Failure', {
+          challengeId,
+          userId
         });
       });
   };
@@ -361,7 +372,7 @@ export function createChallenge(user, challengee, segment, completionDate) {
             }
           });
           console.log('failed to created challenge');
-          Answers.logCustom('Create Challenge: Failure', {
+          Answers.logCustom('Create Challenge: Error', {
             user,
             challengee,
             segment,
@@ -376,6 +387,12 @@ export function createChallenge(user, challengee, segment, completionDate) {
           payload: {
             error
           }
+        });
+        Answers.logCustom('Create Challenge: Failure', {
+          user,
+          challengee,
+          segment,
+          completionDate
         });
       });
   };

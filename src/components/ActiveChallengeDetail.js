@@ -29,8 +29,8 @@ export class ActiveChallengeDetail extends React.Component {
     this.props.dispatch(segmentActions.clearSegment());
   }
 
-  handleComplete(challengeId, userId) {
-    const { dispatch, navigation } = this.props;
+  handleComplete(challengeId) {
+    const { dispatch, navigation, userId } = this.props;
     dispatch(challengeActions.completeChallenge(challengeId, userId));
     dispatch(challengeActions.activeChallenges(userId));
     navigation.goBack();
@@ -115,7 +115,7 @@ export class ActiveChallengeDetail extends React.Component {
         {segmentMap}
         <View style={styles.challengeFooterView}>
           <TouchableOpacity
-            onPress={() => this.handleComplete(challenge.id, userId)}
+            onPress={() => this.handleComplete(challenge.id)}
             style={styles.button}
           >
             <Text style={styles.buttonText}>Complete Challenge</Text>
