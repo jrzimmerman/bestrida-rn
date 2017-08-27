@@ -45,7 +45,7 @@ function determineOpponent(userId, challenges) {
 function completionStatus(userId, challenges) {
   const completedStatusChallenges = challenges.map(challenge => {
     let completedStatus;
-    if (challenge.challengee.completed && challenge.challenger.completed) {
+    if (challenge.status === 'complete') {
       if (Number(userId) === challenge.winnerId) {
         completedStatus = 'You won this challenge!';
       } else if (Number(userId) === challenge.loserId) {
@@ -331,14 +331,14 @@ export function createChallenge(user, challengee, segment, completionDate) {
     console.log('segmentId: ', segment.id);
     console.log('challengerId: ', user.id);
     console.log('challengeeId: ', challengee.id);
-    console.log('completionDate: ', moment(completionDate).unix());
+    console.log('completionDate: ', new Date(completionDate));
     fetch(`${API_URL}api/challenges/create`, {
       method: 'POST',
       body: JSON.stringify({
         segmentId: segment.id,
         challengerId: user.id,
         challengeeId: challengee.id,
-        completionDate: moment(completionDate).unix()
+        completionDate: new Date(completionDate)
       }),
       headers: {
         Accept: 'application/json',

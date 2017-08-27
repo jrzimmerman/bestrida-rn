@@ -38,7 +38,7 @@ export class ActiveChallengeDetail extends React.Component {
 
   render() {
     const { segments } = this.props;
-    const { challenge, userId } = this.props.navigation.state.params;
+    const { challenge } = this.props.navigation.state.params;
     const { height, width } = Dimensions.get('window');
     let segmentMap;
     if (segments && segments.segment && segments.segment.map) {
