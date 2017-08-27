@@ -41,12 +41,14 @@ export class Settings extends React.Component {
   }
 
   handleLogout() {
-    this.props.dispatch(userActions.userLogout());
-    this.props.navigation.navigate('ChallengeFeed');
+    const { dispatch, navigation } = this.props;
+    dispatch(userActions.userLogout());
+    navigation.navigate('ChallengeFeed');
   }
 
   handleDataReload() {
-    this.props.dispatch(userActions.getUser(this.props.userId));
+    const { dispatch, userId } = this.props;
+    dispatch(userActions.reloadUser(userId));
   }
 
   handleDismiss() {
@@ -54,8 +56,9 @@ export class Settings extends React.Component {
   }
 
   render() {
+    const { userError, userReloaded } = this.props;
     let reloadView;
-    if (this.props.userError) {
+    if (userError) {
       reloadView = (
         <View style={styles.errorView}>
           <TouchableOpacity
@@ -70,7 +73,7 @@ export class Settings extends React.Component {
           </TouchableOpacity>
         </View>
       );
-    } else if (this.props.userReloaded) {
+    } else if (userReloaded) {
       reloadView = (
         <View style={styles.successView}>
           <TouchableOpacity

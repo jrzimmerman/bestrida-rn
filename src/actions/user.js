@@ -31,8 +31,42 @@ export function userLogout() {
 export function userDismiss() {
   return dispatch => {
     dispatch({
-      type: constants.USER_RELOAD
+      type: constants.DISMISS_USER_RELOAD
     });
+  };
+}
+
+export function reloadUser(userId) {
+  console.log('calling: ', `${API_URL}api/users/${userId}`);
+  return dispatch => {
+    dispatch({
+      type: constants.RELOAD_USER_LOADING,
+      payload: true
+    });
+    return fetch(`${API_URL}api/users/${userId}`, {
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        dispatch({
+          type: constants.RELOAD_USER_SUCCESS,
+          payload: responseJson
+        });
+        if (responseJson.fullName)
+          Crashlytics.setUserName(responseJson.fullName);
+        if (responseJson.email) Crashlytics.setUserEmail(responseJson.email);
+        if (responseJson._id)
+          Crashlytics.setUserIdentifier(String(responseJson._id));
+        Crashlytics.log('Reload User: Success');
+      })
+      .catch(error => {
+        dispatch({
+          type: constants.RELOAD_USER_FAILURE,
+          payload: error
+        });
+      });
   };
 }
 

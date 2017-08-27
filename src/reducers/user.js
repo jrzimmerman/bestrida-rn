@@ -26,20 +26,39 @@ export default (state = initialState, action) => {
         ...state,
         auth: action.payload
       };
-    case constants.USER_RELOAD:
+    case constants.GET_USER_LOADING:
+      return {
+        ...state,
+        userLoading: action.payload,
+        userError: null
+      };
+    case constants.GET_USER_SUCCESS:
+      return {
+        ...state,
+        userLoading: false,
+        user: action.payload,
+        userError: null
+      };
+    case constants.GET_USER_FAILURE:
+      return {
+        ...state,
+        userLoading: false,
+        userError: action.payload
+      };
+    case constants.DISMISS_USER_RELOAD:
       return {
         ...state,
         userReloaded: false,
         userError: null
       };
-    case constants.GET_USER_LOADING:
+    case constants.RELOAD_USER_LOADING:
       return {
         ...state,
         userLoading: action.payload,
         userError: null,
         userReloaded: false
       };
-    case constants.GET_USER_SUCCESS:
+    case constants.RELOAD_USER_SUCCESS:
       return {
         ...state,
         userLoading: false,
@@ -47,7 +66,7 @@ export default (state = initialState, action) => {
         userError: null,
         userReloaded: true
       };
-    case constants.GET_USER_FAILURE:
+    case constants.RELOAD_USER_FAILURE:
       return {
         ...state,
         userLoading: false,
