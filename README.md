@@ -15,6 +15,7 @@ Product > Archive and follow prompt
 
 ## (Android) Deploy to Google Play Store
 https://facebook.github.io/react-native/docs/signed-apk-android.html
+Make sure docker is closed before opening the android emulator.
 `cd android && ./gradlew assembleRelease`
 The generated APK can be found under android/app/build/outputs/apk/app-release.apk, and is ready to be distributed.
 Test release with: `react-native run-android --variant=release`
