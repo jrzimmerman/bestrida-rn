@@ -68,10 +68,6 @@ export function pendingChallenges(userId) {
       type: constants.PENDING_CHALLENGES_LOADING,
       payload: true
     });
-    console.log(
-      'calling: ',
-      `${API_URL}api/users/${userId}/challenges/pending`
-    );
     return fetch(`${API_URL}api/users/${userId}/challenges/pending`, {
       headers: {
         Accept: 'application/json'
@@ -106,7 +102,6 @@ export function activeChallenges(userId) {
       type: constants.ACTIVE_CHALLENGES_LOADING,
       payload: true
     });
-    console.log('calling: ', `${API_URL}api/users/${userId}/challenges/active`);
     return fetch(`${API_URL}api/users/${userId}/challenges/active`, {
       headers: {
         Accept: 'application/json'
@@ -141,10 +136,6 @@ export function completedChallenges(userId) {
       type: constants.COMPLETED_CHALLENGES_LOADING,
       payload: true
     });
-    console.log(
-      'calling: ',
-      `${API_URL}api/users/${userId}/challenges/completed`
-    );
     return fetch(`${API_URL}api/users/${userId}/challenges/completed`, {
       headers: {
         Accept: 'application/json'
@@ -176,7 +167,6 @@ export function completedChallenges(userId) {
 
 export function acceptChallenge(challengeId, userId) {
   return dispatch => {
-    console.log('calling: ', `${API_URL}api/challenges/accept`);
     fetch(`${API_URL}api/challenges/accept`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -213,7 +203,6 @@ export function acceptChallenge(challengeId, userId) {
 
 export function declineChallenge(challengeId, userId) {
   return dispatch => {
-    console.log('calling: ', `${API_URL}api/challenges/decline`);
     fetch(`${API_URL}api/challenges/decline`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -255,9 +244,6 @@ export function declineChallenge(challengeId, userId) {
 
 export function completeChallenge(challengeId, userId) {
   return dispatch => {
-    console.log('calling: ', `${API_URL}api/challenges/complete`);
-    console.log('challengeId: ', challengeId);
-    console.log('userId: ', userId);
     fetch(`${API_URL}api/challenges/complete`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -271,10 +257,8 @@ export function completeChallenge(challengeId, userId) {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log('responseJson:', responseJson);
         try {
           if (responseJson.error) {
-            console.log('error: ', responseJson.error);
             throw new Error(responseJson.error);
           }
           dispatch({
@@ -283,7 +267,6 @@ export function completeChallenge(challengeId, userId) {
               response: responseJson
             }
           });
-          console.log('challenge completed successfully');
           Answers.logCustom('Complete Challenge: Success', {
             challengeId,
             userId
@@ -295,7 +278,6 @@ export function completeChallenge(challengeId, userId) {
               error
             }
           });
-          console.log('error trying to complete challenge');
           Answers.logCustom('Complete Challenge: Error', {
             challengeId,
             userId
@@ -304,7 +286,6 @@ export function completeChallenge(challengeId, userId) {
         dispatch(completedChallenges(userId));
       })
       .catch(error => {
-        console.log('failed to complete challenge in catch');
         dispatch({
           type: constants.COMPLETE_CHALLENGE_FAILURE,
           payload: {
@@ -327,11 +308,6 @@ export function clearCompleteError() {
 
 export function createChallenge(user, challengee, segment, completionDate) {
   return dispatch => {
-    console.log('calling: ', `${API_URL}api/challenges/create`);
-    console.log('segmentId: ', segment.id);
-    console.log('challengerId: ', user.id);
-    console.log('challengeeId: ', challengee.id);
-    console.log('completionDate: ', new Date(completionDate));
     fetch(`${API_URL}api/challenges/create`, {
       method: 'POST',
       body: JSON.stringify({
@@ -357,7 +333,6 @@ export function createChallenge(user, challengee, segment, completionDate) {
               response: responseJson
             }
           });
-          console.log('created challenge successfully');
           Answers.logCustom('Create Challenge: Success', {
             user,
             challengee,
@@ -371,7 +346,6 @@ export function createChallenge(user, challengee, segment, completionDate) {
               error
             }
           });
-          console.log('failed to created challenge');
           Answers.logCustom('Create Challenge: Error', {
             user,
             challengee,

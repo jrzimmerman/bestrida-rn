@@ -37,7 +37,6 @@ export function userDismiss() {
 }
 
 export function reloadUser(userId) {
-  console.log('calling: ', `${API_URL}api/users/${userId}`);
   return dispatch => {
     dispatch({
       type: constants.RELOAD_USER_LOADING,
@@ -71,7 +70,6 @@ export function reloadUser(userId) {
 }
 
 export function getUser(userId) {
-  console.log('calling: ', `${API_URL}api/users/${userId}`);
   return dispatch => {
     dispatch({
       type: constants.GET_USER_LOADING,
@@ -105,7 +103,6 @@ export function getUser(userId) {
 }
 
 export function getUserSegmentsFromStrava(userId) {
-  console.log('calling: ', `${API_URL}api/athletes/${userId}/segments`);
   return dispatch => {
     dispatch({
       type: constants.GET_USER_SEGMENTS_LOADING,
@@ -135,7 +132,6 @@ export function getUserSegmentsFromStrava(userId) {
 }
 
 export function getUserFriendsFromStrava(userId) {
-  console.log('calling: ', `${API_URL}api/athletes/${userId}/friends`);
   return dispatch => {
     dispatch({
       type: constants.GET_USER_FRIENDS_LOADING,

@@ -57,9 +57,13 @@ export class CreateChallenge extends React.Component {
   componentWillMount() {
     const { dispatch, userId, user } = this.props;
     dispatch(userActions.getUser(userId));
+    const sortedSegments = user.segments.sort((a, b) => b.count - a.count);
+    const sortedFriends = user.friends.sort(
+      (a, b) => b.challengeCount - a.challengeCount
+    );
     this.setState({
-      segments: user.segments,
-      opponents: user.friends
+      segments: sortedSegments,
+      opponents: sortedFriends
     });
   }
 
@@ -67,16 +71,26 @@ export class CreateChallenge extends React.Component {
     const { dispatch, userId, user } = this.props;
     dispatch(userActions.getUserSegmentsFromStrava(userId));
     dispatch(userActions.getUserFriendsFromStrava(userId));
+    const sortedSegments = user.segments.sort((a, b) => b.count - a.count);
+    const sortedFriends = user.friends.sort(
+      (a, b) => b.challengeCount - a.challengeCount
+    );
     this.setState({
-      segments: user.segments,
-      opponents: user.friends
+      segments: sortedSegments,
+      opponents: sortedFriends
     });
   }
 
   componentWillReceiveProps(nextProps) {
+    const sortedSegments = nextProps.user.segments.sort(
+      (a, b) => b.count - a.count
+    );
+    const sortedFriends = nextProps.user.friends.sort(
+      (a, b) => b.challengeCount - a.challengeCount
+    );
     this.setState({
-      segments: nextProps.user.segments,
-      opponents: nextProps.user.friends
+      segments: sortedSegments,
+      opponents: sortedFriends
     });
   }
 
@@ -85,9 +99,12 @@ export class CreateChallenge extends React.Component {
       extract: item => item.fullName
     });
     const matches = results.map(item => item.original);
+    const sortedMatches = matches.sort(
+      (a, b) => b.challengeCount - a.challengeCount
+    );
     this.setState({
       selectedOpponentText: text,
-      opponents: matches,
+      opponents: sortedMatches,
       createChallengeError: null
     });
   }
@@ -97,9 +114,10 @@ export class CreateChallenge extends React.Component {
       extract: item => item.name
     });
     const matches = results.map(item => item.original);
+    const sortedMatches = matches.sort((a, b) => b.count - a.count);
     this.setState({
       selectedSegmentText: text,
-      segments: matches,
+      segments: sortedMatches,
       createChallengeError: null
     });
   }
