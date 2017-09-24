@@ -1,5 +1,4 @@
 import { Answers } from 'react-native-fabric';
-import moment from 'moment';
 import * as constants from '../constants/challenges';
 import { API_URL } from '../constants/app';
 

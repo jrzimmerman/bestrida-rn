@@ -51,11 +51,3 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
-
-# Logs
-logs
-*.log
-npm-debug.log*
-
-# Coverage directory used by tools like istanbul
-coverage
