@@ -15,60 +15,65 @@ export const Layout = () => {
         screen: ChallengeFeedTab,
         navigationOptions: {
           tabBarLabel: 'Feed',
-          tabBarIcon: ({ tintColor, focused }) =>
+          tabBarIcon: ({ tintColor, focused }) => (
             <Icon
               name={focused ? 'ios-home' : 'ios-home-outline'}
               size={26}
               style={{ color: tintColor }}
             />
+          )
         }
       },
       ActiveChallenges: {
         screen: ActiveChallengesTab,
         navigationOptions: {
           tabBarLabel: 'Active',
-          tabBarIcon: ({ tintColor, focused }) =>
+          tabBarIcon: ({ tintColor, focused }) => (
             <Icon
               name={focused ? 'ios-pulse' : 'ios-pulse-outline'}
               size={26}
               style={{ color: tintColor }}
             />
+          )
         }
       },
       CreateChallenge: {
         screen: CreateChallengeTab,
         navigationOptions: {
           tabBarLabel: 'Create',
-          tabBarIcon: ({ tintColor, focused }) =>
+          tabBarIcon: ({ tintColor, focused }) => (
             <Icon
               name={focused ? 'md-list-box' : 'md-list'}
               size={26}
               style={{ color: tintColor }}
             />
+          )
         }
       },
       CompletedChallenges: {
         screen: CompletedChallengesTab,
         navigationOptions: {
           tabBarLabel: 'Completed',
-          tabBarIcon: ({ tintColor, focused }) =>
+          tabBarIcon: ({ tintColor, focused }) => (
             <Icon
               name={focused ? 'ios-trophy' : 'ios-trophy-outline'}
               size={26}
               style={{ color: tintColor }}
             />
+          )
         }
       },
       Settings: {
         screen: SettingsTab,
         navigationOptions: {
           tabBarLabel: 'Settings',
-          tabBarIcon: ({ tintColor, focused }) =>
+          tabBarIcon: ({ tintColor, focused }) => (
             <Icon
               name={focused ? 'ios-settings' : 'ios-settings-outline'}
               size={26}
               style={{ color: tintColor }}
             />
+          )
         }
       }
     },

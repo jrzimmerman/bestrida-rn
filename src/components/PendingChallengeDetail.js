@@ -154,9 +154,7 @@ export class PendingChallengeDetail extends React.Component {
           </View>
         </View>
         {segmentMap}
-        <View style={styles.challengeFooterView}>
-          {challengeFooter}
-        </View>
+        <View style={styles.challengeFooterView}>{challengeFooter}</View>
       </View>
     );
   }

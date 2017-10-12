@@ -82,7 +82,7 @@ export class ActiveChallenges extends React.Component {
             />
           }
           keyExtractor={item => item.id}
-          renderItem={({ item }) =>
+          renderItem={({ item }) => (
             <TouchableOpacity
               key={item.id}
               onPress={() => this.handlePress(item)}
@@ -121,7 +121,8 @@ export class ActiveChallenges extends React.Component {
                   Complete By: {new Date(item.expires).toDateString()}
                 </Text>
               </View>
-            </TouchableOpacity>}
+            </TouchableOpacity>
+          )}
         />
       </View>
     );

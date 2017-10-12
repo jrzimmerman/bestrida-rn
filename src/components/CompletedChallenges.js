@@ -63,7 +63,7 @@ export class CompletedChallenges extends React.Component {
               onRefresh={this.handleRefresh}
             />
           }
-          renderItem={({ item }) =>
+          renderItem={({ item }) => (
             <TouchableOpacity
               key={item.id}
               onPress={() => this.handlePress(item)}
@@ -102,7 +102,8 @@ export class CompletedChallenges extends React.Component {
                   {item.completedStatus}
                 </Text>
               </View>
-            </TouchableOpacity>}
+            </TouchableOpacity>
+          )}
         />
       </View>
     );

@@ -258,174 +258,175 @@ export class CreateChallenge extends React.Component {
         <StatusBar barStyle="light-content" />
         {errorView}
         <View style={createStyles.createDetailView}>
-          {this.state.showOpponentList
-            ? <View style={createStyles.selectorInputView}>
-                <Text style={styles.text}>Opponent</Text>
-                <TextInput
-                  value={this.state.selectedOpponentText}
-                  style={createStyles.selectorInput}
-                  onChangeText={text => this.handleChangeOpponentText(text)}
-                  placeholder={'Select Opponent'}
-                  placeholderTextColor={'#CCC'}
-                />
-                <FlatList
-                  autoCorrect={false}
-                  keyExtractor={item => item.id}
-                  data={this.state.opponents}
-                  renderItem={({ item }) =>
-                    <TouchableOpacity
-                      key={item.id}
-                      onPress={() => this.handleOpponentPress(item)}
-                      style={createStyles.row}
-                    >
-                      <Text style={styles.text}>
-                        {item.fullName}
-                      </Text>
-                    </TouchableOpacity>}
-                />
-              </View>
-            : <View style={createStyles.selectorInputView}>
-                <Text style={styles.text}>Opponent</Text>
-                <TouchableOpacity
-                  style={createStyles.selectorButton}
-                  onPress={this.toggleSelectedOpponent}
-                >
-                  <Text style={styles.text}>
-                    {this.state.selectedOpponent.fullName}
-                  </Text>
-                </TouchableOpacity>
-              </View>}
-
-          {this.state.showSegmentList
-            ? <View style={createStyles.selectorInputView}>
-                <Text style={styles.text}>Segment</Text>
-                <TextInput
-                  autoCorrect={false}
-                  value={this.state.selectedSegmentText}
-                  style={createStyles.selectorInput}
-                  onChangeText={text => this.handleChangeSegmentText(text)}
-                  placeholder={'Select Segment'}
-                  placeholderTextColor={'#CCC'}
-                />
-                <FlatList
-                  keyExtractor={item => item.id}
-                  data={this.state.segments}
-                  renderItem={({ item }) =>
-                    <TouchableOpacity
-                      key={item.id}
-                      onPress={() => this.handleSegmentPress(item)}
-                      style={createStyles.row}
-                    >
-                      <Text style={styles.text}>
-                        {item.name}
-                      </Text>
-                    </TouchableOpacity>}
-                />
-              </View>
-            : <View style={createStyles.selectorInputView}>
-                <Text style={styles.text}>Segment</Text>
-                <TouchableOpacity
-                  style={createStyles.selectorButton}
-                  onPress={this.toggleSelectedSegment}
-                >
-                  <Text style={styles.text}>
-                    {this.state.selectedSegment.name}
-                  </Text>
-                </TouchableOpacity>
-              </View>}
-
-          {Platform.OS === 'ios'
-            ? <View style={createStyles.selectorButtonView}>
-                <Text style={styles.text}>Completion Date</Text>
-                <View>
+          {this.state.showOpponentList ? (
+            <View style={createStyles.selectorInputView}>
+              <Text style={styles.text}>Opponent</Text>
+              <TextInput
+                value={this.state.selectedOpponentText}
+                style={createStyles.selectorInput}
+                onChangeText={text => this.handleChangeOpponentText(text)}
+                placeholder={'Select Opponent'}
+                placeholderTextColor={'#CCC'}
+              />
+              <FlatList
+                autoCorrect={false}
+                keyExtractor={item => item.id}
+                data={this.state.opponents}
+                renderItem={({ item }) => (
                   <TouchableOpacity
-                    style={createStyles.selectorButton}
+                    key={item.id}
+                    onPress={() => this.handleOpponentPress(item)}
+                    style={createStyles.row}
+                  >
+                    <Text style={styles.text}>{item.fullName}</Text>
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
+          ) : (
+            <View style={createStyles.selectorInputView}>
+              <Text style={styles.text}>Opponent</Text>
+              <TouchableOpacity
+                style={createStyles.selectorButton}
+                onPress={this.toggleSelectedOpponent}
+              >
+                <Text style={styles.text}>
+                  {this.state.selectedOpponent.fullName}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {this.state.showSegmentList ? (
+            <View style={createStyles.selectorInputView}>
+              <Text style={styles.text}>Segment</Text>
+              <TextInput
+                autoCorrect={false}
+                value={this.state.selectedSegmentText}
+                style={createStyles.selectorInput}
+                onChangeText={text => this.handleChangeSegmentText(text)}
+                placeholder={'Select Segment'}
+                placeholderTextColor={'#CCC'}
+              />
+              <FlatList
+                keyExtractor={item => item.id}
+                data={this.state.segments}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() => this.handleSegmentPress(item)}
+                    style={createStyles.row}
+                  >
+                    <Text style={styles.text}>{item.name}</Text>
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
+          ) : (
+            <View style={createStyles.selectorInputView}>
+              <Text style={styles.text}>Segment</Text>
+              <TouchableOpacity
+                style={createStyles.selectorButton}
+                onPress={this.toggleSelectedSegment}
+              >
+                <Text style={styles.text}>
+                  {this.state.selectedSegment.name}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {Platform.OS === 'ios' ? (
+            <View style={createStyles.selectorButtonView}>
+              <Text style={styles.text}>Completion Date</Text>
+              <View>
+                <TouchableOpacity
+                  style={createStyles.selectorButton}
+                  onPress={this.toggleDateModal}
+                >
+                  <Text style={styles.text}>
+                    {new Date(this.state.selectedCompletionDate).toDateString()}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <Modal
+                animationType={'slide'}
+                transparent={true}
+                visible={this.state.showDateModal}
+                onRequestClose={this.toggleDateModal}
+              >
+                <View style={createStyles.datePickerView}>
+                  <TouchableOpacity
+                    style={createStyles.btnConfirm}
                     onPress={this.toggleDateModal}
                   >
-                    <Text style={styles.text}>
-                      {new Date(
-                        this.state.selectedCompletionDate
-                      ).toDateString()}
-                    </Text>
+                    <Text style={createStyles.btnText}>Set Date</Text>
                   </TouchableOpacity>
-                </View>
-                <Modal
-                  animationType={'slide'}
-                  transparent={true}
-                  visible={this.state.showDateModal}
-                  onRequestClose={this.toggleDateModal}
-                >
-                  <View style={createStyles.datePickerView}>
-                    <TouchableOpacity
-                      style={createStyles.btnConfirm}
-                      onPress={this.toggleDateModal}
-                    >
-                      <Text style={createStyles.btnText}>Set Date</Text>
-                    </TouchableOpacity>
-                    <DatePickerIOS
-                      date={new Date(this.state.selectedCompletionDate)}
-                      minimumDate={newDate}
-                      mode={'date'}
-                      timeZoneOffsetInMinutes={
-                        this.state.timeZoneOffsetInHours * 60
-                      }
-                      onDateChange={date =>
-                        this.handleSelectCompletionDate(date)}
-                      style={createStyles.datePicker}
-                    />
-                  </View>
-                </Modal>
-              </View>
-            : <View style={createStyles.selectorButtonView}>
-                <Text style={styles.text}>Completion Date</Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    flex: 1,
-                    margin: 10,
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <DatePicker
-                    customStyles={{
-                      dateTouch: {
-                        flexDirection: 'row',
-                        flex: 1
-                      },
-                      dateTouchBody: {
-                        flexDirection: 'row',
-                        flex: 1,
-                        height: 42,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      },
-                      dateInput: {
-                        height: 42,
-                        borderWidth: 1,
-                        backgroundColor: '#383838',
-                        borderColor: '#CCC',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      },
-                      dateText: {
-                        fontSize: 14,
-                        color: '#CCC'
-                      }
-                    }}
-                    style={{
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexDirection: 'row',
-                      flex: 1
-                    }}
-                    date={moment(this.state.selectedCompletionDate).format()}
-                    mode="date"
-                    minDate={moment(newDate).format('YYYY-MM-DD')}
+                  <DatePickerIOS
+                    date={new Date(this.state.selectedCompletionDate)}
+                    minimumDate={newDate}
+                    mode={'date'}
+                    timeZoneOffsetInMinutes={
+                      this.state.timeZoneOffsetInHours * 60
+                    }
                     onDateChange={date => this.handleSelectCompletionDate(date)}
+                    style={createStyles.datePicker}
                   />
                 </View>
-              </View>}
+              </Modal>
+            </View>
+          ) : (
+            <View style={createStyles.selectorButtonView}>
+              <Text style={styles.text}>Completion Date</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  flex: 1,
+                  margin: 10,
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <DatePicker
+                  customStyles={{
+                    dateTouch: {
+                      flexDirection: 'row',
+                      flex: 1
+                    },
+                    dateTouchBody: {
+                      flexDirection: 'row',
+                      flex: 1,
+                      height: 42,
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    },
+                    dateInput: {
+                      height: 42,
+                      borderWidth: 1,
+                      backgroundColor: '#383838',
+                      borderColor: '#CCC',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    },
+                    dateText: {
+                      fontSize: 14,
+                      color: '#CCC'
+                    }
+                  }}
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    flex: 1
+                  }}
+                  date={moment(this.state.selectedCompletionDate).format()}
+                  mode="date"
+                  minDate={moment(newDate).format('YYYY-MM-DD')}
+                  onDateChange={date => this.handleSelectCompletionDate(date)}
+                />
+              </View>
+            </View>
+          )}
         </View>
         <View style={createStyles.createButtonView}>
           <TouchableOpacity
