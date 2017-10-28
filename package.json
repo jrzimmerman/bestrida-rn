@@ -10,6 +10,7 @@
     "lint": "eslint ./src",
     "format": "prettier --single-quote --write 'src/**/*.js'",
     "test": "jest",
+    "test:watch": "npm run test -- --watch",
     "test:cover": "npm run test -- --coverage",
     "test:update": "npm run test -- --updateSnapshot"
   },
@@ -19,7 +20,7 @@
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-native": "^0.49.3",
+    "react-native": "^0.49.5",
     "react-native-datepicker": "^1.6.0",
     "react-native-fabric": "^0.5.1",
     "react-native-maps": "^0.17.1",
@@ -30,13 +31,13 @@
     "react-redux": "^5.0.6",
     "react-test-renderer": "^16.0.0",
     "redux": "^3.7.1",
-    "redux-persist": "^4.10.1",
+    "redux-persist": "^5.1.0",
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "babel-jest": "^21.2.0",
     "babel-preset-react-native": "^4.0.0",
-    "eslint": "^4.9.0",
+    "eslint": "^4.10.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.3.1",

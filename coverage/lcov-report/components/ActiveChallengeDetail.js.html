@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/ActiveChallengeDetail.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">components</a> ActiveChallengeDetail.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">55.56% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.86% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/20</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  View,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  Dimensions
+} from 'react-native';
+import { connect } from 'react-redux';
+import SegmentMap from './SegmentMap';
+import styles from '../styles/styles';
+import * as challengeActions from '../actions/challenges';
+import * as segmentActions from '../actions/segments';
+&nbsp;
+export class ActiveChallengeDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleComplete = this.handleComplete.bind(this);
+  }
+&nbsp;
+  componentDidMount() {
+    const { dispatch } = this.props;
+    const { challenge } = this.props.navigation.state.params;
+    dispatch(segmentActions.getSegment(challenge.segment.id));
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillUnmount() {
+<span class="cstat-no" title="statement not covered" >    this.props.dispatch(segmentActions.clearSegment());</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndleComplete(challengeId) {
+    const { dispatch, navigation, userId } = <span class="cstat-no" title="statement not covered" >this.props;</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(challengeActions.completeChallenge(challengeId, userId));</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(challengeActions.activeChallenges(userId));</span>
+<span class="cstat-no" title="statement not covered" >    navigation.goBack();</span>
+  }
+&nbsp;
+  render() {
+    const { segments } = this.props;
+    const { challenge } = this.props.navigation.state.params;
+    const { height, width } = Dimensions.get('window');
+    let segmentMap;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (segments &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >segments.segment </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >segments.segment.map)</span> {
+<span class="cstat-no" title="statement not covered" >      segmentMap = (</span>
+        &lt;View style={styles.challengeMapView}&gt;
+          &lt;SegmentMap
+            height={height * 0.275}
+            width={width * 0.9}
+            map={segments.segment.map}
+          /&gt;
+        &lt;/View&gt;
+      );
+    }
+    return (
+      &lt;View style={styles.container}&gt;
+        &lt;StatusBar barStyle="light-content" /&gt;
+        &lt;View style={styles.challengeTitleView}&gt;
+          &lt;Text style={styles.challengeTitleText}&gt;
+            {challenge.segment.name}
+          &lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;View style={styles.challengeDetailView}&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;Start Date&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {new Date(challenge.created).toDateString()}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;End Date&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {new Date(challenge.expires).toDateString()}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;Distance&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {`${(challenge.segment.distance / 1609.34).toFixed(2)} Miles`}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;Location&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {`${challenge.segment.city
+                ? <span class="branch-0 cbranch-no" title="branch not covered" >`${challenge.segment.city},`</span>
+                : ''} ${challenge.segment.state}`}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;Activity Type&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {challenge.segment.activityType}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;Average Grade&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {`${challenge.segment.averageGrade} %`}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;Climb Category&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {challenge.segment.climbCategory || 'Not Available'}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.detailRowView}&gt;
+            &lt;Text style={styles.challengeDetailTitle}&gt;Elevation Gain&lt;/Text&gt;
+            &lt;Text style={styles.challengeDetailText}&gt;
+              {`${challenge.segment.totalElevationGain} meters`}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+        &lt;/View&gt;
+        {segmentMap}
+        &lt;View style={styles.challengeFooterView}&gt;
+          &lt;TouchableOpacity
+            onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleComplete(challenge.id)}</span>
+            style={styles.button}
+          &gt;
+            &lt;Text style={styles.buttonText}&gt;Complete Challenge&lt;/Text&gt;
+          &lt;/TouchableOpacity&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+&nbsp;
+const { func, number, shape } = PropTypes;
+&nbsp;
+ActiveChallengeDetail.propTypes = {
+  dispatch: func,
+  challenge: shape({}),
+  userId: number,
+  navigation: shape({}),
+  segments: shape({})
+};
+&nbsp;
+const mapStateToProps = <span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  userId: state.user.auth.userId,
+  segments: state.segments
+});
+&nbsp;
+export default connect(mapStateToProps)(ActiveChallengeDetail);
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 28 2017 14:43:26 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/CompletedChallengeDetail.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">components</a> CompletedChallengeDetail.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>25/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">55.26% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>21/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.21% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>25/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { View, StatusBar, Text, Dimensions } from 'react-native';
+import SegmentMap from './SegmentMap';
+import styles from '../styles/styles';
+import completedStyles from '../styles/completedStyles';
+import * as segmentActions from '../actions/segments';
+&nbsp;
+// Use this function to convert seconds in human-readable time
+function secondsToTime(secs) {
+  const roundSecs = Math.round(secs);
+  const hours = Math.floor(roundSecs / (60 * 60));
+&nbsp;
+  const divisorForMinutes = roundSecs % (60 * 60);
+  const minutes = Math.floor(divisorForMinutes / 60);
+&nbsp;
+  const divisorForSeconds = divisorForMinutes % 60;
+  const seconds = Math.ceil(divisorForSeconds);
+&nbsp;
+  const hourString = hours &lt; 10 ? `0${hours}` : <span class="branch-1 cbranch-no" title="branch not covered" >`${hours}`;</span>
+  const minuteString = minutes &lt; 10 ? `0${minutes}` : <span class="branch-1 cbranch-no" title="branch not covered" >`${minutes}`;</span>
+  const secondString = seconds &lt; 10 ? <span class="branch-0 cbranch-no" title="branch not covered" >`0${seconds}` </span>: `${seconds}`;
+&nbsp;
+  let resultTime;
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+<span class="cstat-no" title="statement not covered" >    resultTime = '';</span>
+  } else {
+    resultTime = `${hourString}:${minuteString}:${secondString}`;
+  }
+  return resultTime;
+}
+&nbsp;
+export class CompletedChallengeDetail extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    const { challenge } = this.props.navigation.state.params;
+    dispatch(segmentActions.getSegment(challenge.segment.id));
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillUnmount() {
+<span class="cstat-no" title="statement not covered" >    this.props.dispatch(segmentActions.clearSegment());</span>
+  }
+&nbsp;
+  render() {
+    const { segments } = this.props;
+    const { challenge, userId } = this.props.navigation.state.params;
+    const { height, width } = Dimensions.get('window');
+    let segmentMap;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (segments &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >segments.segment </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >segments.segment.map)</span> {
+<span class="cstat-no" title="statement not covered" >      segmentMap = (</span>
+        &lt;View style={styles.challengeMapView}&gt;
+          &lt;SegmentMap
+            height={height * 0.275}
+            width={width * 0.9}
+            map={segments.segment.map}
+          /&gt;
+        &lt;/View&gt;
+      );
+    }
+&nbsp;
+    let completedDetail;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (
+      challenge.completedStatus === 'Challenge is still calculating.' ||
+      challenge.completedStatus === 'Waiting for opponent.'
+    ) {
+<span class="cstat-no" title="statement not covered" >      completedDetail = (</span>
+        &lt;View style={styles.container}&gt;
+          &lt;StatusBar barStyle="light-content" /&gt;
+          &lt;Text
+            style={[completedStyles.completedTitleText, { marginBottom: 75 }]}
+          &gt;
+            {challenge.completedStatus}
+          &lt;/Text&gt;
+          {segmentMap}
+        &lt;/View&gt;
+      );
+    } else {
+      completedDetail = (
+        &lt;View style={styles.container}&gt;
+          &lt;StatusBar barStyle="light-content" /&gt;
+          &lt;View style={completedStyles.completedTitleView}&gt;
+            &lt;Text style={completedStyles.completedTitleText}&gt;
+              {Number(userId) === challenge.winnerId ? <span class="branch-0 cbranch-no" title="branch not covered" >'You Won!' </span>: 'You Lost!'}
+            &lt;/Text&gt;
+            &lt;Text style={completedStyles.completedSubTitleText}&gt;
+              {challenge.segment.name}
+            &lt;/Text&gt;
+            &lt;Text style={completedStyles.completedSubTitleText}&gt;
+              {`${(challenge.segment.distance / 1609.34).toFixed(2)} Miles`}
+            &lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={styles.challengeDetailView}&gt;
+            &lt;View style={styles.detailRowView}&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;
+                {challenge.challenger.name}
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;
+                {challenge.challengee.name}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;View style={styles.detailRowView}&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {secondsToTime(challenge.challenger.time)}
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;Time&lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {secondsToTime(challenge.challengee.time)}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;View style={styles.detailRowView}&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challenger.averageHeartRate === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challenger.averageHeartRate}
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;
+                Average Heart Rate
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challengee.averageHeartRate === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challengee.averageHeartRate}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;View style={styles.detailRowView}&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challenger.maxHeartRate === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challenger.maxHeartRate}
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;
+                Max Heart Rate
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challengee.maxHeartRate === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challengee.maxHeartRate}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;View style={styles.detailRowView}&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challenger.averageCadence === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challenger.averageCadence}
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;Cadence&lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challengee.averageCadence === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challengee.averageCadence}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;View style={styles.detailRowView}&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challenger.averageWatts === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challenger.averageWatts}
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;Watts&lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {challenge.challengeeAvgWatts === 0
+                  ? <span class="branch-0 cbranch-no" title="branch not covered" >null</span>
+                  : challenge.challengee.averageWatts}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;View style={styles.detailRowView}&gt;
+              &lt;Text style={completedStyles.completedDetailTitle}&gt;
+                Completed On
+              &lt;/Text&gt;
+              &lt;Text style={completedStyles.completedDetailText}&gt;
+                {new Date(challenge.completed).toDateString()}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+          &lt;/View&gt;
+          {segmentMap}
+        &lt;/View&gt;
+      );
+    }
+    return completedDetail;
+  }
+}
+&nbsp;
+const { func, number, shape } = PropTypes;
+&nbsp;
+CompletedChallengeDetail.propTypes = {
+  dispatch: func,
+  challenge: shape({}),
+  userId: number,
+  navigation: shape({}),
+  segments: shape({})
+};
+&nbsp;
+const mapStateToProps = <span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  userId: state.user.auth.userId,
+  segments: state.segments
+});
+&nbsp;
+export default connect(mapStateToProps)(CompletedChallengeDetail);
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 28 2017 14:43:26 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
