@@ -3971,9 +3971,9 @@ redux-mock-store@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.3.0.tgz#6edfef0d2332f20576381069d6d889a6d0a4451c"
 
-redux-persist@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.1.0.tgz#38f43fe7a3e0dad7e3240c00f737ccd2682b6cd9"
+redux-persist@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.2.2.tgz#bf932164008e275d9e1fec38909a94168761e818"
 
 redux-thunk@^2.1.0:
   version "2.2.0"
